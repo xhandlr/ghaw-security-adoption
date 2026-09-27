@@ -1,0 +1,15 @@
+snapshot_id,path,reason
+992,.github/workflows/repo-assist.md,"while scanning a simple key
+  in ""<unicode string>"", line 16, column 1:
+    <<<<<<< current (local changes)
+    ^
+could not find expected ':'
+  in ""<unicode string>"", line 17, column 11:
+      schedule: daily
+              ^"
+1361,.github/workflows/daily-test-improver.md,empty or not a dict
+1362,.github/workflows/daily-test-improver.md,empty or not a dict
+1363,.github/workflows/daily-test-improver.md,empty or not a dict
+1364,.github/workflows/daily-test-improver.md,empty or not a dict
+1365,.github/workflows/daily-test-improver.md,empty or not a dict
+1366,.github/workflows/daily-test-improver.md,empty or not a dict
