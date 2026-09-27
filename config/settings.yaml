@@ -3,7 +3,7 @@
 
 dataset:
   repo_id: pavtch/GHAW-H
-  revision: null  # TODO: pin to a specific dataset commit/tag after 01_load_dataset.py reports available versions
+  revision: 9ccc840bd7e96fd90db3a16548d5482c2833c47d  # pinned 2026-09-27, matches data/raw/download_log.json
 
 paths:
   raw_dir: data/raw
