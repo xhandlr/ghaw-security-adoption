@@ -1,0 +1,15 @@
+# Paths and dataset settings. Values marked TODO require a methodological
+# decision by the researcher and must not be filled in automatically.
+
+dataset:
+  repo_id: pavtch/GHAW-H
+  revision: null  # TODO: pin to a specific dataset commit/tag after 01_load_dataset.py reports available versions
+
+paths:
+  raw_dir: data/raw
+  processed_dir: data/processed
+  results_dir: results
+  coding_dir: coding
+
+snapshot_selection:
+  criterion: null  # TODO: e.g. "latest rank per file_history_id", still undecided

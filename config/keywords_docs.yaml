@@ -1,0 +1,6 @@
+# Keywords used only to prioritize which frontmatter/schema fields to review
+# for RQ1. They do NOT decide inclusion by themselves — inclusion is decided
+# with a written functional criterion (controls permissions, network, input
+# integrity, outputs, or isolation) recorded per field in the output CSV.
+
+keywords: []  # TODO: fill in with the researcher

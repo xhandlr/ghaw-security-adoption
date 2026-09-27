@@ -1,0 +1,5 @@
+# Keywords used to filter markdown bodies for RQ2 candidate defensive
+# mechanisms. Matches still require manual coding in coding/ before being
+# counted as a defensive mechanism.
+
+keywords: []  # TODO: fill in with the researcher
