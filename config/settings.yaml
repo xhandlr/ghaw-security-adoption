@@ -20,5 +20,5 @@ gh_aw_schema:
   commit: 5ecd40a4b200fb525d123b749597199d6149df36  # pinned 2026-09-28, last commit that touched this schema file
 
 rq2:
-  pilot_sample_size: 30
+  pilot_sample_size: 240  # minimum n for +/-5% margin of error at 95% confidence, p=0.5 (conservative)
   random_seed: 42
