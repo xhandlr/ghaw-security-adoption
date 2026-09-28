@@ -1,9 +1,12 @@
 """List every frontmatter key across GHAW-H snapshots.
 
 For each dotted key path (e.g. safe-outputs.threat-detection), reports how
-many distinct workflows use it and a few example values. Snapshots whose
-frontmatter fails to parse into a non-empty YAML dict are reported
-separately, not silently skipped.
+many distinct workflows use it and a few example values. Snapshots are
+never silently skipped: those whose frontmatter fails to parse, or parses
+to something that is not a dict, are reported as parse failures; those
+whose frontmatter parses to a valid but empty dict ({}) are reported
+separately, since that is not a failure, just a workflow with no declared
+keys.
 
 Runs the count twice: once over all snapshots, once over only the latest
 version of each workflow (the unit of analysis for RQ1).
@@ -66,17 +69,31 @@ def count_keys(rows):
     key_workflows = defaultdict(set)
     key_examples = defaultdict(list)
     parse_failures = []
+    empty_dicts = []
 
     for _, row in rows.iterrows():
         history_id = row["source_markdown_file_history_id"]
+        snapshot_id = row["source_markdown_file_snapshot_id"]
+        path = row["path"]
+
         try:
             doc = yaml.load(row["frontmatter"], Loader=FrontmatterLoader)
         except yaml.YAMLError as e:
-            parse_failures.append((row["source_markdown_file_snapshot_id"], row["path"], str(e)))
+            parse_failures.append((snapshot_id, path, str(e)))
             continue
 
-        if not isinstance(doc, dict) or not doc:
-            parse_failures.append((row["source_markdown_file_snapshot_id"], row["path"], "empty or not a dict"))
+        if doc is None:
+            parse_failures.append((snapshot_id, path, "empty frontmatter"))
+            continue
+
+        if not isinstance(doc, dict):
+            parse_failures.append((snapshot_id, path, f"not a dict: {type(doc).__name__}"))
+            continue
+
+        if not doc:
+            empty_dicts.append((snapshot_id, path))
+            # not a failure: it parsed fine, it just declares no keys.
+            # still counts as a valid workflow, just contributes no keys below.
             continue
 
         for key_path, value in flatten_keys(doc):
@@ -86,13 +103,16 @@ def count_keys(rows):
                 if example not in key_examples[key_path]:
                     key_examples[key_path].append(example)
 
-    return key_workflows, key_examples, parse_failures
+    return key_workflows, key_examples, parse_failures, empty_dicts
 
 
-def write_outputs(label, rows, key_workflows, key_examples, parse_failures):
-    Path("results").mkdir(exist_ok=True)
+OUTPUT_DIR = Path("results/02_frontmatter_keys")
 
-    with open(f"results/frontmatter_keys_{label}.csv", "w", newline="") as f:
+
+def write_outputs(label, rows, key_workflows, key_examples, parse_failures, empty_dicts):
+    OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
+
+    with open(OUTPUT_DIR / f"keys_{label}.csv", "w", newline="") as f:
         writer = csv.writer(f)
         writer.writerow(["key_path", "distinct_workflow_count", "example_values"])
         for key_path in sorted(key_workflows, key=lambda k: -len(key_workflows[k])):
@@ -102,14 +122,20 @@ def write_outputs(label, rows, key_workflows, key_examples, parse_failures):
                 "; ".join(key_examples[key_path]),
             ])
 
-    with open(f"results/frontmatter_parse_failures_{label}.csv", "w", newline="") as f:
+    with open(OUTPUT_DIR / f"parse_failures_{label}.csv", "w", newline="") as f:
         writer = csv.writer(f)
         writer.writerow(["snapshot_id", "path", "reason"])
         writer.writerows(parse_failures)
 
+    with open(OUTPUT_DIR / f"empty_dicts_{label}.csv", "w", newline="") as f:
+        writer = csv.writer(f)
+        writer.writerow(["snapshot_id", "path"])
+        writer.writerows(empty_dicts)
+
     print(f"[{label}]")
     print(f"Snapshots processed: {len(rows)}")
-    print(f"Parse failures (empty/invalid frontmatter): {len(parse_failures)}")
+    print(f"Parse failures (empty or invalid frontmatter): {len(parse_failures)}")
+    print(f"Valid but empty frontmatter (parses to {{}}): {len(empty_dicts)}")
     print(f"Distinct key paths found: {len(key_workflows)}")
     print(f"Distinct workflows total: {rows['source_markdown_file_history_id'].nunique()}")
     print()
@@ -126,8 +152,8 @@ def main():
     latest = merged.loc[merged.groupby("source_markdown_file_history_id")["rank"].idxmax()]
 
     for label, rows in [("all_snapshots", merged), ("latest_version", latest)]:
-        key_workflows, key_examples, parse_failures = count_keys(rows)
-        write_outputs(label, rows, key_workflows, key_examples, parse_failures)
+        key_workflows, key_examples, parse_failures, empty_dicts = count_keys(rows)
+        write_outputs(label, rows, key_workflows, key_examples, parse_failures, empty_dicts)
 
 
 if __name__ == "__main__":

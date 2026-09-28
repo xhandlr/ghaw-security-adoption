@@ -12,4 +12,9 @@ paths:
   coding_dir: coding
 
 snapshot_selection:
-  criterion: null  # TODO: e.g. "latest rank per file_history_id", still undecided
+  criterion: latest rank per source_markdown_file_history_id
+
+gh_aw_schema:
+  repo: github/gh-aw
+  path: pkg/parser/schemas/main_workflow_schema.json
+  commit: 5ecd40a4b200fb525d123b749597199d6149df36  # pinned 2026-09-28, last commit that touched this schema file
