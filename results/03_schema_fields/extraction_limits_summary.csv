@@ -1,0 +1,6 @@
+limit_type,affected_paths
+max_depth_cut,0
+tuple_items_not_walked,0
+allof_not_walked,0
+pattern_and_additional_properties,0
+same_path_and_trace_differ,0
