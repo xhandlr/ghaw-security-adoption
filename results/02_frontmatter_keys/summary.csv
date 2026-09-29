@@ -1,0 +1,3 @@
+scope,snapshots_processed,workflows_processed,parse_failures,distinct_key_paths,distinct_roots
+all_snapshots,2820,604,7,2159,52
+latest_version,604,604,1,1863,48

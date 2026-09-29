@@ -43,6 +43,12 @@ def flatten_keys(doc):
 
     Example: {"safe-outputs": {"threat-detection": True}} becomes
     [("safe-outputs", {...}), ("safe-outputs.threat-detection", True)].
+
+    Lists of objects are walked with the same [] notation as
+    results/03_schema_fields/fields.csv: {"steps": [{"name": "x"}]} also
+    yields ("steps[].name", "x"). Lists of plain values (text, numbers)
+    yield no sub-keys; they are counted only at the field's own path.
+    Free-form keys keep their concrete name (mcp-servers.github).
     """
     results = []
     pending = [("", doc)]
@@ -51,6 +57,12 @@ def flatten_keys(doc):
         # prefix is the path to the box we are about to open,
         # current is what is inside that box
         prefix, current = pending.pop()
+        # a list: open each item that is itself a dict or a list, under prefix[]
+        if isinstance(current, list):
+            for item in current:
+                if isinstance(item, (dict, list)):
+                    pending.append((prefix + "[]", item))
+            continue
         # skip if it is not a dict, nothing to flatten
         if not isinstance(current, dict):
             continue
@@ -140,6 +152,15 @@ def write_outputs(label, rows, key_workflows, key_examples, parse_failures, empt
     print(f"Distinct workflows total: {rows['source_markdown_file_history_id'].nunique()}")
     print()
 
+    return [
+        label,
+        len(rows),
+        rows["source_markdown_file_history_id"].nunique(),
+        len(parse_failures),
+        len(key_workflows),
+        len([k for k in key_workflows if "." not in k and "[]" not in k]),
+    ]
+
 
 def main():
     snapshots = pd.read_parquet("data/raw/data/source_markdown_file_snapshot.parquet")
@@ -151,9 +172,16 @@ def main():
 
     latest = merged.loc[merged.groupby("source_markdown_file_history_id")["rank"].idxmax()]
 
+    summary = []
     for label, rows in [("all_snapshots", merged), ("latest_version", latest)]:
         key_workflows, key_examples, parse_failures, empty_dicts = count_keys(rows)
-        write_outputs(label, rows, key_workflows, key_examples, parse_failures, empty_dicts)
+        summary.append(write_outputs(label, rows, key_workflows, key_examples, parse_failures, empty_dicts))
+
+    with open(OUTPUT_DIR / "summary.csv", "w", newline="") as f:
+        writer = csv.writer(f)
+        writer.writerow(["scope", "snapshots_processed", "workflows_processed",
+                         "parse_failures", "distinct_key_paths", "distinct_roots"])
+        writer.writerows(summary)
 
 
 if __name__ == "__main__":
