@@ -1,0 +1,9 @@
+output,measure,value
+frontmatter_parse_failure,,1
+permissions_undeclared,rows,3
+network_default_forms,excluded_firewall_status_not_ok,12
+network_default_forms,rows,350
+network_default_forms,outlier_rows,16
+bash_true,rows,116
+network_firewall_only,rows,2
+bash_undeclared,rows,386

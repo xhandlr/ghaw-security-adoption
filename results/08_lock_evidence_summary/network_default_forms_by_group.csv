@@ -1,0 +1,56 @@
+group_compiler_version,group_agent_id,forms_present,reference_status,matching_by_form,all_rows_match
+no_metadata,no_metadata,defaults+undeclared,ok,"{""defaults"": ""8/13"", ""undeclared"": ""22/29""}",False
+v0.47.1,no_metadata,defaults+undeclared,ok,"{""defaults"": ""2/2"", ""undeclared"": ""1/1""}",True
+v0.49.1,no_metadata,allowed_defaults,no_reference,"{""allowed_defaults"": ""/1""}",
+v0.49.4,no_metadata,defaults,no_reference,"{""defaults"": ""/1""}",
+v0.50.0,no_metadata,defaults,no_reference,"{""defaults"": ""/2""}",
+v0.50.2,no_metadata,defaults,no_reference,"{""defaults"": ""/2""}",
+v0.50.3,no_metadata,defaults,no_reference,"{""defaults"": ""/1""}",
+v0.50.4,no_metadata,undeclared,ok,"{""undeclared"": ""3/3""}",True
+v0.50.5,no_metadata,defaults+undeclared,ok,"{""defaults"": ""2/2"", ""undeclared"": ""2/3""}",False
+v0.50.7,no_metadata,defaults,no_reference,"{""defaults"": ""/1""}",
+v0.51.6,no_metadata,defaults,no_reference,"{""defaults"": ""/1""}",
+v0.51.8,no_metadata,defaults,no_reference,"{""defaults"": ""/1""}",
+v0.52.1,no_metadata,undeclared,ok,"{""undeclared"": ""1/1""}",True
+v0.53.0,no_metadata,undeclared,ok,"{""undeclared"": ""2/2""}",True
+v0.53.5,no_metadata,allowed_defaults,no_reference,"{""allowed_defaults"": ""/1""}",
+v0.55.0,no_metadata,undeclared,ok,"{""undeclared"": ""2/2""}",True
+v0.56.0,no_metadata,undeclared,ok,"{""undeclared"": ""1/1""}",True
+v0.56.2,no_metadata,undeclared,ok,"{""undeclared"": ""4/4""}",True
+v0.57.2,no_metadata,undeclared,ok,"{""undeclared"": ""2/2""}",True
+v0.58.0,no_metadata,undeclared,ok,"{""undeclared"": ""1/1""}",True
+v0.58.3,no_metadata,defaults+undeclared,ok,"{""defaults"": ""1/1"", ""undeclared"": ""1/1""}",True
+v0.61.0,no_metadata,undeclared,ok,"{""undeclared"": ""1/1""}",True
+v0.61.1,no_metadata,defaults,no_reference,"{""defaults"": ""/1""}",
+v0.61.2,no_metadata,undeclared,ok,"{""undeclared"": ""1/1""}",True
+v0.62.3,copilot,defaults,no_reference,"{""defaults"": ""/1""}",
+v0.62.4,claude,undeclared,ok,"{""undeclared"": ""1/1""}",True
+v0.62.5,copilot,undeclared,ok,"{""undeclared"": ""1/1""}",True
+v0.64.2,copilot,allowed_defaults,no_reference,"{""allowed_defaults"": ""/2""}",
+v0.64.4,claude,defaults,no_reference,"{""defaults"": ""/1""}",
+v0.64.4,copilot,undeclared,ok,"{""undeclared"": ""1/1""}",True
+v0.65.0,copilot,undeclared,ok,"{""undeclared"": ""1/1""}",True
+v0.65.2,copilot,undeclared,ok,"{""undeclared"": ""1/1""}",True
+v0.65.3,copilot,undeclared,ok,"{""undeclared"": ""2/2""}",True
+v0.65.5,copilot,undeclared,ok,"{""undeclared"": ""5/5""}",True
+v0.67.0,claude,undeclared,ok,"{""undeclared"": ""2/2""}",True
+v0.67.0,copilot,defaults,no_reference,"{""defaults"": ""/1""}",
+v0.68.1,copilot,defaults+undeclared,ok,"{""defaults"": ""3/3"", ""undeclared"": ""5/5""}",True
+v0.68.3,claude,undeclared,ok,"{""undeclared"": ""7/7""}",True
+v0.68.3,copilot,allowed_defaults+defaults+undeclared,ok,"{""allowed_defaults"": ""2/2"", ""defaults"": ""4/4"", ""undeclared"": ""3/4""}",False
+v0.71.1,copilot,defaults+undeclared,ok,"{""defaults"": ""2/2"", ""undeclared"": ""2/2""}",True
+v0.71.5,claude,allowed_defaults+undeclared,ok,"{""allowed_defaults"": ""1/1"", ""undeclared"": ""96/96""}",True
+v0.71.5,copilot,allowed_defaults+defaults+undeclared,ok,"{""allowed_defaults"": ""3/3"", ""defaults"": ""6/7"", ""undeclared"": ""5/5""}",False
+v0.72.1,copilot,defaults+undeclared,ok,"{""defaults"": ""1/1"", ""undeclared"": ""6/6""}",True
+v0.74.4,copilot,allowed_defaults+defaults+undeclared,ok,"{""allowed_defaults"": ""1/1"", ""defaults"": ""2/2"", ""undeclared"": ""2/2""}",True
+v0.74.8,claude,undeclared,ok,"{""undeclared"": ""9/9""}",True
+v0.74.8,copilot,allowed_defaults+defaults+undeclared,ok,"{""allowed_defaults"": ""1/1"", ""defaults"": ""1/1"", ""undeclared"": ""4/4""}",True
+v0.76.1,claude,undeclared,ok,"{""undeclared"": ""2/2""}",True
+v0.76.1,copilot,defaults+undeclared,ok,"{""defaults"": ""3/3"", ""undeclared"": ""3/3""}",True
+v0.77.5,claude,defaults+undeclared,ok,"{""defaults"": ""4/4"", ""undeclared"": ""1/1""}",True
+v0.77.5,copilot,allowed_defaults+undeclared,ok,"{""allowed_defaults"": ""2/2"", ""undeclared"": ""3/3""}",True
+v0.79.4,codex,undeclared,ok,"{""undeclared"": ""1/1""}",True
+v0.79.6,claude,allowed_defaults+defaults+undeclared,tie,"{""allowed_defaults"": ""/2"", ""defaults"": ""/3"", ""undeclared"": ""/4""}",
+v0.79.6,copilot,undeclared,ok,"{""undeclared"": ""2/2""}",True
+v0.79.8,copilot,allowed_defaults+defaults+undeclared,ok,"{""allowed_defaults"": ""7/7"", ""defaults"": ""20/21"", ""undeclared"": ""10/10""}",False
+v0.80.9,copilot,defaults+undeclared,ok,"{""defaults"": ""2/2"", ""undeclared"": ""11/11""}",True

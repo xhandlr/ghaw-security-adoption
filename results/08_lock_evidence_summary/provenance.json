@@ -1,0 +1,18 @@
+{
+  "dataset_repo_id": "pavtch/GHAW-H",
+  "dataset_revision": "9ccc840bd7e96fd90db3a16548d5482c2833c47d",
+  "lock_evidence_csv": "results/07_lock_evidence/lock_evidence.csv",
+  "lock_evidence_csv_sha256": "e8357905f0220eb248c56e84556156cde3105154bf84ab3b81a18b8ee4173cd7",
+  "snapshot_table_sha256": "b8049b2f05bdbce449f24dfef3ca70e1b135b339a17347ad9d88a98f4e8d94b9",
+  "outputs_sha256": {
+    "base.csv": "e1ddfbbc2bced30b99623d59c17d7caf2589051a79fe2950713f708f66545b0c",
+    "bash_true.csv": "8c1dcf7548be82b11aa5a66776dd0fd9eebe1b2b835ac96f3b2f2c5d8d284898",
+    "bash_undeclared.csv": "aba7c3c1fb6f2fab9e181ade95f2274518cd6fac75247cacd08c67bba8cf95d6",
+    "network_default_forms.csv": "240853c2117ed15e300e6db1ef0a8ffc80b39f4ac0a67f13307c7daf102dae48",
+    "network_default_forms_by_group.csv": "7cef55c161e8b3ac2d16c6b2ce836266a6765742e21c1a5e090038065f923206",
+    "network_default_forms_outliers.csv": "8e04253d8145387ad451d20de4c745e8fa9bf63ca4beacca384aae05a4add0fa",
+    "network_firewall_only.csv": "a7ea83b6e7a4036363ffea697128bdc4f2ef19c4939bd84534700c1f83d8194f",
+    "permissions_undeclared.csv": "4d3785eead1c6c07a6c16ef0a1251f6a50ced0c1407e0b52d6193c5f7f3e67ea",
+    "summary.csv": "65c0f7ba5a8520e8c767ad159bc73395c551dbe5b3608ea7449d35c5c1a4dc0d"
+  }
+}

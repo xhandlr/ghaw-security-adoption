@@ -1,0 +1,4 @@
+repo_full_name,path,group_compiler_version,group_agent_id,agent_permissions,agent_permissions_status
+dotnet/msbuild,.github/workflows/close-stale-prs.agent.md,v0.79.8,copilot,"{""contents"": ""read""}",ok
+WordPress/grunt-patch-wordpress,.github/workflows/dependabot-pr-review.md,v0.76.1,copilot,"{""contents"": ""read""}",ok
+dotnet/skills,.github/workflows/close-stale-prs.agent.md,v0.79.8,copilot,"{""contents"": ""read""}",ok
