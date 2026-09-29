@@ -1,0 +1,154 @@
+# Libro de códigos RQ1: campos de la demostración.
+# Decisiones metodológicas de la autora. El script de medición lee este archivo;
+# no contiene lógica propia.
+
+definicion_default: >
+  Valor que la plataforma aplica cuando el campo no se declara, según su
+  especificación (schema o documentación oficial). Cuando la especificación lo
+  describe solo de forma general, se precisa con el valor observado en los lock
+  files de los workflows que no declaran el campo.
+
+estados:
+  implicito: El campo no está declarado en el frontmatter.
+  explicito_igual_default: El campo está declarado con un valor igual al default.
+  modificado: El campo está declarado con un valor distinto al default.
+
+gh_aw_commit: 5ecd40a4b200fb525d123b749597199d6149df36  # igual a gh_aw_schema.commit en config/settings.yaml
+
+campos:
+  strict:
+    default: true
+    fuente:
+      archivo: results/03_schema_fields/fields.csv
+      columna: default
+      valor: "true"
+    igual_al_default:
+      regla: valor exacto
+      valores: [true]
+
+  tools.bash:
+    default: [echo, ls, pwd, cat, head, tail, grep, wc, sort, uniq, date]
+    fuente:
+      archivo: results/03_schema_fields/fields.csv
+      columna: description
+      cita: "Default safe commands: echo, ls, pwd, cat, head, tail, grep, wc, sort, uniq, date."
+    discrepancia:
+      archivo: docs/src/content/docs/reference/tools.md
+      linea: 104
+      cita: "Enables shell command execution in the workspace. Defaults to safe commands (`echo`, `printf`, `ls`, `pwd`, `cat`, `head`, `tail`, `grep`, `wc`, `sort`, `uniq`, `date`, `yq`)."
+      nota: La documentación lista 13 comandos (agrega printf y yq). Se usa la lista del schema (11).
+    discrepancia_comportamiento:
+      nota: >
+        Discrepancia entre el default documentado y el comportamiento
+        efectivo: en los lock files, la mayoría de los workflows que no
+        declaran tools.bash quedan con bash sin restricción de comandos
+        (bash_mode all_tools o shell_unrestricted).
+      fuente: results/08_lock_evidence_summary/bash_undeclared.csv
+    igual_al_default:
+      regla: cualquiera de estas formas
+      valores:
+        - valor: lista con exactamente el mismo conjunto de comandos, sin importar orden ni repeticiones
+        - valor: null  # "bash:" sin valor
+          motivo: La documentación indica que bash sin valor aplica los comandos por defecto.
+          fuente:
+            archivo: docs/src/content/docs/reference/tools.md
+            linea: 108
+            cita: "bash:                              # Default safe commands"
+    formas:
+      - valor: []
+        decision: modificado
+        motivo: La documentación indica que una lista vacía deshabilita todos los comandos.
+        fuente:
+          archivo: docs/src/content/docs/reference/tools.md
+          linea: 109
+          cita: "bash: []                           # Disable all commands"
+      - valor: true
+        decision: modificado
+        motivo: Forma no documentada. Según los lock files, deja bash sin restricción de comandos.
+        fuente: results/08_lock_evidence_summary/bash_true.csv
+      - valor: false
+        decision: modificado
+        motivo: Deshabilita bash.
+        fuente:
+          archivo: docs/src/content/docs/reference/tools.md
+          linea: 219
+          cita: "When `tools.bash` is disabled (`bash: false` or `bash: []`), `cli-proxy: true` and `tools.github.mode: gh-proxy` are rejected at compile time, and strict mode requires `cli-proxy: false` to be stated explicitly:"
+      - valor: lista con un conjunto distinto al default
+        decision: modificado
+        motivo: Aplica la regla de igual_al_default.
+
+  network:
+    default: defaults
+    fuente:
+      archivo: docs/src/content/docs/reference/network.md
+      repo: github/gh-aw
+      linea: 10
+      cita: "If no `network:` permission is specified, it defaults to `network: defaults`, which allows basic infrastructure domains (certificates, JSON schema, Ubuntu, common package mirrors, Microsoft sources)."
+    igual_al_default:
+      regla: cualquiera de estas formas
+      valores:
+        - defaults
+        - {allowed: [defaults]}
+    verificacion:
+      fuente: lock files
+      archivos:
+        - results/08_lock_evidence_summary/network_default_forms_by_group.csv
+        - results/08_lock_evidence_summary/network_default_forms_outliers.csv
+    formas:
+      - valor: {}
+        decision: modificado
+        motivo: La documentación indica que bloquea todo el acceso a red.
+        fuente:
+          archivo: docs/src/content/docs/reference/network.md
+          linea: 21
+          cita: "- **No access** (`network: {}`) blocks all network access."
+        discrepancia_comportamiento:
+          nota: >
+            Discrepancia entre la documentación (network.md L21) y el
+            comportamiento efectivo de los 4 workflows con network: {}.
+            En los 2 con compiler_version conocida (v0.68.3 y v0.71.5, agente
+            copilot), el firewall queda con 10 dominios
+            (api.business.githubcopilot.com, api.enterprise.githubcopilot.com,
+            api.github.com, api.githubcopilot.com,
+            api.individual.githubcopilot.com, github.com, host.docker.internal,
+            raw.githubusercontent.com, registry.npmjs.org,
+            telemetry.enterprise.githubcopilot.com) y declared_domains queda
+            vacío, frente a los
+            45 dominios del conjunto de referencia de esos grupos, con el que
+            coinciden 4 de 4 (v0.68.3) y 6 de 7 (v0.71.5) workflows con
+            network: defaults. En los 2 del grupo no_metadata, el firewall
+            queda con los mismos 9 dominios que workflows con defaults o sin
+            network declarado en ese grupo.
+          fuente:
+            - results/08_lock_evidence_summary/base.csv
+            - results/08_lock_evidence_summary/network_default_forms.csv
+          relacionado:
+            archivo: docs/src/content/docs/reference/network.md
+            linea: 87
+            cita: "GitHub domains (`github.com`, `githubusercontent.com`, etc.) are always allowed by default."
+      - valor: {firewall: true}  # sin allowed
+        decision: modificado
+        motivo: Lo declarado no es ninguna de las formas iguales al default, y firewall no está en el schema del commit fijado.
+        fuente:
+          archivo: results/03_schema_fields/fields.csv
+          nota: No existe la ruta network.firewall.
+
+  permissions:
+    default: {contents: read}
+    fuente:
+      archivo: docs/src/content/docs/reference/permissions.md
+      repo: github/gh-aw
+      linea: 8
+      cita: "GitHub Agentic Workflows uses read-only permissions by default for security, with write operations handled through [safe outputs](/gh-aw/reference/safe-outputs/)."
+      precision: >
+        Valor observado en jobs.agent.permissions de los lock files de los
+        3 workflows que no declaran permissions.
+      precision_archivo: results/08_lock_evidence_summary/permissions_undeclared.csv
+    igual_al_default:
+      regla: exactamente contents read, sin ningún otro scope; cualquier otra combinación, incluidas otras lecturas, es modificado
+      valores:
+        - {contents: read}
+    formas:
+      - valor: read-all
+        decision: modificado
+        motivo: Aplica la regla de igual_al_default (cualquier combinación distinta de exactamente contents read).
