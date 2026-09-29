@@ -1,0 +1,15 @@
+column,status,rows
+lock_status,no_agent_job,1
+lock_status,ok,603
+metadata_status,no_metadata,70
+metadata_status,ok,534
+agent_permissions_status,no_agent_job,1
+agent_permissions_status,ok,603
+declared_domains_status,no_line,95
+declared_domains_status,ok,509
+firewall_status,no_agent_job,1
+firewall_status,no_firewall,14
+firewall_status,ok,589
+bash_status,no_agent_job,1
+bash_status,ok,593
+bash_status,unrecognized_format,10

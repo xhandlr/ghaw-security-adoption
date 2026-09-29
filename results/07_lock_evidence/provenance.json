@@ -1,0 +1,13 @@
+{
+  "dataset_repo_id": "pavtch/GHAW-H",
+  "dataset_revision": "9ccc840bd7e96fd90db3a16548d5482c2833c47d",
+  "snapshot_selection": "latest rank per source_markdown_file_history_id",
+  "input_sha256": {
+    "source_markdown_file_snapshot": "b8049b2f05bdbce449f24dfef3ca70e1b135b339a17347ad9d88a98f4e8d94b9",
+    "source_markdown_file_version": "88576175db0645f52f399279d6e263f35fc2c152fbc18f734f2eb28c05cc1b2f",
+    "lock_file_snapshot": "0272d5b7b7e93d26d52116214dd167b5f3940d135f75474092e06bb434df77b3",
+    "repository": "75bc7e5a838281f49403e682709775936568f781031ef94b01bec343148c6ae8"
+  },
+  "lock_evidence_csv_sha256": "e8357905f0220eb248c56e84556156cde3105154bf84ab3b81a18b8ee4173cd7",
+  "rows": 604
+}
