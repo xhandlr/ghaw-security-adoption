@@ -19,6 +19,9 @@ gh_aw_schema:
   path: pkg/parser/schemas/main_workflow_schema.json
   commit: 5ecd40a4b200fb525d123b749597199d6149df36  # pinned 2026-09-28, last commit that touched this schema file
 
+gh_aw_docs:
+  architecture_path: docs/src/content/docs/introduction/architecture.mdx  # source of /introduction/architecture/, read at gh_aw_schema.commit
+
 rq2:
   pilot_sample_size: 240  # minimum n for +/-5% margin of error at 95% confidence, p=0.5 (conservative)
   random_seed: 42

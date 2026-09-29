@@ -1,0 +1,13 @@
+content,source_format,line,phrase
+@user,inline_table,536,| **@mention Neutralization** | `@user` | `` `@user` `` | Prevents unintended user notifications |
+`@user`,inline_table,536,| **@mention Neutralization** | `@user` | `` `@user` `` | Prevents unintended user notifications |
+fixes #123,inline_table,537,| **Bot Trigger Protection** | `fixes #123` | `` `fixes #123` `` | Prevents automatic issue linking |
+`fixes #123`,inline_table,537,| **Bot Trigger Protection** | `fixes #123` | `` `fixes #123` `` | Prevents automatic issue linking |
+<script>,inline_table,538,| **XML/HTML Tag Conversion** | `<script>` | `(script)` | Prevents injection via XML tags |
+(script),inline_table,538,| **XML/HTML Tag Conversion** | `<script>` | `(script)` | Prevents injection via XML tags |
+(redacted),inline_table,539,| **URI Filtering** | `http://evil.com` | `(redacted)` | Restricts to HTTPS from trusted domains |
+(redacted),inline,553,- ❌ **Blocked**: URLs from untrusted domains → replaced with `(redacted)`
+(redacted),inline,555,URLs appearing as `(redacted)` indicate the domain was not in the allowed list. This prevents potential data exfiltration through untrusted domains. The allowed domains list is derived from the workflow's `network:` configuration and includes GitHub domains by default.
+/tmp/gh-aw,inline,591,"Before workflow artifacts are uploaded, all files in the `/tmp/gh-aw` directory are scanned for secret values and redacted. This mechanism prevents accidental credential leakage through logs, outputs, or artifacts. Secret redaction executes unconditionally (with `if: always()`), ensuring that secrets are protected even if the workflow fails at an earlier stage."
+gh aw logs,inline,787,- **Cost Monitoring**: Token usage and costs across workflow runs are tracked via `gh aw logs`
+gh aw audit,inline,788,"- **Failure Analysis**: Failed runs can be investigated with `gh aw audit` to examine prompts, errors, and network activity"

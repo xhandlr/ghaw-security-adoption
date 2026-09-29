@@ -1,0 +1,5 @@
+category,mentions,distinct_names
+valid,28,16
+ambiguous,4,2
+discarded,15,13
+not_name_like,12,10

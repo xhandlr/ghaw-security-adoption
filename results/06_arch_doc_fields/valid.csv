@@ -1,0 +1,29 @@
+name,matched_path,match_type,source_format,line,phrase
+runner.topology,runner.topology,exact,inline_table,193,| ARC or another split-daemon DinD runner | Docker (default) | `runner.topology: arc-dind` stages the sysroot and workspace for the sidecar daemon. The privileged DinD sidecar creates the isolated network; the runner container remains unprivileged and does not need `NET_ADMIN`. |
+sandbox.agent.runtime,sandbox.agent.runtime,exact,inline_table,194,"| GitHub-hosted Ubuntu x86_64 KVM runner | Cloud Hypervisor (preview) (`sandbox.agent.runtime: cloud-hypervisor`) | The agent runs inside AWF's preview Cloud Hypervisor microVM runtime with scoped KVM access, strict topology isolation, and digest-pinned release assets including `virtiofsd`. |"
+runner.topology,runner.topology,exact,inline,197,"> Cloud Hypervisor is incompatible with `runner.topology: arc-dind`. The compiler rejects incompatible runtime, topology, and AWF-version combinations and verifies the required GitHub-hosted Ubuntu x86_64 KVM environment before agent startup."
+engine,engine,exact,yaml,251,engine: copilot
+network,network,exact,yaml,253,network:
+network.allowed,network.allowed,exact,yaml,255,allowed:
+network.allowed,network.allowed,exact,inline,286,1. AWF establishes an isolated network with a Squid proxy that enforces the workflow `network.allowed` list.
+threat-detection.steps,safe-outputs.threat-detection.steps,suffix,inline,408,"- **Custom Steps**: Integration with security scanners (Semgrep, TruffleHog, LlamaGuard) via `threat-detection.steps` configuration"
+threat-detection.prompt,safe-outputs.threat-detection.prompt,suffix,inline,409,- **Custom Prompts**: Domain-specific detection instructions for specialized threat models via `threat-detection.prompt` configuration
+threat-detection,safe-outputs.threat-detection,suffix,yaml,414,threat-detection:
+threat-detection.prompt,safe-outputs.threat-detection.prompt,suffix,yaml,415,prompt: |
+threat-detection.steps,safe-outputs.threat-detection.steps,suffix,yaml,420,steps:
+threat-detection.steps[].name,safe-outputs.threat-detection.steps[].name,suffix,yaml,421,- name: Run TruffleHog
+threat-detection.steps[].run,safe-outputs.threat-detection.steps[].run,suffix,yaml,422,run: trufflehog filesystem /tmp/gh-aw --only-verified
+threat-detection.steps[].name,safe-outputs.threat-detection.steps[].name,suffix,yaml,423,- name: Run Semgrep
+threat-detection.steps[].run,safe-outputs.threat-detection.steps[].run,suffix,yaml,424,run: semgrep scan /tmp/gh-aw/aw.patch --config=auto
+network,network,exact,inline,555,URLs appearing as `(redacted)` indicate the domain was not in the allowed list. This prevents potential data exfiltration through untrusted domains. The allowed domains list is derived from the workflow's `network:` configuration and includes GitHub domains by default.
+network,network,exact,inline,559,"To permit URLs from additional domains in sanitized content, configure the `network:` field in the workflow frontmatter:"
+network,network,exact,yaml,562,network:
+network.allowed,network.allowed,exact,yaml,563,allowed:
+if,if,exact,inline,591,"Before workflow artifacts are uploaded, all files in the `/tmp/gh-aw` directory are scanned for secret values and redacted. This mechanism prevents accidental credential leakage through logs, outputs, or artifacts. Secret redaction executes unconditionally (with `if: always()`), ensuring that secrets are protected even if the workflow fails at an earlier stage."
+secrets.*,secrets.*,exact,inline,635,- **Automatic Detection**: Scans workflow YAML for `secrets.*` patterns and collects all secret references
+secret-masking,secret-masking,exact,inline,638,- **Custom Masking**: Supports additional custom secret masking steps via `secret-masking:` configuration
+secret-masking,secret-masking,exact,yaml,643,secret-masking:
+secret-masking.steps,secret-masking.steps,exact,yaml,644,steps:
+secret-masking.steps[].name,secret-masking.steps[].name,exact,yaml,645,- name: Redact custom patterns
+secret-masking.steps[].run,secret-masking.steps[].run,exact,yaml,646,run: |
+if,if,exact,inline,650,"Secret redaction executes with `if: always()` to ensure secrets are never leaked, even if the workflow fails at an earlier stage."

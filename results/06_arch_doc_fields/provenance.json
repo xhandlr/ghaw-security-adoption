@@ -1,0 +1,9 @@
+{
+  "repo": "github/gh-aw",
+  "commit": "5ecd40a4b200fb525d123b749597199d6149df36",
+  "doc_path": "docs/src/content/docs/introduction/architecture.mdx",
+  "url": "https://raw.githubusercontent.com/github/gh-aw/5ecd40a4b200fb525d123b749597199d6149df36/docs/src/content/docs/introduction/architecture.mdx",
+  "doc_sha256": "a8c554fc93b98deb7ec9cebeaaea0f98384cf66fe45b6bf2d0dfd56a6bfd4698",
+  "fields_csv": "results/03_schema_fields/fields.csv",
+  "fields_csv_sha256": "95ba4b070fead945f611ecc15954c7b0380e51700f460ccd854219555af53a95"
+}
