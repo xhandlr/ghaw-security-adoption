@@ -5,7 +5,7 @@
   "url": "https://raw.githubusercontent.com/github/gh-aw/5ecd40a4b200fb525d123b749597199d6149df36/pkg/parser/schemas/main_workflow_schema.json",
   "schema_sha256": "be242b1e612b8225eaade23e88cbf25cb4943e0c16a2902b8dc944359a5a28a9",
   "fields_csv_sha256": "95ba4b070fead945f611ecc15954c7b0380e51700f460ccd854219555af53a95",
-  "retrieved_at_utc": "2026-09-28T23:13:29.894220+00:00",
+  "retrieved_at_utc": "2026-09-30T01:14:46.049011+00:00",
   "max_path_depth": 6,
   "fields_csv_rows": 4739,
   "distinct_field_paths": 4646

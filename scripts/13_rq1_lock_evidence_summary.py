@@ -1,7 +1,7 @@
-"""Cross each workflow's frontmatter with its lock evidence (script 07).
+"""Cross each workflow's frontmatter with its lock evidence (script 12).
 
 Builds base.csv (one row per workflow: the four demo fields as written in
-the frontmatter, plus the lock columns from 07) and, from it, the evidence
+the frontmatter, plus the lock columns from 12) and, from it, the evidence
 for the pending points of coding/rq1_codebook.yaml. It does not classify
 workflows as implicit / equal / modified; that is the measurement script.
 
@@ -22,8 +22,8 @@ from pathlib import Path
 import pandas as pd
 import yaml
 
-EVIDENCE_DIR = Path("results/07_lock_evidence")
-OUTPUT_DIR = Path("results/08_lock_evidence_summary")
+EVIDENCE_DIR = Path("results/12_rq1_lock_evidence")
+OUTPUT_DIR = Path("results/13_rq1_lock_evidence_summary")
 SNAPSHOT_TABLE = Path("data/raw/data/source_markdown_file_snapshot.parquet")
 NO_METADATA = "no_metadata"
 FIELDS = {"strict": ("strict",), "tools.bash": ("tools", "bash"),
@@ -47,7 +47,7 @@ def load_evidence():
     expected = json.loads((EVIDENCE_DIR / "provenance.json").read_text())["lock_evidence_csv_sha256"]
     actual = sha256_of(evidence_path)
     if actual != expected:
-        raise SystemExit(f"lock_evidence.csv SHA-256 {actual} does not match 07 provenance {expected}")
+        raise SystemExit(f"lock_evidence.csv SHA-256 {actual} does not match 12 provenance {expected}")
     return pd.read_csv(evidence_path, keep_default_na=False, dtype=str), actual
 
 

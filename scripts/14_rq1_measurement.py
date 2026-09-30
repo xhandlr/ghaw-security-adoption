@@ -1,7 +1,7 @@
 """RQ1 measurement: classify the demo fields of each workflow.
 
 Applies coding/rq1_codebook.yaml to the latest snapshot of each workflow
-(highest rank, same criterion as scripts 02 and 07). All values, decisions
+(highest rank, same criterion as scripts 02 and 12). All values, decisions
 and reasons come from the codebook; this script only knows how to compare
 a value against each rule type listed in the codebook's tipos_de_regla.
 
@@ -32,7 +32,7 @@ import yaml
 
 CODEBOOK = Path("coding/rq1_codebook.yaml")
 DATA_DIR = Path("data/raw/data")
-OUTPUT_DIR = Path("results/09_rq1_measurement")
+OUTPUT_DIR = Path("results/14_rq1_measurement")
 TABLES = ["source_markdown_file_snapshot", "source_markdown_file_version", "repository"]
 EQUAL_STATE = "explicito_igual_default"
 ADDED_COMMANDS_RULE = "bash_dir_agrega_y_quita"  # direction rule whose added commands are listed

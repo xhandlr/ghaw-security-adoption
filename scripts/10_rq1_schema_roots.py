@@ -28,7 +28,7 @@ def main():
     only_in_schema = sorted(schema_root_set - observed_roots)
     only_in_data = sorted(observed_roots - schema_root_set)
 
-    output_dir = Path("results/05_rq1_schema_roots")
+    output_dir = Path("results/10_rq1_schema_roots")
     output_dir.mkdir(parents=True, exist_ok=True)
 
     with open(output_dir / "schema_roots.csv", "w", newline="") as f:

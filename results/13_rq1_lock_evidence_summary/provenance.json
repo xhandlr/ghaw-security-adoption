@@ -1,7 +1,7 @@
 {
   "dataset_repo_id": "pavtch/GHAW-H",
   "dataset_revision": "9ccc840bd7e96fd90db3a16548d5482c2833c47d",
-  "lock_evidence_csv": "results/07_lock_evidence/lock_evidence.csv",
+  "lock_evidence_csv": "results/12_rq1_lock_evidence/lock_evidence.csv",
   "lock_evidence_csv_sha256": "e8357905f0220eb248c56e84556156cde3105154bf84ab3b81a18b8ee4173cd7",
   "snapshot_table_sha256": "b8049b2f05bdbce449f24dfef3ca70e1b135b339a17347ad9d88a98f4e8d94b9",
   "outputs_sha256": {

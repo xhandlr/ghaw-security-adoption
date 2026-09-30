@@ -31,7 +31,7 @@ from pathlib import Path
 import yaml
 
 FIELDS_CSV = Path("results/03_schema_fields/fields.csv")
-OUTPUT_DIR = Path("results/06_arch_doc_fields")
+OUTPUT_DIR = Path("results/11_rq1_arch_doc_fields")
 
 FENCE = re.compile(r"^\s*```(\S*)")
 INLINE = re.compile(r"(`+)(.+?)\1")

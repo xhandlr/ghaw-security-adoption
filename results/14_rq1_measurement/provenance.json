@@ -1,6 +1,6 @@
 {
   "codebook": "coding/rq1_codebook.yaml",
-  "codebook_sha256": "c45ad064baf56017b114faa909b447118e364384d955ca9158f375d551df2c56",
+  "codebook_sha256": "edd4302c5b53ec5c0efe33531410cb5f573f56ffba79a5a57b2eaa7d8f95e78e",
   "dataset_repo_id": "pavtch/GHAW-H",
   "dataset_revision": "9ccc840bd7e96fd90db3a16548d5482c2833c47d",
   "input_sha256": {

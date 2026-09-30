@@ -2,7 +2,7 @@
 
 One row per workflow (latest snapshot, highest rank, chosen before joining
 the lock). Only extracts; it does not read the frontmatter, classify, or
-compare against coding/rq1_codebook.yaml (that is script 08).
+compare against coding/rq1_codebook.yaml (that is script 13).
 
 Everything about the agent is read only inside jobs.agent of the parsed
 lock, so the threat-detection job's firewall and tools are never mixed in.
@@ -24,7 +24,7 @@ import pandas as pd
 import yaml
 
 DATA_DIR = Path("data/raw/data")
-OUTPUT_DIR = Path("results/07_lock_evidence")
+OUTPUT_DIR = Path("results/12_rq1_lock_evidence")
 TABLES = ["source_markdown_file_snapshot", "source_markdown_file_version",
           "lock_file_snapshot", "repository"]
 

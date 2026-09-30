@@ -102,7 +102,7 @@ campos:
         efectivo: en los lock files, la mayoría de los workflows que no
         declaran tools.bash quedan con bash sin restricción de comandos
         (bash_mode all_tools o shell_unrestricted).
-      fuente: results/08_lock_evidence_summary/bash_undeclared.csv
+      fuente: results/13_rq1_lock_evidence_summary/bash_undeclared.csv
     igual_al_default:
       regla: cualquiera de estas formas
       valores:
@@ -133,7 +133,7 @@ campos:
         valor: true
         decision: modificado
         motivo: Forma no documentada. Según los lock files, deja bash sin restricción de comandos.
-        fuente: results/08_lock_evidence_summary/bash_true.csv
+        fuente: results/13_rq1_lock_evidence_summary/bash_true.csv
       - id: bash_false
         tipo: valor_exacto
         valor: false
@@ -163,7 +163,7 @@ campos:
           direccion: mas_permisivo
           amplia: comandos
           motivo: Según los lock files, deja bash sin restricción de comandos.
-          fuente: results/08_lock_evidence_summary/bash_true.csv
+          fuente: results/13_rq1_lock_evidence_summary/bash_true.csv
         - id: bash_dir_false
           tipo: valor_exacto
           valor: false
@@ -246,12 +246,12 @@ campos:
           tipo: dict_clave_conjunto
           clave: allowed
           valor: [defaults]
-          motivo: Reconocido por conjunto y sin otras claves, igual que en el script 08.
+          motivo: Reconocido por conjunto y sin otras claves, igual que en el script 13.
     verificacion:
       fuente: lock files
       archivos:
-        - results/08_lock_evidence_summary/network_default_forms_by_group.csv
-        - results/08_lock_evidence_summary/network_default_forms_outliers.csv
+        - results/13_rq1_lock_evidence_summary/network_default_forms_by_group.csv
+        - results/13_rq1_lock_evidence_summary/network_default_forms_outliers.csv
     formas:
       - id: network_empty
         tipo: valor_exacto
@@ -280,8 +280,8 @@ campos:
             queda con los mismos 9 dominios que workflows con defaults o sin
             network declarado en ese grupo.
           fuente:
-            - results/08_lock_evidence_summary/base.csv
-            - results/08_lock_evidence_summary/network_default_forms.csv
+            - results/13_rq1_lock_evidence_summary/base.csv
+            - results/13_rq1_lock_evidence_summary/network_default_forms.csv
           relacionado:
             archivo: docs/src/content/docs/reference/network.md
             linea: 87
@@ -312,7 +312,7 @@ campos:
             - archivo: docs/src/content/docs/reference/network.md
               linea: 21
               cita: "- **No access** (`network: {}`) blocks all network access."
-            - archivo: results/08_lock_evidence_summary/base.csv
+            - archivo: results/13_rq1_lock_evidence_summary/base.csv
               nota: 10 dominios frente a 45 del conjunto de referencia en v0.68.3 y v0.71.5 (copilot).
         - id: network_dir_allowed_empty
           tipo: valor_exacto
@@ -323,7 +323,7 @@ campos:
             - archivo: docs/src/content/docs/reference/network.md
               linea: 21
               cita: "- **No access** (`network: {}`) blocks all network access."
-            - archivo: results/08_lock_evidence_summary/base.csv
+            - archivo: results/13_rq1_lock_evidence_summary/base.csv
               nota: Los 8 workflows (v0.51.6) quedan con los mismos 10 dominios que network {} en v0.68.3 y v0.71.5.
         - id: network_dir_blocked
           tipo: dict_condiciones
@@ -374,7 +374,7 @@ campos:
       precision: >
         Valor observado en jobs.agent.permissions de los lock files de los
         3 workflows que no declaran permissions.
-      precision_archivo: results/08_lock_evidence_summary/permissions_undeclared.csv
+      precision_archivo: results/13_rq1_lock_evidence_summary/permissions_undeclared.csv
     igual_al_default:
       regla: exactamente contents read, sin ningún otro scope; cualquier otra combinación, incluidas otras lecturas, es modificado
       valores:
