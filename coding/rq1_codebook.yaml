@@ -13,6 +13,37 @@ estados:
   explicito_igual_default: El campo está declarado con un valor igual al default.
   modificado: El campo está declarado con un valor distinto al default.
 
+tipos_de_regla:
+  valor_exacto: El valor escrito es igual a valor (mismo tipo y contenido).
+  lista_mismo_conjunto: El valor es una lista y su conjunto de elementos es igual al de valor.
+  lista_otro_conjunto: El valor es una lista y su conjunto de elementos es distinto al de valor.
+  dict_clave_conjunto: El valor es un diccionario cuya única clave es clave, y el conjunto de elementos de esa lista es igual al de valor.
+  resto: Cualquier valor declarado que no calzó con ninguna regla anterior del campo.
+  dict_condiciones: >
+    El valor es un diccionario que cumple todas las condiciones de la lista.
+    Condiciones posibles: alguna_clave_con_valor {valor, excepto} (alguna clave
+    fuera de excepto tiene ese valor), ninguna_clave_con_valor {valor, excepto}
+    (ninguna clave fuera de excepto tiene ese valor), clave_con_valor {clave,
+    valor}, clave_distinta_de {clave, valor} (la clave no existe o tiene otro
+    valor), clave_presente {clave}, lista_en_clave_contiene {clave, valor} (la
+    clave es una lista que contiene valor), lista_en_clave_no_contiene {clave,
+    valor} (la clave es una lista que no contiene valor), otras_claves
+    {permitidas} (no hay claves fuera de permitidas), lista_en_clave_no_vacia
+    {clave} (la clave es una lista con al menos un elemento).
+  lista_vs_conjunto: >
+    El valor es una lista y su conjunto de elementos, comparado como texto
+    literal, tiene la relacion indicada con el conjunto de valor: subconjunto
+    (subconjunto propio), superconjunto (superconjunto propio) o
+    agrega_y_quita (tiene elementos fuera de valor y le faltan elementos de
+    valor). Con excluye, la lista además no debe contener, como texto
+    literal, ninguno de los elementos de excluye.
+  lista_contiene_alguno: El valor es una lista que contiene, como texto literal, al menos uno de los elementos de valor.
+
+orden_de_aplicacion: >
+  Para un campo declarado se prueban, en este orden, las reglas de
+  igual_al_default, luego las de formas y al final resto. Un valor que no
+  calza con ninguna queda como sin_regla.
+
 gh_aw_commit: 5ecd40a4b200fb525d123b749597199d6149df36  # igual a gh_aw_schema.commit en config/settings.yaml
 
 campos:
@@ -24,7 +55,35 @@ campos:
       valor: "true"
     igual_al_default:
       regla: valor exacto
-      valores: [true]
+      valores:
+        - id: strict_true
+          tipo: valor_exacto
+          valor: true
+    resto:
+      id: strict_resto
+      tipo: resto
+      decision: modificado
+      motivo: "Aplica la definición de modificado: valor declarado distinto al default."
+    direccion:
+      aplica_a: modificado
+      orden: Se aplica la primera categoría que calza.
+      categorias:
+        - id: strict_dir_false
+          tipo: valor_exacto
+          valor: false
+          direccion: mas_permisivo
+          amplia: restricciones del modo estricto
+          motivo: Desactiva las restricciones que el modo estricto aplica por defecto.
+          fuente:
+            archivo: results/03_schema_fields/fields.csv
+            campo: strict
+            columna: description
+            cita: "Strict mode enforces: (1) Write Permissions - refuses contents:write, issues:write, pull-requests:write; requires safe-outputs instead, (2) Network Configuration - requires explicit network configuration with no standalone wildcard '*' in allowed domains (patterns like '*.example.com' are allowed), (3) Action Pinning - enforces actions pinned to commit SHAs instead of tags/branches, (4) MCP Network - requires network configuration for custom MCP servers with containers, (5) Deprecated Fields - refuses deprecated frontmatter fields."
+      resto:
+        id: strict_dir_otro
+        tipo: resto
+        direccion: sin_direccion
+        motivo: Modificado que no calza con ninguna categoría anterior.
 
   tools.bash:
     default: [echo, ls, pwd, cat, head, tail, grep, wc, sort, uniq, date]
@@ -47,35 +106,128 @@ campos:
     igual_al_default:
       regla: cualquiera de estas formas
       valores:
-        - valor: lista con exactamente el mismo conjunto de comandos, sin importar orden ni repeticiones
-        - valor: null  # "bash:" sin valor
+        - id: bash_default_set
+          tipo: lista_mismo_conjunto
+          valor: [echo, ls, pwd, cat, head, tail, grep, wc, sort, uniq, date]
+          motivo: Lista con exactamente el mismo conjunto de comandos, sin importar orden ni repeticiones.
+        - id: bash_null
+          tipo: valor_exacto
+          valor: null  # "bash:" sin valor
           motivo: La documentación indica que bash sin valor aplica los comandos por defecto.
           fuente:
             archivo: docs/src/content/docs/reference/tools.md
             linea: 108
             cita: "bash:                              # Default safe commands"
     formas:
-      - valor: []
+      - id: bash_empty_list
+        tipo: valor_exacto
+        valor: []
         decision: modificado
         motivo: La documentación indica que una lista vacía deshabilita todos los comandos.
         fuente:
           archivo: docs/src/content/docs/reference/tools.md
           linea: 109
           cita: "bash: []                           # Disable all commands"
-      - valor: true
+      - id: bash_true
+        tipo: valor_exacto
+        valor: true
         decision: modificado
         motivo: Forma no documentada. Según los lock files, deja bash sin restricción de comandos.
         fuente: results/08_lock_evidence_summary/bash_true.csv
-      - valor: false
+      - id: bash_false
+        tipo: valor_exacto
+        valor: false
         decision: modificado
         motivo: Deshabilita bash.
         fuente:
           archivo: docs/src/content/docs/reference/tools.md
           linea: 219
           cita: "When `tools.bash` is disabled (`bash: false` or `bash: []`), `cli-proxy: true` and `tools.github.mode: gh-proxy` are rejected at compile time, and strict mode requires `cli-proxy: false` to be stated explicitly:"
-      - valor: lista con un conjunto distinto al default
+      - id: bash_other_list
+        tipo: lista_otro_conjunto
+        valor: [echo, ls, pwd, cat, head, tail, grep, wc, sort, uniq, date]
         decision: modificado
-        motivo: Aplica la regla de igual_al_default.
+        motivo: Lista con un conjunto distinto al default. Aplica la regla de igual_al_default.
+    resto:
+      id: bash_resto
+      tipo: resto
+      decision: modificado
+      motivo: "Aplica la definición de modificado: valor declarado distinto al default."
+    direccion:
+      aplica_a: modificado
+      orden: Se aplica la primera categoría que calza. El comodín total se prueba antes que las demás categorías de listas.
+      categorias:
+        - id: bash_dir_true
+          tipo: valor_exacto
+          valor: true
+          direccion: mas_permisivo
+          amplia: comandos
+          motivo: Según los lock files, deja bash sin restricción de comandos.
+          fuente: results/08_lock_evidence_summary/bash_true.csv
+        - id: bash_dir_false
+          tipo: valor_exacto
+          valor: false
+          direccion: mas_estricto
+          motivo: Deshabilita bash.
+          fuente:
+            archivo: docs/src/content/docs/reference/tools.md
+            linea: 219
+            cita: "When `tools.bash` is disabled (`bash: false` or `bash: []`), `cli-proxy: true` and `tools.github.mode: gh-proxy` are rejected at compile time, and strict mode requires `cli-proxy: false` to be stated explicitly:"
+        - id: bash_dir_empty_list
+          tipo: valor_exacto
+          valor: []
+          direccion: mas_estricto
+          motivo: Deshabilita todos los comandos.
+          fuente:
+            archivo: docs/src/content/docs/reference/tools.md
+            linea: 109
+            cita: "bash: []                           # Disable all commands"
+        - id: bash_dir_comodin_total
+          tipo: lista_contiene_alguno
+          valor: ["*", ":*"]
+          direccion: mas_permisivo
+          amplia: comandos
+          motivo: La lista permite todos los comandos.
+          fuente:
+            - archivo: docs/src/content/docs/reference/tools.md
+              linea: 111
+              cita: "bash: [\":*\"]                       # All commands (use with caution)"
+            - archivo: docs/src/content/docs/reference/tools.md
+              linea: 114
+              cita: "Use wildcards like `git:*` for command families or `:*` for unrestricted access."
+        - id: bash_dir_subconjunto
+          tipo: lista_vs_conjunto
+          relacion: subconjunto
+          valor: [echo, ls, pwd, cat, head, tail, grep, wc, sort, uniq, date]
+          direccion: mas_estricto
+          motivo: La lista es de comandos permitidos y contiene solo una parte del default.
+          fuente:
+            archivo: docs/src/content/docs/reference/tools.md
+            linea: 110
+            cita: "bash: [\"echo\", \"ls\", \"git status\"] # Specific commands only"
+        - id: bash_dir_superconjunto
+          tipo: lista_vs_conjunto
+          relacion: superconjunto
+          valor: [echo, ls, pwd, cat, head, tail, grep, wc, sort, uniq, date]
+          direccion: mas_permisivo
+          amplia: comandos
+          motivo: La lista es de comandos permitidos e incluye todos los del default y otros.
+          fuente:
+            archivo: docs/src/content/docs/reference/tools.md
+            linea: 110
+            cita: "bash: [\"echo\", \"ls\", \"git status\"] # Specific commands only"
+        - id: bash_dir_agrega_y_quita
+          tipo: lista_vs_conjunto
+          relacion: agrega_y_quita
+          valor: [echo, ls, pwd, cat, head, tail, grep, wc, sort, uniq, date]
+          excluye: ["*", ":*"]
+          direccion: sin_direccion
+          motivo: La lista agrega comandos fuera del default y quita comandos del default.
+      resto:
+        id: bash_dir_otro
+        tipo: resto
+        direccion: sin_direccion
+        motivo: Modificado que no calza con ninguna categoría anterior.
 
   network:
     default: defaults
@@ -87,15 +239,23 @@ campos:
     igual_al_default:
       regla: cualquiera de estas formas
       valores:
-        - defaults
-        - {allowed: [defaults]}
+        - id: network_defaults
+          tipo: valor_exacto
+          valor: defaults
+        - id: network_allowed_defaults
+          tipo: dict_clave_conjunto
+          clave: allowed
+          valor: [defaults]
+          motivo: Reconocido por conjunto y sin otras claves, igual que en el script 08.
     verificacion:
       fuente: lock files
       archivos:
         - results/08_lock_evidence_summary/network_default_forms_by_group.csv
         - results/08_lock_evidence_summary/network_default_forms_outliers.csv
     formas:
-      - valor: {}
+      - id: network_empty
+        tipo: valor_exacto
+        valor: {}
         decision: modificado
         motivo: La documentación indica que bloquea todo el acceso a red.
         fuente:
@@ -126,12 +286,83 @@ campos:
             archivo: docs/src/content/docs/reference/network.md
             linea: 87
             cita: "GitHub domains (`github.com`, `githubusercontent.com`, etc.) are always allowed by default."
-      - valor: {firewall: true}  # sin allowed
+      - id: network_firewall_only
+        tipo: valor_exacto
+        valor: {firewall: true}  # sin allowed
         decision: modificado
         motivo: Lo declarado no es ninguna de las formas iguales al default, y firewall no está en el schema del commit fijado.
         fuente:
           archivo: results/03_schema_fields/fields.csv
           nota: No existe la ruta network.firewall.
+    resto:
+      id: network_resto
+      tipo: resto
+      decision: modificado
+      motivo: "Aplica la definición de modificado: valor declarado distinto al default."
+    direccion:
+      aplica_a: modificado
+      orden: Se aplica la primera categoría que calza.
+      categorias:
+        - id: network_dir_empty
+          tipo: valor_exacto
+          valor: {}
+          direccion: mas_estricto
+          motivo: Bloquea el acceso a red; en los lock files deja menos dominios que defaults.
+          fuente:
+            - archivo: docs/src/content/docs/reference/network.md
+              linea: 21
+              cita: "- **No access** (`network: {}`) blocks all network access."
+            - archivo: results/08_lock_evidence_summary/base.csv
+              nota: 10 dominios frente a 45 del conjunto de referencia en v0.68.3 y v0.71.5 (copilot).
+        - id: network_dir_allowed_empty
+          tipo: valor_exacto
+          valor: {allowed: []}
+          direccion: mas_estricto
+          motivo: Lista de dominios permitidos vacía; en los lock files deja el mismo conjunto reducido que network {}.
+          fuente:
+            - archivo: docs/src/content/docs/reference/network.md
+              linea: 21
+              cita: "- **No access** (`network: {}`) blocks all network access."
+            - archivo: results/08_lock_evidence_summary/base.csv
+              nota: Los 8 workflows (v0.51.6) quedan con los mismos 10 dominios que network {} en v0.68.3 y v0.71.5.
+        - id: network_dir_blocked
+          tipo: dict_condiciones
+          condiciones:
+            - clave_presente: {clave: blocked}
+          direccion: sin_direccion
+          motivo: Declara dominios bloqueados; sin fuente para una dirección.
+        - id: network_dir_firewall_only
+          tipo: valor_exacto
+          valor: {firewall: true}
+          direccion: sin_direccion
+          motivo: Sin fuente para una dirección; en los lock files el conjunto de dominios coincide con el de workflows con defaults o sin network.
+        - id: network_dir_defaults_mas_otros
+          tipo: dict_condiciones
+          condiciones:
+            - lista_en_clave_contiene: {clave: allowed, valor: defaults}
+            - otras_claves: {permitidas: [allowed, firewall]}
+          direccion: mas_permisivo
+          amplia: dominios
+          motivo: Mantiene defaults y agrega otros dominios o ecosistemas permitidos. Incluye el caso con firewall true.
+          fuente:
+            - archivo: docs/src/content/docs/reference/network.md
+              linea: 19
+              cita: "- **Default** (`network: defaults`) allows basic infrastructure only."
+            - archivo: docs/src/content/docs/reference/network.md
+              linea: 20
+              cita: "- **Selective** (`network: { allowed: [...] }`) allows only listed domains or ecosystems."
+        - id: network_dir_sin_defaults
+          tipo: dict_condiciones
+          condiciones:
+            - lista_en_clave_no_contiene: {clave: allowed, valor: defaults}
+            - lista_en_clave_no_vacia: {clave: allowed}
+          direccion: sin_direccion
+          motivo: Lista de permitidos sin defaults; sin fuente para una dirección.
+      resto:
+        id: network_dir_otro
+        tipo: resto
+        direccion: sin_direccion
+        motivo: Modificado que no calza con ninguna categoría anterior.
 
   permissions:
     default: {contents: read}
@@ -147,8 +378,71 @@ campos:
     igual_al_default:
       regla: exactamente contents read, sin ningún otro scope; cualquier otra combinación, incluidas otras lecturas, es modificado
       valores:
-        - {contents: read}
+        - id: permissions_contents_read
+          tipo: valor_exacto
+          valor: {contents: read}
     formas:
-      - valor: read-all
+      - id: permissions_read_all
+        tipo: valor_exacto
+        valor: read-all
         decision: modificado
         motivo: Aplica la regla de igual_al_default (cualquier combinación distinta de exactamente contents read).
+    resto:
+      id: permissions_resto
+      tipo: resto
+      decision: modificado
+      motivo: "Aplica la definición de modificado: valor declarado distinto al default."
+    direccion:
+      aplica_a: modificado
+      orden: Se aplica la primera categoría que calza.
+      categorias:
+        - id: perm_escritura_repo
+          tipo: dict_condiciones
+          condiciones:
+            - alguna_clave_con_valor: {valor: write, excepto: [id-token, copilot-requests]}
+          direccion: mas_permisivo
+          amplia: escritura
+          motivo: Agrega escritura sobre scopes del repositorio respecto del default (contents read).
+          fuente:
+            archivo: results/03_schema_fields/fields.csv
+            campo: strict
+            columna: description
+            cita: "(1) Write Permissions - refuses contents:write, issues:write, pull-requests:write; requires safe-outputs instead"
+        - id: perm_escritura_solo_autenticacion
+          tipo: dict_condiciones
+          condiciones:
+            - alguna_clave_con_valor: {valor: write, excepto: []}
+            - ninguna_clave_con_valor: {valor: write, excepto: [id-token, copilot-requests]}
+          direccion: mas_permisivo
+          amplia: autenticacion
+          motivo: Agrega escritura solo en scopes de autenticación (id-token, copilot-requests), sin escritura sobre el repositorio.
+          nota: >
+            4 workflows de esta categoría declaran además all: read, que según
+            permissions.all en fields.csv aplica lectura a todos los scopes. Por
+            el orden de aplicación quedan en esta categoría y no en lectura.
+        - id: perm_read_all
+          tipo: valor_exacto
+          valor: read-all
+          direccion: mas_permisivo
+          amplia: lectura
+          motivo: Lectura sobre todos los scopes, más amplia que contents read.
+        - id: perm_lecturas_con_contents
+          tipo: dict_condiciones
+          condiciones:
+            - ninguna_clave_con_valor: {valor: write, excepto: []}
+            - clave_con_valor: {clave: contents, valor: read}
+          direccion: mas_permisivo
+          amplia: lectura
+          motivo: Mantiene contents read y agrega lectura sobre otros scopes, sin escritura.
+        - id: perm_lecturas_sin_contents
+          tipo: dict_condiciones
+          condiciones:
+            - ninguna_clave_con_valor: {valor: write, excepto: []}
+            - clave_distinta_de: {clave: contents, valor: read}
+          direccion: sin_direccion
+          motivo: Sin escritura y sin contents read; quita contents read y agrega lectura sobre otros scopes.
+      resto:
+        id: perm_otro
+        tipo: resto
+        direccion: sin_direccion
+        motivo: Modificado que no calza con ninguna categoría anterior.
