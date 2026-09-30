@@ -1,0 +1,12 @@
+field,direccion,amplia,workflows
+network,mas_estricto,,12
+network,mas_permisivo,dominios,205
+network,sin_direccion,,24
+permissions,mas_permisivo,autenticacion,155
+permissions,mas_permisivo,escritura,2
+permissions,mas_permisivo,lectura,416
+permissions,sin_direccion,,19
+strict,mas_permisivo,restricciones del modo estricto,18
+tools.bash,mas_estricto,,1
+tools.bash,mas_permisivo,comandos,140
+tools.bash,sin_direccion,,70

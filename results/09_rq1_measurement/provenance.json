@@ -1,0 +1,24 @@
+{
+  "codebook": "coding/rq1_codebook.yaml",
+  "codebook_sha256": "c45ad064baf56017b114faa909b447118e364384d955ca9158f375d551df2c56",
+  "dataset_repo_id": "pavtch/GHAW-H",
+  "dataset_revision": "9ccc840bd7e96fd90db3a16548d5482c2833c47d",
+  "input_sha256": {
+    "source_markdown_file_snapshot": "b8049b2f05bdbce449f24dfef3ca70e1b135b339a17347ad9d88a98f4e8d94b9",
+    "source_markdown_file_version": "88576175db0645f52f399279d6e263f35fc2c152fbc18f734f2eb28c05cc1b2f",
+    "repository": "75bc7e5a838281f49403e682709775936568f781031ef94b01bec343148c6ae8"
+  },
+  "workflows_measured": 603,
+  "workflows_excluded": 1,
+  "outputs_sha256": {
+    "bash_added_commands.csv": "ccf04d24eb81302546645868a297e4250b8ba90bcc92692bd4c5286edcb225d6",
+    "direction_overlaps.csv": "e09cfaad68b51071c69407655b29101ebfb0be8ddaec3fcb23d8174c30295b23",
+    "direction_resto.csv": "24cf4de218ff9fbcacefdee7435dad3cafa0f2af7a13f56314a8eb3364b51d03",
+    "direction_summary.csv": "4ff89153409c8905f560bb62a7ae09bfa1941193da44e728cf57d476cdbd108f",
+    "excluded.csv": "3267c3302696b6330567da6d3599d4540c23093a3387bcb61c5a79280fb4ea1b",
+    "measurement.csv": "449c7598b4cadd684b4d65c4665038e191243e47efee1f5900ca21a4e2485598",
+    "resto.csv": "e9172b2bb12021bd0b485da71c10e0b864b24e1ed76048292f7ce5c2eab886ca",
+    "sin_regla.csv": "8de49a6c272b0561952f76be8fda7bc50cfe5a2a24f80d0eb8e042934686cbb1",
+    "summary.csv": "6f8f2de5cc64edc7dffc5a29307e66a72ed61c04b8bdb4562579444114b4cab3"
+  }
+}

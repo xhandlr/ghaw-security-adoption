@@ -1,0 +1,182 @@
+command,workflows
+find,28
+git,24
+jq,23
+sed,17
+awk,14
+curl,11
+gh,11
+mkdir,10
+xargs,10
+basename,9
+cat *,9
+cut,9
+dirname,9
+tee,9
+test,9
+tr,9
+diff,8
+env,7
+dotnet,6
+git diff *,5
+git log *,5
+git show *,5
+bash,4
+cat README.md,4
+chmod,4
+git:*,4
+head *,4
+ls *,4
+sh,4
+base64,3
+cat doc/markdown-plus.txt,3
+cat lua/markdown-plus/types.lua,3
+cat:*,3
+git diff,3
+git show,3
+grep:*,3
+head:*,3
+jq *,3
+node:*,3
+python3,3
+rg,3
+tail *,3
+tail:*,3
+wc *,3
+wc:*,3
+NuGet.Mcp.Server,2
+awk:*,2
+cat .github/copilot-instructions.md,2
+cat lua/**/*.lua,2
+cat*,2
+date *,2
+echo *,2
+find *,2
+find lua -name '*.lua' -type f -exec wc -l {} \; | sort -rn,2
+find lua -name '*.lua' -type f | sort,2
+find lua/ -maxdepth 1 -ls,2
+find lua/markdown-plus/ -maxdepth 1 -ls,2
+find lua/markdown-plus/ -maxdepth 2 -ls,2
+find:*,2
+gh pr diff *,2
+gh pr view *,2
+git diff --name-only *,2
+git log,2
+git status*,2
+grep *,2
+grep -rn 'local function' lua --include='*.lua',2
+head -n * lua/**/*.lua,2
+ls*,2
+make,2
+mkdir *,2
+node,2
+npm:*,2
+npx:*,2
+sed:*,2
+sort *,2
+sort:*,2
+wc -l *,2
+wc -l lua/**/*.lua,2
+basename:*,1
+cargo build --release,1
+cargo run -- --config *,1
+cargo test --test config_parsing_failure_test*,1
+cargo test --test example_configs_validation_test*,1
+cargo test --test readme_examples_validation_test*,1
+cat **/*.json,1
+cat **/*.tf,1
+cat **/*.toml,1
+cat **/go.mod,1
+cat .all-contributorsrc,1
+cat CHANGELOG.md,1
+cat CONTRIBUTING.md,1
+cat lua/markdown-plus/config/validate.lua,1
+cat lua/markdown-plus/init.lua,1
+cat pkg/parser/schemas/*.json,1
+cat training/rl/scripts/train.sh,1
+cat training/rl/uv.lock,1
+cat vscode-extension/README.md,1
+cd *,1
+cd vscode-extension && npx tsc --noEmit,1
+comm,1
+cp,1
+cp *,1
+curl -s *,1
+date:*,1
+diff *,1
+find * -name,1
+find * -type f -not -path,1
+find . -maxdepth 1 -name '*.md',1
+find . -name '*.md' -type f,1
+find .github -name '*.md' -o -name '*.instructions.md',1
+"find .github/workflows/nightly-fix-finder -name ""*.sh""",1
+find doc -maxdepth 1 -ls,1
+find doc -name '*.txt' -o -name '*.md',1
+find docs -maxdepth 1 -ls,1
+"find docs -name ""*.md"" -exec cat {} +",1
+"find docs -name ""*.md"" -o -name ""*.mdx""",1
+find docs -name '*.md',1
+find docs/wiki -maxdepth 1 -ls,1
+find docs/wiki -name,1
+find lua/markdown-plus -maxdepth 1 -name '*.lua' -type f | sort,1
+find lua/markdown-plus -maxdepth 2 -name '*.lua' -type f | sort,1
+find lua/markdown-plus -name '*.lua' -type f | sort,1
+"find pkg/parser/schemas -name ""*.json""",1
+"find src -name ""*.cs"" -type f",1
+find src -name '*.ts' -o -name '*.tsx',1
+find vscode-extension -name '*.md',1
+find vscode-extension/src -name '*.ts' -o -name '*.tsx',1
+git diff HEAD,1
+git log --oneline -20,1
+git ls-files *,1
+git ls-tree -r --name-only HEAD,1
+git ls-tree -r --name-only HEAD | grep -E * | grep -vE * | xargs wc -l 2>/dev/null,1
+git ls-tree -r --name-only HEAD | grep -E * | xargs wc -l 2>/dev/null,1
+git ls-tree -r -l --full-name HEAD,1
+git status *,1
+grep -R --line-number * -- :!node_modules :!.venv :!external,1
+grep -i *,1
+grep -n '' doc/markdown-plus.txt,1
+grep -n '' lua/markdown-plus/config/validate.lua,1
+grep -n '' lua/markdown-plus/init.lua,1
+grep -n '' lua/markdown-plus/types.lua,1
+grep -n 'ALL-CONTRIBUTORS' README.md,1
+grep -n *,1
+grep -n * *,1
+"grep -r ""*"" docs",1
+grep -r 'apply_filters\|add_filter\|do_action\|add_action' inc/,1
+grep -rn,1
+grep -rn '' doc README.md,1
+grep -rn '^M\.' lua --include='*.lua',1
+grep -rn 'apply_filters\|add_filter\|do_action\|add_action' inc/,1
+grep -rn 'function ' lua --include='*.lua',1
+grep -rn 'function M\.' lua --include='*.lua',1
+grep -rn 'function _' lua --include='*.lua',1
+grep -rn --include='*.md' '.' .,1
+grep -rn --include='*.ts' '.' src vscode-extension/src,1
+head -n * *,1
+jq . **/*.json,1
+jq:*,1
+ls:*,1
+mv,1
+mv *,1
+npm,1
+npm run build,1
+npm run lint,1
+npm run typecheck,1
+npm test,1
+npm view *,1
+npx,1
+npx -y all-contributors-cli add,1
+npx -y all-contributors-cli generate,1
+pip,1
+pip3,1
+printf,1
+pwsh,1
+python,1
+shuf:*,1
+tail -n * *,1
+tree,1
+tree *,1
+uniq:*,1
+xargs:*,1

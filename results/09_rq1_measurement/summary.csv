@@ -1,0 +1,13 @@
+field,estado,workflows
+network,explicito_igual_default,113
+network,implicito,249
+network,modificado,241
+permissions,explicito_igual_default,8
+permissions,implicito,3
+permissions,modificado,592
+strict,explicito_igual_default,146
+strict,implicito,439
+strict,modificado,18
+tools.bash,explicito_igual_default,6
+tools.bash,implicito,386
+tools.bash,modificado,211

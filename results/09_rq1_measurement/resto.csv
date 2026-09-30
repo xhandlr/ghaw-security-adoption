@@ -1,0 +1,139 @@
+field,value,workflows
+network,"{""allowed"": [""defaults"", ""github""]}",35
+network,"{""allowed"": [""defaults"", ""dotnet"", ""node"", ""python"", ""rust"", ""java""]}",30
+network,"{""allowed"": [""defaults"", ""dotnet""]}",22
+network,"{""allowed"": [""defaults"", ""node""]}",11
+network,"{""allowed"": []}",8
+network,"{""allowed"": [""defaults"", ""python""]}",6
+network,"{""allowed"": [""defaults"", ""github"", ""drasi.io""]}",6
+network,"{""allowed"": [""defaults"", ""github"", ""dev.azure.com"", ""helix.dot.net"", ""*.blob.core.windows.net""]}",5
+network,"{""allowed"": [""github""]}",5
+network,"{""allowed"": [""defaults"", ""node"", ""go"", ""elastic.litellm-prod.ai""]}",4
+network,"{""allowed"": [""defaults"", ""python"", ""peps.python.org""]}",4
+network,"{""allowed"": [""defaults"", ""node"", ""java"", ""api.osv.dev"", ""api.scorecard.dev"", ""search.maven.org""]}",3
+network,"{""allowed"": [""defaults"", ""elastic.litellm-prod.ai""]}",3
+network,"{""allowed"": [""defaults"", ""dotnet"", ""github"", ""aka.ms"", ""microsoft.com""]}",3
+network,"{""allowed"": [""dotnet""]}",2
+network,"{""allowed"": [""defaults"", ""dotnet"", ""dev.azure.com"", ""helix.dot.net"", ""*.blob.core.windows.net""]}",2
+network,"{""allowed"": [""node"", ""python"", ""github""]}",2
+network,"{""allowed"": [""defaults"", ""dotnet"", ""dev.azure.com"", ""dnceng.pkgs.visualstudio.com""]}",2
+network,"{""allowed"": [""node"", ""npm"", ""playwright""]}",2
+network,"{""allowed"": [""defaults"", ""node"", ""elastic.litellm-prod.ai"", ""www.elastic.co""]}",2
+network,"{""allowed"": [""defaults"", ""node"", ""go"", ""elastic.litellm-prod.ai"", ""www.elastic.co""]}",2
+network,"{""allowed"": [""defaults"", ""ark.cn-beijing.volces.com""]}",2
+network,"{""allowed"": [""defaults"", ""dotnet"", ""dev.azure.com""]}",2
+network,"{""allowed"": [""defaults"", ""www.elastic.co"", ""docs-v3-preview.elastic.dev""]}",2
+network,"{""allowed"": [""defaults"", ""app.asana.com""]}",1
+network,"{""allowed"": [""defaults"", ""github"", ""dotnet"", ""chromium.googlesource.com"", ""skia.googlesource.com"", ""android.googlesource.com"", ""dawn.googlesource.com"", ""swiftshader.googlesource.com"", ""chrome-infra-packages.appspot.com"", ""gn.googlesource.com"", ""storage.googleapis.com""]}",1
+network,"{""allowed"": [""defaults"", ""dotnet"", ""github"", ""dev.azure.com"", ""*.visualstudio.com"", ""helix.dot.net"", ""*.blob.core.windows.net"", ""img.shields.io""]}",1
+network,"{""allowed"": [""defaults"", ""dotnet"", ""https://pkgs.dev.azure.com"", ""https://*.vsblob.vsassets.io"", ""https://dotnetcli.azureedge.net"", ""https://myget.org""]}",1
+network,"{""allowed"": [""defaults"", ""dotnet"", ""github"", ""*.in.applicationinsights.azure.com""]}",1
+network,"{""allowed"": [""defaults"", ""dotnet"", ""github""]}",1
+network,"{""allowed"": [""defaults"", ""python"", ""reactivex.io"", ""rxpy.readthedocs.io"", ""docs.python.org""]}",1
+network,"{""allowed"": [""defaults"", ""threat-detection"", ""github"", ""node"", ""dotnet""]}",1
+network,"{""allowed"": [""defaults"", ""node"", ""github""]}",1
+network,"{""allowed"": [""defaults"", ""dev.azure.com""]}",1
+network,"{""allowed"": [""defaults"", ""node"", ""dev.azure.com""]}",1
+network,"{""allowed"": [""defaults"", ""node"", ""osv.dev""]}",1
+network,"{""allowed"": [""defaults"", ""github"", ""node"", ""go""]}",1
+network,"{""allowed"": [""defaults"", ""github"", ""node"", ""kibana-bazel-remote-h5qd3jkxkq-uc.a.run.app"", ""elastic.litellm-prod.ai""]}",1
+network,"{""allowed"": [""defaults"", ""github"", ""registry.npmjs.org"", ""registry.yarnpkg.com"", ""kibana-bazel-remote-h5qd3jkxkq-uc.a.run.app"", ""elastic.litellm-prod.ai""]}",1
+network,"{""allowed"": [""defaults"", ""buildkite.com"", ""*.buildkite.com"", ""buildkiteartifacts.com"", ""ci-stats.kibana.dev"", ""github.com"", ""api.github.com"", ""elastic.litellm-prod.ai""]}",1
+network,"{""allowed"": [""defaults"", ""buildkite.com"", ""*.buildkite.com"", ""ci-stats.kibana.dev"", ""github.com"", ""api.github.com"", ""elastic.litellm-prod.ai""]}",1
+network,"{""allowed"": [""defaults"", ""github"", ""elastic.litellm-prod.ai""]}",1
+network,"{""allowed"": [""defaults"", ""github"", ""chatgpt.com"", ""openrouter.ai""]}",1
+network,"{""allowed"": [""defaults"", ""github"", ""elastic.litellm-prod.ai"", ""elastic.co""]}",1
+network,"{""allowed"": [""defaults"", ""dotnet"", ""node"", ""python"", ""rust"", ""java"", ""ruby""]}",1
+network,"{""allowed"": [""defaults"", ""rust"", ""python""]}",1
+network,"{""allowed"": [""defaults"", ""api.buildkite.com"", ""elastic.litellm-prod.ai""]}",1
+network,"{""allowed"": [""defaults"", ""github""], ""firewall"": true}",1
+network,"{""allowed"": [""defaults"", ""node"", ""go"", ""terraform"", ""elastic.litellm-prod.ai""]}",1
+network,"{""allowed"": [""defaults"", ""go"", ""elastic.litellm-prod.ai""]}",1
+network,"{""allowed"": [""github"", ""codeql.github.com""]}",1
+network,"{""allowed"": [""github"", ""threat-detection""], ""blocked"": [""registry.npmjs.org""]}",1
+network,"{""allowed"": [""defaults"", ""python"", ""mcp.prowler.com"", ""mcp.context7.com""]}",1
+network,"{""allowed"": [""defaults"", ""*.adoptium.net""]}",1
+network,"{""allowed"": [""github"", ""python"", ""dotnet"", ""nvd.nist.gov"", ""osv.dev""]}",1
+network,"{""allowed"": [""defaults"", ""dotnet"", ""node"", ""github"", ""terraform""]}",1
+network,"{""allowed"": [""python""]}",1
+network,"{""allowed"": [""defaults"", ""node"", ""cdn.playwright.dev"", ""api.unipept.ugent.be"", ""fonts.googleapis.com"", ""playwright.download.prss.microsoft.com""]}",1
+network,"{""allowed"": [""defaults"", ""chrome"", ""github"", ""local"", ""threat-detection"", ""172.30.0.30"", ""julia""]}",1
+network,"{""allowed"": [""defaults"", ""r""]}",1
+network,"{""allowed"": [""defaults"", ""go"", ""github""]}",1
+network,"{""allowed"": [""defaults"", ""dotnet"", ""python""]}",1
+network,"{""allowed"": [""defaults"", ""dotnet"", ""node"", ""python"", ""rust"", ""fable.io"", ""fsharp.github.io"", ""docs.microsoft.com"", ""learn.microsoft.com""]}",1
+network,"{""allowed"": [""defaults"", ""dotnet"", ""node"", ""python"", ""rust"", ""fsprojects.github.io"", ""java"", ""docs.microsoft.com"", ""learn.microsoft.com"", ""fsharp.github.io""]}",1
+network,"{""allowed"": [""defaults"", ""dotnet"", ""node"", ""python"", ""fable.io"", ""fsharp.github.io"", ""docs.microsoft.com"", ""learn.microsoft.com"", ""flask.palletsprojects.com"", ""fastapi.tiangolo.com"", ""docs.pydantic.dev"", ""docs.djangoproject.com""]}",1
+network,"{""allowed"": [""threat-detection"", ""github""]}",1
+network,"{""allowed"": [""defaults"", ""chrome"", ""dotnet"", ""github"", ""java"", ""aka.ms"", ""dev.azure.com"", ""gstatic.com"", ""httpbin.org"", ""microsoft.com"", ""vsassets.io""]}",1
+network,"{""allowed"": [""defaults"", ""github"", ""dotnet""]}",1
+network,"{""allowed"": [""defaults"", ""github"", ""pypi.org""]}",1
+network,"{""allowed"": [""defaults"", ""node"", ""python"", ""dotnet"", ""java"", ""go""]}",1
+network,"{""allowed"": [""defaults"", ""python"", ""api.minimax.io""]}",1
+network,"{""allowed"": [""defaults"", ""dotnet"", ""github"", ""aka.ms"", ""dev.azure.com"", ""devdiv.visualstudio.com"", ""microsoft.com"", ""vsassets.io""]}",1
+network,"{""allowed"": [""defaults"", ""dotnet"", ""github"", ""aka.ms"", ""dev.azure.com"", ""microsoft.com"", ""vsassets.io""]}",1
+network,"{""allowed"": [""defaults"", ""github"", ""agents-md-generator.fastmcp.app"", ""public-code-search.fastmcp.app""]}",1
+network,"{""allowed"": [""node"", ""github""]}",1
+network,"{""allowed"": [""r.jina.ai"", ""github"", ""chatgpt.com"", ""threat-detection"", ""chrome""]}",1
+network,"{""allowed"": [""defaults"", ""github"", ""lua""]}",1
+network,"{""allowed"": [""defaults"", ""github"", ""node""]}",1
+network,"{""allowed"": [""defaults"", ""github"", ""*.cncf.io"", ""*.linuxfoundation.org"", ""kubernetes.io"", ""*.kubernetes.io"", ""bestpractices.coreinfrastructure.org"", ""clotributor.dev"", ""clomonitor.io"", ""securityscorecards.dev"", ""owasp.org"", ""*.owasp.org"", ""csrc.nist.gov"", ""nvlpubs.nist.gov"", ""todogroup.org"", ""openssf.org"", ""*.openssf.org""]}",1
+network,"{""allowed"": [""defaults"", ""github"", ""*.cncf.io"", ""cncf.io"", ""*.linuxfoundation.org"", ""kubernetes.io"", ""*.kubernetes.io"", ""bestpractices.coreinfrastructure.org"", ""clotributor.dev"", ""clomonitor.io"", ""securityscorecards.dev"", ""owasp.org"", ""*.owasp.org"", ""csrc.nist.gov"", ""nvlpubs.nist.gov"", ""todogroup.org"", ""openssf.org"", ""*.openssf.org""]}",1
+network,"{""allowed"": [""defaults"", ""github"", ""*.api.konghq.com"", ""developer.konghq.com"", ""docs.konghq.com""]}",1
+network,"{""allowed"": [""defaults"", ""github"", ""openai.com"", ""anthropic.com"", ""blog.google"", ""ai.google.dev"", ""code.visualstudio.com"", ""devblogs.microsoft.com""]}",1
+network,"{""allowed"": [""defaults"", ""learn.microsoft.com"", ""pypi.org"", ""files.pythonhosted.org""]}",1
+network,"{""allowed"": [""defaults"", ""github"", ""*.blob.core.windows.net""]}",1
+network,"{""allowed"": [""defaults"", ""github"", ""threat-detection"", ""ab.chatgpt.com"", ""chatgpt.com""]}",1
+network,"{""allowed"": [""defaults"", ""docs.anthropic.com"", ""www.elastic.co""]}",1
+network,"{""allowed"": [""go""]}",1
+network,"{""allowed"": [""api.securityscorecards.dev""]}",1
+network,"{""allowed"": [""node""]}",1
+network,"{""allowed"": [""defaults"", ""github"", ""python"", ""node"", ""go"", ""terraform"", ""containers"", ""api.osv.dev"", ""services.nvd.nist.gov""]}",1
+network,"{""allowed"": [""defaults"", ""rust""]}",1
+network,"{""allowed"": [""defaults"", ""node"", ""python"", ""rust"", ""java"", ""dotnet""]}",1
+network,"{""allowed"": [""defaults"", ""python"", ""node"", ""azure""]}",1
+network,"{""allowed"": [""hacker-news.firebaseio.com""]}",1
+permissions,"{""contents"": ""read"", ""issues"": ""read"", ""pull-requests"": ""read""}",151
+permissions,"{""contents"": ""read"", ""id-token"": ""write"", ""pull-requests"": ""read""}",104
+permissions,"{""contents"": ""read"", ""pull-requests"": ""read""}",49
+permissions,"{""actions"": ""read"", ""contents"": ""read"", ""issues"": ""read"", ""pull-requests"": ""read""}",31
+permissions,"{""contents"": ""read"", ""issues"": ""read""}",30
+permissions,"{""contents"": ""read"", ""copilot-requests"": ""write"", ""issues"": ""read"", ""pull-requests"": ""read""}",18
+permissions,"{""actions"": ""read"", ""contents"": ""read""}",13
+permissions,"{""actions"": ""read"", ""contents"": ""read"", ""issues"": ""read""}",11
+permissions,"{""actions"": ""read"", ""contents"": ""read"", ""copilot-requests"": ""write"", ""pull-requests"": ""read""}",7
+permissions,"{""issues"": ""read"", ""pull-requests"": ""read""}",7
+permissions,"{""issues"": ""read""}",6
+permissions,"{""actions"": ""read"", ""contents"": ""read"", ""pull-requests"": ""read""}",5
+permissions,"{""actions"": ""read"", ""checks"": ""read"", ""contents"": ""read"", ""discussions"": ""read"", ""issues"": ""read"", ""pull-requests"": ""read"", ""statuses"": ""read""}",5
+permissions,"{""contents"": ""read"", ""copilot-requests"": ""write"", ""pull-requests"": ""read""}",4
+permissions,"{""pull-requests"": ""read""}",4
+permissions,"{""contents"": ""read"", ""copilot-requests"": ""write"", ""issues"": ""read""}",3
+permissions,"{""contents"": ""read"", ""discussions"": ""read"", ""issues"": ""read"", ""pull-requests"": ""read""}",3
+permissions,"{""copilot-requests"": ""write"", ""issues"": ""read""}",3
+permissions,"{""actions"": ""read"", ""contents"": ""read"", ""security-events"": ""read""}",2
+permissions,"{""actions"": ""read"", ""checks"": ""read"", ""contents"": ""read"", ""issues"": ""read"", ""models"": ""read"", ""pull-requests"": ""read""}",2
+permissions,"{""all"": ""read"", ""id-token"": ""write""}",2
+permissions,"{""actions"": ""read"", ""checks"": ""read"", ""contents"": ""read"", ""pull-requests"": ""read""}",2
+permissions,"{""checks"": ""read"", ""contents"": ""read"", ""issues"": ""read"", ""pull-requests"": ""read"", ""statuses"": ""read""}",2
+permissions,"{""all"": ""read"", ""copilot-requests"": ""write""}",2
+permissions,"{""actions"": ""read"", ""contents"": ""read"", ""copilot-requests"": ""write"", ""discussions"": ""read"", ""issues"": ""read"", ""pull-requests"": ""read"", ""security-events"": ""read""}",2
+permissions,"{""actions"": ""read"", ""issues"": ""read""}",2
+permissions,"{""actions"": ""read"", ""checks"": ""read"", ""contents"": ""read"", ""issues"": ""read"", ""pull-requests"": ""read""}",1
+permissions,"{""actions"": ""read"", ""checks"": ""read"", ""contents"": ""read"", ""copilot-requests"": ""write"", ""pull-requests"": ""read""}",1
+permissions,"{""actions"": ""read"", ""contents"": ""read"", ""copilot-requests"": ""write"", ""issues"": ""read"", ""pull-requests"": ""read""}",1
+permissions,"{""actions"": ""read"", ""contents"": ""read"", ""copilot-requests"": ""write"", ""pull-requests"": ""read"", ""security-events"": ""read"", ""vulnerability-alerts"": ""read""}",1
+permissions,"{""actions"": ""read"", ""checks"": ""read"", ""contents"": ""read"", ""copilot-requests"": ""write"", ""issues"": ""read"", ""pull-requests"": ""read""}",1
+permissions,"{""actions"": ""read"", ""contents"": ""read"", ""copilot-requests"": ""write"", ""pull-requests"": ""read"", ""security-events"": ""read""}",1
+permissions,"{""id-token"": ""write""}",1
+permissions,"{""contents"": ""read"", ""issues"": ""read"", ""metadata"": ""read""}",1
+permissions,"{""actions"": ""read"", ""contents"": ""read"", ""issues"": ""read"", ""pull-requests"": ""read"", ""security-events"": ""read""}",1
+permissions,"{""contents"": ""read"", ""copilot-requests"": ""write"", ""discussions"": ""read"", ""issues"": ""read"", ""pull-requests"": ""read""}",1
+permissions,"{""contents"": ""read"", ""copilot-requests"": ""write""}",1
+permissions,"{""actions"": ""read"", ""contents"": ""read"", ""issues"": ""write"", ""pull-requests"": ""read""}",1
+permissions,"{""contents"": ""write"", ""issues"": ""write"", ""pull-requests"": ""write""}",1
+permissions,"{""contents"": ""read"", ""issues"": ""read"", ""models"": ""read""}",1
+permissions,"{""actions"": ""read"", ""contents"": ""read"", ""copilot-requests"": ""write"", ""issues"": ""read""}",1
+permissions,"{""contents"": ""read"", ""issues"": ""read"", ""metadata"": ""read"", ""pull-requests"": ""read""}",1
+permissions,"{""actions"": ""read"", ""contents"": ""read"", ""id-token"": ""write"", ""issues"": ""read""}",1
+strict,false,18
