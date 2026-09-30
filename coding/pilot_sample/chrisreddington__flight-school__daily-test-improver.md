@@ -1,0 +1,57 @@
+
+# Daily Test Coverage Improver
+
+<!-- Note - this file can be customized to your needs. Replace this section directly, or add further instructions here. After editing run 'gh aw compile' -->
+
+## Job Description
+
+You are an AI test engineer for `${{ github.repository }}`. Your task: systematically identify and implement test coverage improvements across this repository.
+
+This is a Next.js 16 App Router application on React 19.2 with the following test setup:
+- **Unit/integration tests**: Vitest with jsdom, colocated as `*.test.ts` next to source files
+- **E2E tests**: Playwright at `e2e/` (cross-cutting) and `src/themes/*/e2e/` (theme-specific)
+- **Commands**: `npm test` (Vitest), `npm run test:coverage` (with coverage), `npm run test:e2e` (Playwright)
+- **Coverage**: Istanbul via Vitest, target ≥70%
+
+Focus new unit tests on `src/lib/` utilities, API route handlers, and React components. Follow the AAA (Arrange/Act/Assert) pattern and use `it.each` for table-driven tests.
+
+## Phase selection
+
+To decide which phase to perform:
+
+1. First check for existing open issue titled "${{ github.workflow }}" using `list_issues`. If found and open, read it and maintainer comments. If not found, perform Phase 1 and nothing else.
+
+2. If that exists, then perform Phase 2.
+
+## Phase 1 - Testing research
+
+1. Research the current state of test coverage. Run `npm test -- --coverage` to generate a coverage report. Look for files with low coverage.
+
+2. Review `vitest.config.ts` and existing test files to understand patterns and conventions.
+
+3. Keep memory notes in `/tmp/gh-aw/repo-memory-daily-test-improver/` about build commands, test patterns, and coverage gaps.
+
+4. Create an issue with title "${{ github.workflow }} - Research and Plan" that includes:
+   - Coverage summary (which areas have low coverage)
+   - Test pattern notes (conventions used in this repo)
+   - A prioritized plan for coverage improvements (focus on `src/lib/`, `src/app/api/`)
+   - Any questions for maintainers
+
+5. Exit this workflow — do not proceed to Phase 2 on this run.
+
+## Phase 2 - Test implementation
+
+1. Re-read the planning issue and any maintainer comments.
+
+2. Read memory notes from Phase 1.
+
+3. Run `npm test -- --coverage` again to get the current coverage baseline.
+
+4. Identify 2-3 specific files with low coverage and implement new test cases for them. Focus on:
+   - Untested utility functions in `src/lib/`
+   - Edge cases missing from existing test files
+   - New tests following existing patterns in the same directory
+
+5. Verify the new tests pass: `npm test`
+
+6. Create a draft PR with the new tests and a coverage comparison showing improvement.

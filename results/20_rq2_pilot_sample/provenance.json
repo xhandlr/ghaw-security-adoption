@@ -1,0 +1,22 @@
+{
+  "dataset_repo_id": "pavtch/GHAW-H",
+  "dataset_revision": "9ccc840bd7e96fd90db3a16548d5482c2833c47d",
+  "input_sha256": {
+    "source_markdown_file_snapshot": "b8049b2f05bdbce449f24dfef3ca70e1b135b339a17347ad9d88a98f4e8d94b9",
+    "source_markdown_file_version": "88576175db0645f52f399279d6e263f35fc2c152fbc18f734f2eb28c05cc1b2f",
+    "repository": "75bc7e5a838281f49403e682709775936568f781031ef94b01bec343148c6ae8"
+  },
+  "eligibility": {
+    "no_instructions": true,
+    "only_expression_pattern": "^\\s*\\$\\{\\{[^}]*\\}\\}\\s*$"
+  },
+  "sample_size": 240,
+  "random_seed": 42,
+  "workflows": 604,
+  "eligible": 486,
+  "outputs_sha256": {
+    "eligibility.csv": "4f792926b804db19da43e2c54f3960a0d4b18227901d731f8600382a8f0aee55",
+    "excluded_workflows.csv": "08891e9cc848d91f82592b969e4fda7246b5929e059140f42fdcae39958a168c",
+    "pilot_sample_index.csv": "8b256c6e69e6c5bfbf582b4099765bbdf345724ff235d297f5d9cad2fb6a997b"
+  }
+}
