@@ -25,3 +25,5 @@ gh_aw_docs:
 rq2:
   pilot_sample_size: 240  # minimum n for +/-5% margin of error at 95% confidence, p=0.5 (conservative)
   random_seed: 42
+  recoding_sample_size: 30  # rows re-coded to check consistency of the manual coding
+  recoding_seed: 7  # distinct from random_seed so the draw is independent of the pilot sample
