@@ -1,0 +1,12 @@
+{
+  "coding_sheet": "coding/rq2_coding.csv",
+  "coding_sheet_sha256": "4431c60afda13affe84ff78e45df896ae344699c81998d80e10c868fe28423d2",
+  "codebook": "coding/rq2_codebook.md",
+  "codebook_sha256": "9025e24238b40cc9fb275d108dcc41cd9083808ba35e5462b8da1cc5d160ebc2",
+  "coded_rows": 30,
+  "outputs_sha256": {
+    "categories.csv": "c603536f626c1b14b32edb29a8f3b93626ab8d2b54b5f57b3ca72b26df0e3c5e",
+    "categories_consolidated.csv": "4eab5a8f298bb39ee19c278f7aaacbd3e175c49e0f4359728e2018eea39688d1",
+    "summary.csv": "ae2620069cc6ade11a81b4c7a20f37c0a28525facecfe3e08f964120d9231701"
+  }
+}
