@@ -1,0 +1,28 @@
+{
+  "dataset_repo_id": "pavtch/GHAW-H",
+  "dataset_revision": "9ccc840bd7e96fd90db3a16548d5482c2833c47d",
+  "input_sha256": {
+    "source_markdown_file_snapshot": "b8049b2f05bdbce449f24dfef3ca70e1b135b339a17347ad9d88a98f4e8d94b9",
+    "source_markdown_file_version": "88576175db0645f52f399279d6e263f35fc2c152fbc18f734f2eb28c05cc1b2f",
+    "repository": "75bc7e5a838281f49403e682709775936568f781031ef94b01bec343148c6ae8",
+    "pilot_sample_index.csv": "8b256c6e69e6c5bfbf582b4099765bbdf345724ff235d297f5d9cad2fb6a997b",
+    "rq2_coding.csv": "59c7252e8d822cd5f4d05236ce59a586fb743eda09bcc81e20fbad4dc509212e"
+  },
+  "eligibility": {
+    "no_instructions": true,
+    "only_expression_pattern": "^\\s*\\$\\{\\{[^}]*\\}\\}\\s*$"
+  },
+  "body_normalization": "trailing spaces removed per line; leading and trailing blank lines removed",
+  "eligible_workflows": 486,
+  "sample_workflows": 240,
+  "coded_rows": 30,
+  "outputs_sha256": {
+    "body_copies.csv": "641e23ba06732eb230e67117e9ffb882616152769b97a3a6ec1953617a6574df",
+    "by_filename.csv": "5a58435f2af54f28b771dc472910cfdd4663d00f290dd123756ea728b75ebfeb",
+    "by_owner.csv": "0683a06df5daabfc4c2d3568cbc3c933d5cb4676b1c59877ae090bd008a5a37a",
+    "by_source_template.csv": "9040753e4ec33cebd2dac7406efe3429ea9f91f3d727cf940bd5f575506db49f",
+    "coded_by_owner.csv": "30eef9b7d76bfef80e7ef1e6565382eb2d039bc51db2d262807cd914ab977ede",
+    "coded_rows.csv": "61bbeaff9908cb3b9241aabfb5137d84444d75f19538b4f8852c135a634ded7a",
+    "summary.csv": "83a7134ce9eea3d819efa52a5584e2d137effe13e1fc25a33ff499f52aa03ea6"
+  }
+}

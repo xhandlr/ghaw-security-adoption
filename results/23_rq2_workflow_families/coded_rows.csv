@@ -1,0 +1,31 @@
+order,file,owner,repository,filename,source_template,copy_group,copy_group_size,has_defense,category
+1,jurre__huebar__code-review.md,jurre,jurre/huebar,code-review.md,none,,1,false,
+2,opsmill__infrahub__bug-agent-test.md,opsmill,opsmill/infrahub,bug-agent-test.md,none,,1,true,No tratar el contenido como órdenes
+3,asizikov-demos__copilot-user-level-statistics-viewer__code-duplication-scan.md,asizikov-demos,asizikov-demos/copilot-user-level-statistics-viewer,code-duplication-scan.md,none,,1,false,
+4,inference-sh__shadcn-registry__code-review.md,inference-sh,inference-sh/shadcn-registry,code-review.md,none,,1,false,
+5,Kong__kongctl__benchmark-regression-analysis.md,Kong,Kong/kongctl,benchmark-regression-analysis.md,none,,1,false,
+6,UbiHome__UbiHome__pr-documentation-check.md,UbiHome,UbiHome/UbiHome,pr-documentation-check.md,none,,1,false,
+7,runhey__OnmyojiAutoScript__issue-handle-other.md,runhey,runhey/OnmyojiAutoScript,issue-handle-other.md,none,,1,false,
+8,rancher__dashboard__daily-accessibility-review.md,rancher,rancher/dashboard,daily-accessibility-review.md,none,,1,false,
+9,lablup__backend.ai-webui__storybook-coverage-checker.md,lablup,lablup/backend.ai-webui,storybook-coverage-checker.md,none,,1,false,
+10,rancher__dashboard__duplicate-code-detector.md,rancher,rancher/dashboard,duplicate-code-detector.md,none,C014,2,true,Restringir acciones sobre el contenido
+11,Dedac__Beam__fix-top-improvement.md,Dedac,Dedac/Beam,fix-top-improvement.md,none,,1,false,
+12,baizhiheizi__quill__weekly-research.md,baizhiheizi,baizhiheizi/quill,weekly-research.md,githubnext/agentics/workflows/weekly-research.md,,1,false,
+13,drasi-project__drasi-server__pr-design-reviewer.md,drasi-project,drasi-project/drasi-server,pr-design-reviewer.md,none,,1,false,
+14,githubnext__agentics__maintainer.md,githubnext,githubnext/agentics,maintainer.md,none,,1,false,
+15,natnew__Awesome-Data-Science__issue-triage-agent.md,natnew,natnew/Awesome-Data-Science,issue-triage-agent.md,none,,1,false,
+16,microsoft__agentrc__code-simplifier.md,microsoft,microsoft/agentrc,code-simplifier.md,none,,1,false,
+17,Azure__azure-sdk-for-js__scribe.md,Azure,Azure/azure-sdk-for-js,scribe.md,none,,1,false,
+18,npgsql__efcore.pg__sync-to-latest-ef.md,npgsql,npgsql/efcore.pg,sync-to-latest-ef.md,none,,1,false,
+19,tosin2013__mcp-adr-analysis-server__dependabot-bundler.md,tosin2013,tosin2013/mcp-adr-analysis-server,dependabot-bundler.md,none,,1,false,
+20,ptarmiganlabs__butler-sos__grumpy-reviewer.md,ptarmiganlabs,ptarmiganlabs/butler-sos,grumpy-reviewer.md,githubnext/agentics/workflows/grumpy-reviewer.md,,1,false,
+21,ionide__FsAutoComplete__repo-assist.md,ionide,ionide/FsAutoComplete,repo-assist.md,githubnext/agentics/workflows/repo-assist.md,C001,15,false,
+22,github__awesome-copilot__codeowner-update.md,github,github/awesome-copilot,codeowner-update.md,none,,1,false,
+23,lablup__backend.ai-webui__daily-test-improver.md,lablup,lablup/backend.ai-webui,daily-test-improver.md,githubnext/agentics/workflows/daily-test-improver.md,,1,false,
+24,drasi-project__drasi-server__pr-docs-reviewer.md,drasi-project,drasi-project/drasi-server,pr-docs-reviewer.md,none,,1,false,
+25,microsoft__vstest__daily-qa.md,microsoft,microsoft/vstest,daily-qa.md,none,,1,true,Restringir la divulgación de información sensible
+26,microsoft__vscode-black-formatter__issue-triage.md,microsoft,microsoft/vscode-black-formatter,issue-triage.md,none,,1,true,Restringir acciones sobre el contenido | Delimitar comandos de activación
+27,microsoft__wassette__changelog-fragment.md,microsoft,microsoft/wassette,changelog-fragment.md,none,,1,true,No tratar el contenido como órdenes
+28,microsoft__apm-action__apm-demo.md,microsoft,microsoft/apm-action,apm-demo.md,none,,1,false,
+29,Azure__azure-sdk-for-js__dash.md,Azure,Azure/azure-sdk-for-js,dash.md,none,,1,false,
+30,storybookjs__storybook__duplicate-code-detector.md,storybookjs,storybookjs/storybook,duplicate-code-detector.md,github/gh-aw/.github/workflows/duplicate-code-detector.md,,1,true,Restringir acciones sobre el contenido
