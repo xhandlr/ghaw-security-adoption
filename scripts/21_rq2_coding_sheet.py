@@ -1,6 +1,6 @@
 """Prepare the RQ2 manual coding sheets. Does not code anything.
 
-Writes coding/rq2_coding.csv: one row per body in coding/pilot_sample/, in
+Writes coding/rq2_coding_coder1.csv: one row per body in coding/pilot_sample/, in
 the random order fixed by script 20 (coding/pilot_sample_index.csv), with
 empty coding columns. The line column refers to the line number inside
 the body file in coding/pilot_sample/.
@@ -28,7 +28,7 @@ def main():
     coding_dir = Path(settings["paths"]["coding_dir"])
     rq2 = settings["rq2"]
 
-    coding_path = coding_dir / "rq2_coding.csv"
+    coding_path = coding_dir / "rq2_coding_coder1.csv"
     recoding_path = coding_dir / "rq2_recoding_sample.csv"
     existing = [str(p) for p in (coding_path, recoding_path) if p.exists()]
     if existing:

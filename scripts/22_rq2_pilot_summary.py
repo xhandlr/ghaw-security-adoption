@@ -1,6 +1,6 @@
 """Summarize the RQ2 pilot coding done so far. Read-only on the sheet.
 
-Reads coding/rq2_coding.csv and keeps only the rows already coded
+Reads coding/rq2_coding_coder1.csv and keeps only the rows already coded
 (tiene_defensa is "true" or "false"). Any other non-empty value in
 tiene_defensa stops the script, so a typo is never silently counted.
 
@@ -24,7 +24,7 @@ from pathlib import Path
 
 import yaml
 
-CODING_SHEET = Path("coding/rq2_coding.csv")
+CODING_SHEET = Path("coding/rq2_coding_coder1.csv")
 CODEBOOK = Path("coding/rq2_codebook.md")
 OUTPUT_DIR = Path("results/22_rq2_pilot_summary")
 CODED_VALUES = {"true": True, "false": False}

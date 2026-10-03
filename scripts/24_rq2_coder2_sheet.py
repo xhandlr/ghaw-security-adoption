@@ -1,6 +1,6 @@
 """Prepare the materials for the second RQ2 coder. Does not code anything.
 
-Writes coding/rq2_coding_coder2.csv: rows 1 to N of coding/rq2_coding.csv
+Writes coding/rq2_coding_coder2.csv: rows 1 to N of coding/rq2_coding_coder1.csv
 (N = rq2.coder2_rows in config/settings.yaml), in the same order, with
 the identification columns only and empty coding columns. None of the
 first coder's decisions, phrases, categories or notes are copied.
@@ -19,7 +19,7 @@ from pathlib import Path
 import pandas as pd
 import yaml
 
-CODING_SHEET = Path("coding/rq2_coding.csv")
+CODING_SHEET = Path("coding/rq2_coding_coder1.csv")
 CODEBOOK = Path("coding/rq2_codebook.md")
 SHEET_OUT = Path("coding/rq2_coding_coder2.csv")
 CODEBOOK_OUT = Path("coding/rq2_codebook_coder2.md")

@@ -1,6 +1,6 @@
 {
-  "coding_sheet": "coding/rq2_coding.csv",
-  "coding_sheet_sha256": "4431c60afda13affe84ff78e45df896ae344699c81998d80e10c868fe28423d2",
+  "coding_sheet": "coding/rq2_coding_coder1.csv",
+  "coding_sheet_sha256": "59c7252e8d822cd5f4d05236ce59a586fb743eda09bcc81e20fbad4dc509212e",
   "codebook": "coding/rq2_codebook.md",
   "codebook_sha256": "9025e24238b40cc9fb275d108dcc41cd9083808ba35e5462b8da1cc5d160ebc2",
   "coded_rows": 30,

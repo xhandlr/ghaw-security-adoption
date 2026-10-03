@@ -1,6 +1,6 @@
 """Compare the two RQ2 coders on the rows both have coded. Read-only on the sheets.
 
-Reads coding/rq2_coding.csv (coder 1) and coding/rq2_coding_coder2.csv
+Reads coding/rq2_coding_coder1.csv (coder 1) and coding/rq2_coding_coder2.csv
 (coder 2), joined by orden. Stops if archivo, repositorio or workflow
 differ for the same orden. Only rows where both coders wrote "true" or
 "false" in tiene_defensa are compared; any other non-empty value stops
@@ -26,7 +26,7 @@ from pathlib import Path
 
 import pandas as pd
 
-CODER1 = Path("coding/rq2_coding.csv")
+CODER1 = Path("coding/rq2_coding_coder1.csv")
 CODER2 = Path("coding/rq2_coding_coder2.csv")
 CODEBOOK = Path("coding/rq2_codebook.md")
 OUTPUT_DIR = Path("results/25_rq2_intercoder_agreement")
