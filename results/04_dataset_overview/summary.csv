@@ -1,0 +1,13 @@
+measure,value
+repositories,262
+workflows,604
+snapshots,2820
+first_commit_all_versions,2025-10-03
+last_commit_all_versions,2026-06-27
+first_commit_latest_versions,2025-10-08
+last_commit_latest_versions,2026-06-27
+median_commit_latest_versions,2026-05-13
+versions_per_workflow_mean,4.67
+versions_per_workflow_median,3.0
+versions_per_workflow_max,38
+workflows_with_one_version,198
