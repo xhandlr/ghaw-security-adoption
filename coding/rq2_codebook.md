@@ -26,6 +26,11 @@ Casos resueltos en el piloto:
   procesarlo
   [cuenta como instrucción defensiva, porque evita que comentarios
   arbitrarios dirijan al agente]
+- Verificar que un comentario contenga el comando antes de procesarlo,
+  aunque no sea exactamente el comando
+  [cuenta como instrucción defensiva: es el mismo control que el caso
+  anterior, menos estricto. Resuelto por consenso entre codificadores,
+  2026-10-05]
 
 Registro: se considera que un workflow cuenta con defensa si tiene **al menos una
 instrucción defensiva en su cuerpo**. Se hace registro de la frase textual 
@@ -39,6 +44,16 @@ Los casos límite resueltos se agregan a este libro de códigos.
 - Restringir acciones sobre el contenido: instrucciones que prohíben al agente hacer ciertas acciones con lo que encuentra en el contenido, incluso cuando el contenido externo no lo solicita de manera explícita. Ej.: no ejecutar código o comandos no confiables, no abrir enlaces del issue.
 - Restringir la divulgación de información sensible: instrucciones que limitan lo que el agente publica en sus salidas cuando el contenido trata información sensible. Ej.: no evaluar ni discutir vulnerabilidades reportadas en issues.
 - Delimitar comandos de activación: instrucciones que limitan qué contenido pone al agente a trabajar. Ej.: procesar un comentario solo si es exactamente el comando.
+
+### Correspondencia entre codificadores (consolidación por consenso, 2026-10-05)
+
+| Etiqueta del segundo codificador | Filas | Categoría |
+|---|---|---|
+| contenido como datos | 2, 27 | No tratar el contenido como órdenes |
+| no ejecutar contenido no confiable | 10, 30 | Restringir acciones sobre el contenido |
+| no discutir vulnerabilidades reportadas | 25 | Restringir la divulgación de información sensible |
+| no seguir enlaces no confiables | 26 | Restringir acciones sobre el contenido (se conserva además Delimitar comandos de activación, asignada por el primer codificador) |
+| validación del comando | 22 | Delimitar comandos de activación |
 
 ## Versión 0 (reemplazada por la versión 1)
 
