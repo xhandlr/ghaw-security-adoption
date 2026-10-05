@@ -1,0 +1,15 @@
+{
+  "coder1_sheet": "coding/rq2_coding_coder1.csv",
+  "coder1_sheet_sha256": "59c7252e8d822cd5f4d05236ce59a586fb743eda09bcc81e20fbad4dc509212e",
+  "coder2_sheet": "coding/rq2_coding_coder2.csv",
+  "coder2_sheet_sha256": "8fc735ac606d36ec42c518abc161a5604e3bd4443fd51ae2b3dab74d0c206917",
+  "codebook": "coding/rq2_codebook.md",
+  "codebook_sha256": "9025e24238b40cc9fb275d108dcc41cd9083808ba35e5462b8da1cc5d160ebc2",
+  "rows_compared": 30,
+  "outputs_sha256": {
+    "agreement.csv": "05559670b9c9eafec50803536544cd294c6a6cb6c5211f9c5739b51dcd44697e",
+    "categories_side_by_side.csv": "c38ff1a3440085f92f7735ad1d72b9db793c487b6cd9788a31710c70c0b153db",
+    "confusion_tiene_defensa.csv": "3270e988df678fa800c950616e5009e5e8fa5301b9f80b8ea50820f7fb2919e3",
+    "disagreements.csv": "7ce418b2f08b3893d401bc6589b2da74f7e9b7067dcc3e469ad600b9064c7a8e"
+  }
+}
