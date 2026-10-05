@@ -17,7 +17,7 @@ Families are looked at through:
   the same body, sampled or not.
 
 Also writes the families of the rows already coded in
-coding/rq2_coding_coder1.csv (tiene_defensa true or false) and a per-owner
+coding/rq2_coding_consensus.csv (tiene_defensa true or false) and a per-owner
 summary of those rows. Category values written by the coder are kept as
 they are.
 """
@@ -36,7 +36,7 @@ DATA_DIR = Path("data/raw/data")
 OUTPUT_DIR = Path("results/23_rq2_workflow_families")
 ELIGIBILITY = Path("results/20_rq2_pilot_sample/eligibility.csv")
 SAMPLE_INDEX = Path("coding/pilot_sample_index.csv")
-CODING_SHEET = Path("coding/rq2_coding_coder1.csv")
+CODING_SHEET = Path("coding/rq2_coding_consensus.csv")
 TABLES = ["source_markdown_file_snapshot", "source_markdown_file_version", "repository"]
 NO_TEMPLATE = "none"
 
@@ -202,7 +202,7 @@ def main():
         "input_sha256": {
             **{t: sha256_of(DATA_DIR / f"{t}.parquet") for t in TABLES},
             "pilot_sample_index.csv": sha256_of(SAMPLE_INDEX),
-            "rq2_coding_coder1.csv": sha256_of(CODING_SHEET),
+            "rq2_coding_consensus.csv": sha256_of(CODING_SHEET),
         },
         "eligibility": eligibility,
         "body_normalization": "trailing spaces removed per line; leading and trailing blank lines removed",

@@ -20,7 +20,7 @@ order,file,owner,repository,filename,source_template,copy_group,copy_group_size,
 19,tosin2013__mcp-adr-analysis-server__dependabot-bundler.md,tosin2013,tosin2013/mcp-adr-analysis-server,dependabot-bundler.md,none,,1,false,
 20,ptarmiganlabs__butler-sos__grumpy-reviewer.md,ptarmiganlabs,ptarmiganlabs/butler-sos,grumpy-reviewer.md,githubnext/agentics/workflows/grumpy-reviewer.md,,1,false,
 21,ionide__FsAutoComplete__repo-assist.md,ionide,ionide/FsAutoComplete,repo-assist.md,githubnext/agentics/workflows/repo-assist.md,C001,15,false,
-22,github__awesome-copilot__codeowner-update.md,github,github/awesome-copilot,codeowner-update.md,none,,1,false,
+22,github__awesome-copilot__codeowner-update.md,github,github/awesome-copilot,codeowner-update.md,none,,1,true,Delimitar comandos de activación
 23,lablup__backend.ai-webui__daily-test-improver.md,lablup,lablup/backend.ai-webui,daily-test-improver.md,githubnext/agentics/workflows/daily-test-improver.md,,1,false,
 24,drasi-project__drasi-server__pr-docs-reviewer.md,drasi-project,drasi-project/drasi-server,pr-docs-reviewer.md,none,,1,false,
 25,microsoft__vstest__daily-qa.md,microsoft,microsoft/vstest,daily-qa.md,none,,1,true,Restringir la divulgación de información sensible

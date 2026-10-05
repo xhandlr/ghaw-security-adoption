@@ -1,12 +1,12 @@
 {
-  "coding_sheet": "coding/rq2_coding_coder1.csv",
-  "coding_sheet_sha256": "59c7252e8d822cd5f4d05236ce59a586fb743eda09bcc81e20fbad4dc509212e",
+  "coding_sheet": "coding/rq2_coding_consensus.csv",
+  "coding_sheet_sha256": "7127cfb107ee29214da61cb5dc6f6668a0a8aaedcc2e5ff030fe4f1b10e799d0",
   "codebook": "coding/rq2_codebook.md",
-  "codebook_sha256": "9025e24238b40cc9fb275d108dcc41cd9083808ba35e5462b8da1cc5d160ebc2",
+  "codebook_sha256": "769b1110eea0e1f5228412c62f16586846405f6a8a3272883005023937f5f0a2",
   "coded_rows": 30,
   "outputs_sha256": {
-    "categories.csv": "c603536f626c1b14b32edb29a8f3b93626ab8d2b54b5f57b3ca72b26df0e3c5e",
-    "categories_consolidated.csv": "4eab5a8f298bb39ee19c278f7aaacbd3e175c49e0f4359728e2018eea39688d1",
-    "summary.csv": "ae2620069cc6ade11a81b4c7a20f37c0a28525facecfe3e08f964120d9231701"
+    "categories.csv": "c5071d464d81911ca546ce57d43f0bb3de434a81712acd153ef760df75a97e03",
+    "categories_consolidated.csv": "2969d8f25d1d299fae85cf2c3f530844c9cb1a97568563304812f325e7610ab4",
+    "summary.csv": "446bfcbd5878a23af07b945640fc08b507e0b5b7a8813ece619f8efdaba38fd4"
   }
 }
