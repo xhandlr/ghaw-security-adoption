@@ -4,10 +4,14 @@ One row per workflow (latest snapshot, highest rank, chosen before joining
 the lock). Only extracts; it does not read the frontmatter, classify, or
 compare against coding/rq1_codebook.yaml (that is script 13).
 
-Everything about the agent is read only inside jobs.agent of the parsed
-lock, so the threat-detection job's firewall and tools are never mixed in.
-Comment lines inside run scripts (e.g. "# --allow-tool shell(cat)") are
-ignored.
+The agent's permissions, firewall domains and bash tools are read only
+inside jobs.agent of the parsed lock, so the threat-detection job's
+firewall and tools are never mixed in. Comment lines inside run scripts
+(e.g. "# --allow-tool shell(cat)") are ignored. Two values are read from
+the whole lock file instead: the gh-aw-metadata header comment, and the
+declared domains (GH_AW_INFO_ALLOWED_DOMAINS), which is searched anywhere
+in the lock and in practice appears in the activation job, not in
+jobs.agent.
 
 When a value cannot be extracted, its cell is left empty and a *_status
 column says why. No row is dropped.
@@ -128,8 +132,11 @@ def flag_values(run_text, flag):
     """Values passed to a command-line flag, with shell quoting undone.
 
     The agent command is usually nested inside bash -c '...', so a token
-    that itself contains the flag is split again. Raises ValueError when
-    the quoting cannot be parsed.
+    that itself contains the flag and spaces (a nested command) is split
+    again. A token without spaces, such as "--allow-tool=shell", is not
+    split again: splitting it would give the same token forever. The
+    "--flag=value" form is not read as a value. Raises ValueError when the
+    quoting cannot be parsed.
     """
     values = []
     pending = [line for line in run_text.replace("\\\n", " ").splitlines() if flag in line]
@@ -138,7 +145,7 @@ def flag_values(run_text, flag):
         for i, token in enumerate(tokens):
             if token == flag and i + 1 < len(tokens):
                 values.append(tokens[i + 1])
-            elif flag in token and token != flag:
+            elif flag in token and token != flag and any(c.isspace() for c in token):
                 pending.append(token)
     return values
 
