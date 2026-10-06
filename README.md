@@ -1,6 +1,6 @@
 # Adopción de configuraciones de seguridad en GitHub Agentic Workflows
 
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.XXXXXXX.svg)](https://doi.org/10.5281/zenodo.XXXXXXX)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23176659.svg)](https://doi.org/10.5281/zenodo.23176659)
 ![Python](https://img.shields.io/badge/python-3.13-blue)
 ![Licencia código](https://img.shields.io/badge/código-MIT-green)
 ![Licencia resultados](https://img.shields.io/badge/resultados-CC%20BY%204.0-lightgrey)
@@ -11,7 +11,7 @@
 
 **Curso:** ICC760 Investigación Aplicada en Informática, Universidad de La Frontera
 
-**Versión del repo:** `etapa-2` (commit `xxxxxxx`)
+**Versión del repo:** `v0.2.0`
 
 ---
 
@@ -65,7 +65,7 @@ Requiere **Python 3.13**.
 ```bash
 git clone https://github.com/xhandlr/ghaw-security-adoption.git
 cd ghaw-security-adoption
-git checkout etapa-2
+git checkout v0.2.0
 python3.13 -m venv .venv
 source .venv/bin/activate        # En Windows: .venv\Scripts\activate
 pip install -r requirements.txt
@@ -126,7 +126,7 @@ python scripts/27_rq2_sample_size.py
 El valor de los parámetros fijados (commits/semillas) se encuentra en `config/settings.yaml`.
 
 > [!NOTE] 
-> Los scripts 21, 24, 25 y 26 no se ejecutan para reproducir los resultados: 21 y 24 prepararon las planillas de codificación, 25 calculó el acuerdo entre codificadores una sola vez, antes de discutir los desacuerdos, y 26 generó la planilla de consenso. Sus salidas ya están en `coding/` y `results/25_rq2_intercoder_agreement/`.
+> No es necesario volver a ejecutar los scripts 21, 24, 25 y 26 para reproducir los resultados: 21 y 24 prepararon las planillas de codificación, 25 calculó el acuerdo entre codificadores una sola vez, antes de discutir los desacuerdos, y 26 generó la planilla de consenso. Sus salidas ya están en `coding/` y `results/25_rq2_intercoder_agreement/`.
 
 ⏱️ Sin contar la descarga del dataset (script 01), todo el procesamiento tarda menos de un minuto en un notebook. En un computador con Intel Core i7-12700H y 16 GB de RAM, se registró un tiempo de ejecución de **53 s**.
 
@@ -216,7 +216,7 @@ Es decir, se respeta la visión inicial de cada codificador.
 - [x] RQ2: piloto de 30 workflows con dos codificadores, acuerdo (kappa de Cohen) y consenso (scripts 21–26)
 
 **Pendiente**
-- [ ] RQ1: definir qué es un campo de seguridad y clasificar, con dos codificadores, los campos con default declarado en el schema
+- [ ] RQ1: clasificar, con dos codificadores, las 140 rutas candidatas según la definición de campo de seguridad
 - [ ] RQ1: aplicar la medición de estado y dirección a los campos seleccionados
 - [ ] RQ1: revisar si los defaults cambian entre versiones del compilador
 - [ ] RQ1: el script 14 no detecta conflictos que difieren solo en amplitud y depende de un identificador escrito en el código
@@ -243,8 +243,8 @@ Es decir, se respeta la visión inicial de cada codificador.
   title     = {Adopción de configuraciones de seguridad en GitHub Agentic Workflows: paquete de réplica (Etapa 2)},
   year      = {2026},
   publisher = {Zenodo},
-  version   = {etapa-2},
-  doi       = {10.5281/zenodo.XXXXXXX}
+  version   = {v0.2.0},
+  doi       = {10.5281/zenodo.23176659}
 }
 ```
 

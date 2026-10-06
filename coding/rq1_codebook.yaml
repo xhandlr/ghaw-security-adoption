@@ -8,6 +8,11 @@ definicion_default: >
   describe solo de forma general, se precisa con el valor observado en los lock
   files de los workflows que no declaran el campo.
 
+definicion_campo_seguridad: >
+  Se considera un campo de seguridad aquel cuya configuración modifica las
+  capacidades, el acceso o las restricciones aplicadas al agente, de manera que
+  puede aumentar o reducir las consecuencias de un comportamiento no deseado.
+
 estados:
   implicito: El campo no está declarado en el frontmatter.
   explicito_igual_default: El campo está declarado con un valor igual al default.
