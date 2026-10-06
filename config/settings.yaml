@@ -30,6 +30,10 @@ rq2:
   eligibility:  # workflows without instructions written in the body are excluded before sampling
     no_instructions: true  # nothing left after removing HTML comments, blank lines and heading lines (#)
     only_expression_pattern: '^\s*\$\{\{[^}]*\}\}\s*$'  # body is only a ${{ ... }} expression
+  sample_size:  # parameters for the RQ2 sample size (script 27)
+    confidence: 0.95
+    margin: 0.05
+    p: 0.5  # most conservative value
   coder2_rows: 30  # pilot rows given to the second coder (orden 1 to N)
   categories:  # consolidated RQ2 categories (pilot, preliminary); see coding/rq2_codebook.md
     - No tratar el contenido como órdenes

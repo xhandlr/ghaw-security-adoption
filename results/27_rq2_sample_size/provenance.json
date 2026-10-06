@@ -1,0 +1,7 @@
+{
+  "eligibility_csv": "results/20_rq2_pilot_sample/eligibility.csv",
+  "eligibility_csv_sha256": "4f792926b804db19da43e2c54f3960a0d4b18227901d731f8600382a8f0aee55",
+  "outputs_sha256": {
+    "sample_size.csv": "fe8e309914b7f20bd669943ea5e1589fb9e78d99eb6d47d6dcccfa05b1ec2bf3"
+  }
+}
