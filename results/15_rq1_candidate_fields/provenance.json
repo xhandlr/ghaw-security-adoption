@@ -1,0 +1,10 @@
+{
+  "fields_csv": "results/03_schema_fields/fields.csv",
+  "fields_csv_sha256": "95ba4b070fead945f611ecc15954c7b0380e51700f460ccd854219555af53a95",
+  "selection_rule": "path with has_default True in at least one exported branch",
+  "outputs_sha256": {
+    "candidate_roots.csv": "9f9d5fc2110fc457f418bb0163bb5359acb72a6b21ca7699c503f3aa680f0c24",
+    "candidates.csv": "cb07900dc22ffcaddf495bd9e9e2afe1e5a11de7f2c48a398ea7a3f8775ae207",
+    "summary.csv": "ff4b8ac78efdb0b3ffed409ff68491c7504393abb62bad2d482125550aab85be"
+  }
+}
