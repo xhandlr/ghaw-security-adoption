@@ -114,11 +114,13 @@ python scripts/11_rq1_arch_doc_fields.py       # descarga la página de arquitec
 python scripts/12_rq1_lock_evidence.py
 python scripts/13_rq1_lock_evidence_summary.py
 python scripts/14_rq1_measurement.py
+python scripts/15_rq1_candidate_fields.py
 
 # RQ2
 python scripts/20_rq2_pilot_sample.py          # regenera coding/pilot_sample/ (idéntico, semilla fija)
 python scripts/22_rq2_pilot_summary.py
 python scripts/23_rq2_workflow_families.py
+python scripts/27_rq2_sample_size.py
 ```
 
 El valor de los parámetros fijados (commits/semillas) se encuentra en `config/settings.yaml`.
@@ -217,6 +219,8 @@ Es decir, se respeta la visión inicial de cada codificador.
 - [ ] RQ1: definir qué es un campo de seguridad y clasificar, con dos codificadores, los campos con default declarado en el schema
 - [ ] RQ1: aplicar la medición de estado y dirección a los campos seleccionados
 - [ ] RQ1: revisar si los defaults cambian entre versiones del compilador
+- [ ] RQ1: el script 14 no detecta conflictos que difieren solo en amplitud y depende de un identificador escrito en el código
+- [ ] RQ1: revisar superposiciones en el libro de códigos (por ejemplo, `bash: []` y `defaults` combinado con `firewall` sin otros dominios)
 - [ ] Codificar las filas restantes de RQ2 (210 de 240)
 - [ ] RQ2: decidir cómo tratar los bodies duplicados por plantilla
 - [ ] Relacionar RQ2 con RQ1
