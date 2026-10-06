@@ -44,8 +44,8 @@
 .
 ├── scripts/            # Scripts numerados por bloque
 │   ├── 01–04           # Comunes (descarga y preparación)
-│   ├── 10–14           # RQ1
-│   └── 20–26           # RQ2
+│   ├── 10–15           # RQ1
+│   └── 20–27           # RQ2
 ├── results/            # Una carpeta por script, cada una con provenance.json
 ├── coding/             # Libros de códigos, planillas de codificadores, consenso y piloto
 ├── config/
