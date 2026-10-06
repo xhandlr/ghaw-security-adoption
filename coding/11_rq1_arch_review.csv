@@ -2,7 +2,7 @@ nombre,línea,decisión,motivo
 if,591,excluido,"Condición de ejecución genérica de GitHub Actions, no configuración de seguridad de GH-AW. La raíz secret-masking ya está incluida por otras menciones."
 if,650,excluido,"Condición de ejecución genérica de GitHub Actions, no configuración de seguridad de GH-AW. La raíz secret-masking ya está incluida por otras menciones."
 secrets.*,635,excluido,"La página describe el escaneo automático de referencias ${{ secrets.X }} para enmascararlas, no el campo secrets del frontmatter."
-engine,250,válido,"Campo real del frontmatter, aparece como contexto en un ejemplo YAML."
+engine,251,válido,"Campo real del frontmatter, aparece como contexto en un ejemplo YAML."
 min-integrity,583,resuelto a tools.github.min-integrity,"La página lo describe dentro del filtrado de integridad de la herramienta de GitHub y enlaza a la referencia de Integrity Filtering. No se incluye la variante de enclaves."
 min-integrity,585,resuelto a tools.github.min-integrity,"La página lo describe dentro del filtrado de integridad de la herramienta de GitHub y enlaza a la referencia de Integrity Filtering. No se incluye la variante de enclaves."
 min-integrity,818,resuelto a tools.github.min-integrity,"La página lo describe dentro del filtrado de integridad de la herramienta de GitHub y enlaza a la referencia de Integrity Filtering. No se incluye la variante de enclaves."
