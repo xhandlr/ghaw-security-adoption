@@ -8,8 +8,10 @@ tiene_defensa stops the script, so a typo is never silently counted.
 Writes to results/22_rq2_pilot_summary/:
 - summary.csv: coded rows, rows with defense, proportion and its 95%
   Wilson interval;
-- categories.csv: coded rows with defense per categoria_provisional;
+- categories.csv: coded rows with defense per categoria_provisional
+  (written as provisional_category);
 - categories_consolidated.csv: coded rows per consolidated categoria
+  (written as category)
   (several categories in one cell are separated by |). Only the
   categories listed in config/settings.yaml (rq2.categories) are allowed;
   any other value stops the script;
@@ -79,15 +81,15 @@ def main():
                          "wilson_95_low", "wilson_95_high"])
         writer.writerow([len(rows), n, k, k / n if n else "", low if n else "", high if n else ""])
 
-    categories = Counter(r["categoria_provisional"].strip() or "(sin categoría)" for r in with_defense)
+    categories = Counter(r["categoria_provisional"].strip() or "(no category)" for r in with_defense)
     with open(OUTPUT_DIR / "categories.csv", "w", newline="") as f:
         writer = csv.writer(f)
-        writer.writerow(["categoria_provisional", "workflows"])
+        writer.writerow(["provisional_category", "workflows"])
         writer.writerows(sorted(categories.items(), key=lambda x: (-x[1], x[0])))
 
     with open(OUTPUT_DIR / "categories_consolidated.csv", "w", newline="") as f:
         writer = csv.writer(f)
-        writer.writerow(["categoria", "workflows"])
+        writer.writerow(["category", "workflows"])
         writer.writerows([c, consolidated[c]] for c in allowed)
 
     provenance = {
