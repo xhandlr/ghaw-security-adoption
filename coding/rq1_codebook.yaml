@@ -9,11 +9,14 @@ default_definition: >
   the lock files of the workflows that do not declare the field.
 
 security_field_definition: >
-  A security field is one whose configuration changes the capabilities, the
-  access or the restrictions applied to the agent, so that it can increase or
-  reduce the harm the agent can cause to the repository, its secrets, other
-  systems or in costs to the account owner if it is manipulated or behaves in
-  an unwanted way.
+  A security field is one that configures the privileges of the agent or the
+  mechanisms with which GH-AW limits them: which privileges are assigned to
+  it, through which channels it can communicate, which tokens or credentials
+  it receives, which controls apply to the content it receives or to the
+  outputs it produces, how the environment where it runs is isolated, or which
+  validations require the configuration to meet security requirements. Based
+  on layers 1, 2 and 3 of the GH-AW "Security Architecture". For this
+  definition, the AI engine is considered part of the agent.
 
 states:
   implicit: The field is not declared in the frontmatter.

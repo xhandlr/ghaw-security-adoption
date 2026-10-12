@@ -1,12 +1,15 @@
 # Guía de Codificación de Campos de Seguridad (RQ1)
 
 ### 1. Definición
-Un campo de seguridad es aquel cuya configuración modifica las capacidades,
-el acceso o las restricciones aplicadas al agente, de manera que puede
-aumentar o reducir el daño que el agente puede causar al repositorio, a sus
-secretos, a otros sistemas o en costos para el dueño de la cuenta si es
-manipulado o actúa de forma no deseada.
+Un campo de seguridad es aquel que configura los privilegios del agente o
+los mecanismos con que GH-AW los limita: qué privilegios se le asignan, por
+qué canales puede comunicarse, qué tokens o credenciales recibe, o qué
+controles se aplican al contenido que recibe o a las salidas que produce,
+cómo se aísla el entorno donde corre, o qué validaciones exigen que la
+configuración cumpla requisitos de seguridad.
 
+Basada en las Capas 1, 2 y 3 de "Security Architecture"
+de GH-AW. Para esta definición, el motor de IA se considera parte del agente.
 
 ### 2. Reglas de codificación
 - Leer solo la descripción del schema de cada ruta. Los campos sin descripciones
@@ -17,45 +20,37 @@ quedan descartados del alcance.
 - Debe codificarse sin ver los resultados del otro codificador, por ende, solo 
 debe hacerse push cuando toda la planilla esté completa.
 
-### 3. Qué cuenta como capacidades, acceso y restricciones
-Se refieren a lo que la configuración le permite al agente, no a las
+### 3. Qué cuenta en cada parte de la definición
+Se refiere a lo que la configuración le permite al agente, no a las
 habilidades del modelo.
-- Capacidades: acciones que el agente tiene habilitadas. Ejemplos: herramientas
-que puede usar (ejecutar comandos, editar archivos, navegar), permisos del
-token (leer o escribir issues, pull requests, contenido), salidas que puede
-producir sobre el repositorio (crear issues, comentar, abrir pull requests).
-- Acceso: recursos que el agente puede alcanzar. Ejemplos: repositorios
-(el propio u otros, públicos o privados), secretos, tokens y credenciales,
-red y dominios externos, servidores MCP, volúmenes o puertos del entorno
-donde corre.
-- Restricciones: límites sobre lo anterior. Ejemplos: sandbox o firewall,
-listas de dominios o comandos permitidos, modo strict, aislamiento del
-contenedor, limpieza de credenciales, y topes a lo que el agente puede gastar
-o ejecutar (créditos de IA, turnos, ejecuciones, tiempo).
+- Privilegios: operaciones que el agente tiene permitidas, como los permisos
+del token que usa, las herramientas o comandos que puede ejecutar y lo que
+puede escribir o crear.
+- Canales: la red (dominios permitidos por el firewall) y las conexiones a
+servidores MCP a través del gateway.
+- Tokens o credenciales: los que la configuración entrega al agente o al motor.
+- Controles sobre contenido y salidas: mecanismos que filtran o revisan lo que
+el agente recibe o produce, incluidos los que restringen quién puede activar
+al agente.
+- Aislamiento: configuración del entorno aislado donde corre el agente, cuando
+la descripción dice que aísla al agente o limita lo que puede tocar en la
+máquina. Un entorno para otros pasos del workflow no cuenta.
+- Validaciones: mecanismos que exigen que la configuración cumpla requisitos
+de seguridad antes de ejecutarse.
 
 ### 4. Reglas para casos límites
-- Se asume siempre que el agente puede ser manipulado o actuar de forma no
-deseada. Eso no se cuenta como un paso del razonamiento.
-- Un campo es de seguridad solo si cambiar su valor cambia directamente, en un
-paso, lo que el agente puede hacer, a qué puede acceder o qué se le restringe.
-- Ejemplo: si cambio un campo y dejo todo lo demás igual, ¿cambia la
-lista de cosas que el agente puede hacer o tocar, o el tope de lo que puede
-gastar o ejecutar? Si no cambia, es false.
-- Si para conectarlo con la seguridad se necesita encadenar más de un paso
-(por ejemplo, "elige el motor -> cada motor tiene otras habilidades -> ..."),
-es false.
-- Elegir un motor o modelo distinto no es de seguridad por sí solo, porque no
-cambia lo que el agente tiene permitido.
-- Los límites que ponen un tope a lo que el agente puede gastar o ejecutar
-(créditos de IA, turnos, ejecuciones, tiempo) son true, y se escribe "límite
-de consumo" en notes para poder reportarlos aparte.
-- Caché, concurrencia, memoria del contenedor o tamaño del runner son false:
-afectan el rendimiento o la máquina, no ponen un tope a lo que el agente puede
-gastar o ejecutar.
-- En campos de valor libre (por ejemplo, argumentos o variables), se decide
-según lo que la descripción dice que hace el campo, no según lo que alguien
-podría escribir en él. Si la descripción dice que pasa secretos, comandos
-permitidos o permisos, es true. Si solo dice que pasa valores, es false.
+- Activación: los campos que restringen quién puede hacer que el agente corra
+(roles, usuarios, bots, aprobación de una persona) son true. Los campos que
+solo eligen qué eventos lo activan son false.
+- Pasos fijos: los campos que configuran pasos que corren antes o después del
+agente sin entregarle privilegios, canales ni credenciales son false. Esto
+incluye las credenciales que usa solo un paso fijo y que no llegan al agente,
+según lo que diga la descripción.
+- Límites operacionales: los campos que establecen límites de tiempo,
+turnos, ejecuciones o gasto son false, porque no configuran privilegios
+ni ninguno de los mecanismos de seguridad descritos en la arquitectura de
+GH-AW. Se escribe "límite de consumo" en notes para poder reportarlos
+aparte.
 - Padres e hijos se codifican por separado, cada uno por su propia
 descripción. Un padre no es de seguridad solo porque tenga hijos que lo son,
 y un hijo no lo es solo porque su padre lo sea.
