@@ -11,8 +11,9 @@ default_definition: >
 security_field_definition: >
   A security field is one whose configuration changes the capabilities, the
   access or the restrictions applied to the agent, so that it can increase or
-  reduce the harm the agent can cause to the repository, its secrets or other
-  systems if it is manipulated or behaves in an unwanted way.
+  reduce the harm the agent can cause to the repository, its secrets, other
+  systems or in costs to the account owner if it is manipulated or behaves in
+  an unwanted way.
 
 states:
   implicit: The field is not declared in the frontmatter.
