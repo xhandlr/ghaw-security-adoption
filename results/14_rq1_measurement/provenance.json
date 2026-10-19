@@ -1,6 +1,6 @@
 {
   "codebook": "coding/rq1_codebook.yaml",
-  "codebook_sha256": "4300559e942cd9f0647249d4012867b4e06ee844f4d4af853c038ff9e891fb6a",
+  "codebook_sha256": "485ca12dd99ef75397e0fa1a9b08570deff4ba4140261bc0ad8afa8e4772e1fe",
   "dataset_repo_id": "pavtch/GHAW-H",
   "dataset_revision": "9ccc840bd7e96fd90db3a16548d5482c2833c47d",
   "input_sha256": {
@@ -12,13 +12,13 @@
   "workflows_excluded": 1,
   "outputs_sha256": {
     "bash_added_commands.csv": "ccf04d24eb81302546645868a297e4250b8ba90bcc92692bd4c5286edcb225d6",
-    "direction_overlaps.csv": "e09cfaad68b51071c69407655b29101ebfb0be8ddaec3fcb23d8174c30295b23",
-    "direction_resto.csv": "24cf4de218ff9fbcacefdee7435dad3cafa0f2af7a13f56314a8eb3364b51d03",
-    "direction_summary.csv": "4ff89153409c8905f560bb62a7ae09bfa1941193da44e728cf57d476cdbd108f",
+    "direction_overlaps.csv": "01be91a8ae388f197f530d59a2e776ff21e4ba682e0713f36d43ca9221757a34",
+    "direction_rest.csv": "62d81b8333fbdb1d799c1506d9d01938b71ccbc86fa2042c91d734a12289568d",
+    "direction_summary.csv": "912b5d6068d2275b17d15113238b235a145b6167ace6a579918d5dc9c57da74f",
     "excluded.csv": "3267c3302696b6330567da6d3599d4540c23093a3387bcb61c5a79280fb4ea1b",
-    "measurement.csv": "449c7598b4cadd684b4d65c4665038e191243e47efee1f5900ca21a4e2485598",
-    "resto.csv": "e9172b2bb12021bd0b485da71c10e0b864b24e1ed76048292f7ce5c2eab886ca",
-    "sin_regla.csv": "8de49a6c272b0561952f76be8fda7bc50cfe5a2a24f80d0eb8e042934686cbb1",
-    "summary.csv": "6f8f2de5cc64edc7dffc5a29307e66a72ed61c04b8bdb4562579444114b4cab3"
+    "measurement.csv": "11de1c00cda313abccc31534468aea8c6848b1f871bc145875050f34b71c744d",
+    "no_rule.csv": "8de49a6c272b0561952f76be8fda7bc50cfe5a2a24f80d0eb8e042934686cbb1",
+    "rest.csv": "e9172b2bb12021bd0b485da71c10e0b864b24e1ed76048292f7ce5c2eab886ca",
+    "summary.csv": "83de6fff98c22f487561d67a8b73eb28aecb50ca519e5246b411636c18fb9785"
   }
 }

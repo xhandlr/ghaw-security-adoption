@@ -1,0 +1,11 @@
+{
+  "fields_csv": "results/03_schema_fields/fields.csv",
+  "fields_csv_sha256": "95ba4b070fead945f611ecc15954c7b0380e51700f460ccd854219555af53a95",
+  "max_level": 2,
+  "separator": " | ",
+  "outputs_sha256": {
+    "no_description.csv": "e04e1424b55eab98377ba50da431cfec70f9e1d8285d23bc129d240d96a131b1",
+    "paths.csv": "4488ee2c3291815387ff2d23f7561942ea67a68dae6b0e82e71b2c988fdc238d",
+    "summary.csv": "68043d40391803b55cf82cd6a2797e183b7189e7ff58388282ed856d21abc507"
+  }
+}
