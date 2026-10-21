@@ -1,0 +1,5 @@
+row,path,campo,valor,motivo
+10,check-for-updates,is_security_field,true,"Resuelto por consenso entre codificadores: la verificación exige que la versión compilada no esté bloqueada y cumpla la versión mínima, y no se puede desactivar en strict mode. Aunque corre en el job de activación, aplica una validación de la sección 3, que prevalece sobre la regla de pasos fijos."
+44,engine.api-target,is_security_field,false,"Resuelto por consenso entre codificadores: indica el endpoint de la API del motor, sin limitar los dominios ni las conexiones permitidas, por lo que no configura un canal."
+76,engine.version,is_security_field,false,"Resuelto por consenso entre codificadores: elige la versión del motor. La protección contra inyección la aplica siempre el compilador y el campo no la configura."
+174,on.permissions,is_security_field,false,"Resuelto por consenso entre codificadores: la descripción no indica si los permisos llegan al agente o al motor, por lo que se aplica la regla de destinatario no indicado."
