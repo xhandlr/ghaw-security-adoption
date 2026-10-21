@@ -27,7 +27,8 @@ habilidades del modelo.
 del token que usa, las herramientas o comandos que puede ejecutar y lo que
 puede escribir o crear.
 - Canales: la red (dominios permitidos por el firewall) y las conexiones a
-servidores MCP a través del gateway.
+servidores MCP a través del gateway. Indicar a qué servicio se conecta el
+motor, sin limitar las conexiones, no cuenta.
 - Tokens o credenciales: los que la configuración entrega al agente o al motor.
 - Controles sobre contenido y salidas: mecanismos que filtran o revisan lo que
 el agente recibe o produce, incluidos los que restringen quién puede activar
@@ -45,7 +46,14 @@ solo eligen qué eventos lo activan son false.
 - Pasos fijos: los campos que configuran pasos que corren antes o después del
 agente sin entregarle privilegios, canales ni credenciales son false. Esto
 incluye las credenciales que usa solo un paso fijo y que no llegan al agente,
-según lo que diga la descripción.
+según lo que diga la descripción. Si el paso fijo aplica una validación de
+la sección 3, el campo es true.
+- Destinatario no indicado: los campos que configuran permisos, canales o
+credenciales sin indicar si llegan al agente o al motor son false. Si la duda
+es relevante, se explica en notes.
+- Protecciones automáticas: si la descripción menciona una protección que se
+aplica siempre y que el campo no activa ni configura, el campo no es de
+seguridad por esa mención.
 - Límites operacionales: los campos que establecen límites de tiempo,
 turnos, ejecuciones o gasto son false, porque no configuran privilegios
 ni ninguno de los mecanismos de seguridad descritos en la arquitectura de
