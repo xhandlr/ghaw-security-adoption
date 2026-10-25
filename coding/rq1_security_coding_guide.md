@@ -50,7 +50,10 @@ según lo que diga la descripción. Si el paso fijo aplica una validación de
 la sección 3, el campo es true.
 - Destinatario no indicado: los campos que configuran permisos, canales o
 credenciales sin indicar si llegan al agente o al motor son false. Si la duda
-es relevante, se explica en notes.
+es relevante, se explica en notes. Para saber a qué se aplica un campo se
+puede usar su ruta, por ejemplo, para distinguir si un permiso es del workflow
+o de la activación. Sin embargo, que el padre sea de seguridad no implica que
+el hijo también lo sea.
 - Protecciones automáticas: si la descripción menciona una protección que se
 aplica siempre y que el campo no activa ni configura, el campo no es de
 seguridad por esa mención.
