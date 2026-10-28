@@ -53,7 +53,11 @@ credenciales sin indicar si llegan al agente o al motor son false. Si la duda
 es relevante, se explica en notes. Para saber a qué se aplica un campo se
 puede usar su ruta, por ejemplo, para distinguir si un permiso es del workflow
 o de la activación. Sin embargo, que el padre sea de seguridad no implica que
-el hijo también lo sea.
+el hijo también lo sea. Los permisos del GITHUB_TOKEN del workflow
+(`permissions` y sus hijos) se aplican al job donde corre el agente, por lo
+que son true aunque la descripción no nombre al agente. Esto no incluye los
+permisos de otros tokens, como los de una GitHub App, ni los permisos del job
+de activación (`on.permissions`).
 - Protecciones automáticas: si la descripción menciona una protección que se
 aplica siempre y que el campo no activa ni configura, el campo no es de
 seguridad por esa mención.

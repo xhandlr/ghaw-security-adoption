@@ -7,7 +7,9 @@ any row in the range is not coded by both coders, or if is_security_field
 has a value other than "true" or "false".
 
 Usage: python scripts/17_rq1_intercoder_agreement.py FIRST LAST
-Rows 1-190 are the calibration set. Rows 191-386 are the reported set.
+Rows 1-190 are the calibration set, rows 191-270 the second set and rows
+271-386 the third set. Rows 191-386 together give the overall agreement
+outside calibration.
 
 Writes to results/17_rq1_intercoder_agreement/rows_FIRST-LAST/:
 - agreement.csv: rows compared, percent agreement, Cohen's kappa (left
