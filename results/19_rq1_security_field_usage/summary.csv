@@ -1,0 +1,10 @@
+measure,value
+workflows_analysed,603
+workflows_excluded_unreadable_frontmatter,1
+security_fields,146
+security_fields_used,79
+security_fields_never_used,67
+never_used_with_eligible_workflows,37
+never_used_without_eligible_workflows,30
+workflows_declaring_any_security_field,602
+share_of_workflows_declaring_any,0.9983416252072969
