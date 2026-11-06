@@ -10,3 +10,9 @@ strict,more_permissive,strict mode restrictions,18
 tools.bash,more_permissive,commands,140
 tools.bash,more_restrictive,,1
 tools.bash,no_direction,,70
+tools.github,more_permissive,API groups,42
+tools.github,more_permissive,API groups | content the agent reads,32
+tools.github,more_permissive,content the agent reads,54
+tools.github,more_restrictive,,95
+tools.github,no_direction,,126
+tools.web-fetch,more_permissive,tools,12

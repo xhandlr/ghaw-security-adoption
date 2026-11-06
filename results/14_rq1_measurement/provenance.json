@@ -1,6 +1,6 @@
 {
   "codebook": "coding/rq1_codebook.yaml",
-  "codebook_sha256": "485ca12dd99ef75397e0fa1a9b08570deff4ba4140261bc0ad8afa8e4772e1fe",
+  "codebook_sha256": "05e876aa2bcb8513696447e92c8b22960497866b06bc8746384a28ac1036b94d",
   "dataset_repo_id": "pavtch/GHAW-H",
   "dataset_revision": "9ccc840bd7e96fd90db3a16548d5482c2833c47d",
   "input_sha256": {
@@ -8,17 +8,19 @@
     "source_markdown_file_version": "88576175db0645f52f399279d6e263f35fc2c152fbc18f734f2eb28c05cc1b2f",
     "repository": "75bc7e5a838281f49403e682709775936568f781031ef94b01bec343148c6ae8"
   },
+  "engines": "results/12_rq1_lock_evidence/lock_evidence.csv",
+  "engines_sha256": "bcaff261e77ca56c21c85681c3ea5232d1d6023186a5169c0552d4e478d2e2a5",
   "workflows_measured": 603,
   "workflows_excluded": 1,
   "outputs_sha256": {
     "bash_added_commands.csv": "ccf04d24eb81302546645868a297e4250b8ba90bcc92692bd4c5286edcb225d6",
-    "direction_overlaps.csv": "01be91a8ae388f197f530d59a2e776ff21e4ba682e0713f36d43ca9221757a34",
-    "direction_rest.csv": "62d81b8333fbdb1d799c1506d9d01938b71ccbc86fa2042c91d734a12289568d",
-    "direction_summary.csv": "912b5d6068d2275b17d15113238b235a145b6167ace6a579918d5dc9c57da74f",
+    "direction_overlaps.csv": "8620a69ec48549d077f16131ce9bedd6fff75995ce4110fd4ba47cab39a48cfd",
+    "direction_rest.csv": "720c2688f6efef67bdb4f49dbbb54f92805143b08e34653055f8a48079f79a5c",
+    "direction_summary.csv": "585bef4288e881358b8149250f2a60318f2fda79e6d6f49640296d5c92812407",
     "excluded.csv": "3267c3302696b6330567da6d3599d4540c23093a3387bcb61c5a79280fb4ea1b",
-    "measurement.csv": "11de1c00cda313abccc31534468aea8c6848b1f871bc145875050f34b71c744d",
+    "measurement.csv": "8c60c37aa3835f06a9abadf35548703e46674cdb8f65958d775000c1809279c4",
     "no_rule.csv": "8de49a6c272b0561952f76be8fda7bc50cfe5a2a24f80d0eb8e042934686cbb1",
-    "rest.csv": "e9172b2bb12021bd0b485da71c10e0b864b24e1ed76048292f7ce5c2eab886ca",
-    "summary.csv": "83de6fff98c22f487561d67a8b73eb28aecb50ca519e5246b411636c18fb9785"
+    "rest.csv": "3d497e0a8ab9450e2fae24899c428dfbfa61f72a4dd35ddced187698352ac81c",
+    "summary.csv": "8587e8e1c7edf2d6d9437f409b3a8c21fa16f4b85325f6a4b39022d127f9bd93"
   }
 }

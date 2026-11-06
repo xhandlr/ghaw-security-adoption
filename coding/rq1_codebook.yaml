@@ -22,6 +22,10 @@ states:
   implicit: The field is not declared in the frontmatter.
   explicit_equal_default: The field is declared with a value equal to the default.
   modified: The field is declared with a value different from the default.
+  default_undetermined: >
+    The field is declared, but its default depends on the engine and could
+    not be determined for the workflow's engine, so it is unknown whether
+    the value equals the default. No direction is assigned.
 
 rule_types:
   exact_value: The written value is equal to value (same type and content).
@@ -48,6 +52,16 @@ rule_types:
     value). With excludes, the list must also not contain, as literal
     text, any of the elements of excludes.
   list_contains_any: The value is a list that contains, as literal text, at least one of the elements of value.
+  dimensions: >
+    The value is a dictionary (an empty one counts) whose keys are
+    classified with the field's dimensions.keys: for each key, the first
+    key rule whose key matches and whose test holds gives its effect
+    (equal, broadens, narrows, broadens_and_narrows or no_direction); a key
+    no rule matches takes unlisted_keys. Tests: value_in {values},
+    present, set_vs_default {equal, broader, narrower, adds_and_removes},
+    where the list is expanded with dimensions.shorthands and "*" means
+    every value (broader). match is all_equal (every key is equal),
+    broadens_and_narrows, broadens_only or narrows_only.
 
 application_order: >
   For a declared field, the rules are tried in this order: equal_to_default,
@@ -238,6 +252,316 @@ fields:
         type: rest
         direction: no_direction
         reason: Modified value that matches no earlier category.
+
+  tools.github:
+    default:
+      enabled: true
+      toolsets: [context, repos, issues, pull_requests, users]
+      mode: local
+      min-integrity: approved
+      allowed-repos: all
+    source:
+      - file: docs/src/content/docs/reference/github-tools.md
+        line: 10
+        quote: "In most workflows, no extra configuration is needed. The default toolset already provides access to the current repository and public repositories, subject to the network firewall."
+      - file: docs/src/content/docs/reference/github-tools.md
+        line: 29
+        quote: "**Default**: `context`, `repos`, `issues`, `pull_requests`, `users`"
+      - file: docs/src/content/docs/reference/github-tools.md
+        line: 98
+        quote: "| `local` (default) | Docker-based GitHub MCP Server inside the Actions VM | No extra authentication required |"
+      - file: docs/src/content/docs/reference/integrity.md
+        line: 69
+        quote: "| `min-integrity` | string | Yes (when any guard policy field is used) | `approved` for public repos; none for private | Minimum integrity level: `merged`, `approved`, `unapproved`, or `none` |"
+      - file: docs/src/content/docs/reference/integrity.md
+        line: 70
+        quote: "| `allowed-repos` | string or array | No | `\"all\"` | Repository scope: `\"all\"`, `\"public\"`, or an array of patterns like `[\"myorg/*\", \"partner/repo\"]` |"
+    assumption:
+      note: All repositories are treated as public, so the min-integrity default is approved.
+      source:
+        file: https://huggingface.co/datasets/pavtch/GHAW-H/blob/9ccc840bd7e96fd90db3a16548d5482c2833c47d/README.md
+        line: 42
+        quote: "GHAW-H is a dataset capturing the emergence of GitHub Agentic Workflows (GH-AW) among early-adopter open-source repositories."
+    granularity: >
+      Child of tools, measured as its own unit (guide section 5, no evidence
+      of dependency). Its keys are level 3 and are not in the coding sheet,
+      so they are read as part of the value of tools.github.
+    dimensions:
+      shorthands:
+        key: toolsets
+        values:
+          default: [context, repos, issues, pull_requests, users]
+          all: "*"
+        source:
+          - file: docs/src/content/docs/reference/github-tools.md
+            line: 26
+            quote: "- `default` — expands to `context`, `repos`, `issues`, `pull_requests`, `users`"
+          - file: docs/src/content/docs/reference/github-tools.md
+            line: 27
+            quote: "- `all` — expands to all available toolsets **except** `dependabot` (see note below)"
+      keys:
+        - key: toolsets
+          test: {set_vs_default: equal}
+          effect: equal
+          reason: Expanded set equal to the default toolsets.
+        - key: toolsets
+          test: {set_vs_default: broader}
+          effect: broadens
+          broadens: API groups
+          reason: Expanded set contains all, or is a proper superset of the default.
+          source:
+            file: docs/src/content/docs/reference/github-tools.md
+            line: 14
+            quote: "You can enable specific API groups to increase the available tools or narrow the default selection:"
+        - key: toolsets
+          test: {set_vs_default: narrower}
+          effect: narrows
+          reason: Expanded set is a proper subset of the default.
+          source:
+            file: docs/src/content/docs/reference/github-tools.md
+            line: 14
+            quote: "You can enable specific API groups to increase the available tools or narrow the default selection:"
+        - key: toolsets
+          test: {set_vs_default: adds_and_removes}
+          effect: broadens_and_narrows
+          broadens: API groups
+          reason: Expanded set adds toolsets outside the default and lacks toolsets of the default.
+        - key: min-integrity
+          test: {value_in: [approved]}
+          effect: equal
+          reason: Equal to the default for public repositories.
+        - key: min-integrity
+          test: {value_in: [none, unapproved]}
+          effect: broadens
+          broadens: content the agent reads
+          reason: Lower integrity level than the default.
+          source:
+            file: docs/src/content/docs/reference/integrity.md
+            line: 97
+            quote: "The four configurable levels (`merged`, `approved`, `unapproved`, `none`) are cumulative and ordered from most restrictive to least."
+        - key: min-integrity
+          test: {value_in: [merged]}
+          effect: narrows
+          reason: Higher integrity level than the default.
+          source:
+            file: docs/src/content/docs/reference/integrity.md
+            line: 97
+            quote: "The four configurable levels (`merged`, `approved`, `unapproved`, `none`) are cumulative and ordered from most restrictive to least."
+        - key: lockdown
+          test: {value_in: [true]}
+          effect: equal
+          reason: Replaced by min-integrity approved, the default.
+          source:
+            file: docs/src/content/docs/reference/integrity.md
+            line: 12
+            quote: "GitHub lockdown mode has been superseded by integrity filtering. Replace `lockdown: true` with `min-integrity: approved`:"
+        - key: lockdown
+          test: {value_in: [false]}
+          effect: broadens
+          broadens: content the agent reads
+          reason: Replaced by min-integrity none, below the default.
+          source:
+            file: docs/src/content/docs/reference/integrity.md
+            line: 26
+            quote: "Replace `lockdown: false` with `min-integrity: none`:"
+        - key: [approval-labels, trusted-users]
+          test: {present: true}
+          effect: broadens
+          broadens: content the agent reads
+          reason: Promotes items to approved integrity.
+          source:
+            file: docs/src/content/docs/reference/integrity.md
+            line: 73
+            quote: "| `approval-labels` | array or expression | No | `[]` | GitHub label names that promote items to `approved` integrity |"
+        - key: allowed
+          test: {present: true}
+          effect: narrows
+          reason: Restricts which GitHub tools the agent can call.
+          source:
+            file: docs/src/content/docs/reference/github-tools.md
+            line: 41
+            quote: "Use `tools.github.allowed` to restrict which GitHub MCP tools the agent can call."
+        - key: [allowed-repos, repos]
+          test: {value_in: [all]}
+          effect: equal
+          reason: Equal to the default repository scope.
+        - key: [allowed-repos, repos]
+          test: {present: true}
+          effect: narrows
+          reason: Restricts the repositories the agent can read.
+          source:
+            file: docs/src/content/docs/reference/github-tools.md
+            line: 90
+            quote: "You can further restrict repository access during execution with `tools.github.allowed-repos`."
+        - key: [blocked-users, refusal-labels]
+          test: {present: true}
+          effect: narrows
+          reason: Denies or downgrades content from listed users or labels.
+          source:
+            file: docs/src/content/docs/reference/integrity.md
+            line: 132
+            quote: "`blocked-users` unconditionally blocks content from listed GitHub usernames, regardless of `min-integrity`, `trusted-users`, or any labels."
+        - key: read-only
+          test: {value_in: [true]}
+          effect: narrows
+          reason: Restricts the GitHub MCP server to read-only operations.
+          source:
+            - file: results/03_schema_fields/fields.csv
+              column: description
+              quote: "Enable read-only mode to restrict GitHub MCP server to read-only operations only"
+            - file: docs/src/content/docs/reference/frontmatter-full.md
+              line: 3683
+              quote: "# Enable read-only mode to restrict GitHub MCP server to read-only operations only"
+        - key: read-only
+          test: {value_in: [false]}
+          effect: equal
+          reason: Read-only mode is off unless enabled, so false equals the default.
+          source:
+            file: results/03_schema_fields/fields.csv
+            column: description
+            quote: "Enable read-only mode to restrict GitHub MCP server to read-only operations only"
+        - key: [mode, github-token, github-app]
+          test: {present: true}
+          effect: no_direction
+          reason: No source states that they broaden or narrow what the agent can do.
+      unlisted_keys: no_direction
+    equal_to_default:
+      rule: any of these forms
+      values:
+        - id: github_null
+          type: exact_value
+          value: null  # "github:" with no value
+          reason: The documentation describes the empty configuration as enabling the GitHub API functions.
+          source:
+            file: docs/src/content/docs/reference/frontmatter-full.md
+            line: 3640
+            quote: "# Format 1: Empty GitHub tool configuration (enables all read-only GitHub API"
+        - id: github_true
+          type: exact_value
+          value: true
+          reason: Explicitly enables the GitHub MCP server, which is enabled by default.
+          source:
+            file: docs/src/content/docs/reference/frontmatter-full.md
+            line: 3643
+            quote: "# Format 2: Boolean to explicitly enable (true) or disable (false) the GitHub MCP"
+        - id: github_all_keys_equal
+          type: dimensions
+          match: all_equal
+          reason: An empty mapping, or a mapping where every key matches the default.
+    forms:
+      - id: github_false
+        type: exact_value
+        value: false
+        decision: modified
+        reason: Disables the GitHub MCP server.
+        source:
+          file: docs/src/content/docs/reference/frontmatter-full.md
+          line: 3644
+          quote: "# server. When set to false, the GitHub MCP server is not mounted."
+    rest:
+      id: github_rest
+      type: rest
+      decision: modified
+      reason: "Applies the definition of modified: declared value different from the default."
+    direction:
+      applies_to: modified
+      order: >
+        The first category that matches applies. Each key of the mapping is
+        classified with dimensions.keys (the first key rule that matches
+        decides that key). Keys with no direction do not change the result
+        when other keys have one.
+      categories:
+        - id: github_dir_false
+          type: exact_value
+          value: false
+          direction: more_restrictive
+          reason: Disables the GitHub MCP server.
+          source:
+            file: docs/src/content/docs/reference/frontmatter-full.md
+            line: 3644
+            quote: "# server. When set to false, the GitHub MCP server is not mounted."
+        - id: github_dir_mixed
+          type: dimensions
+          match: broadens_and_narrows
+          direction: no_direction
+          reason: Some keys broaden and others narrow, as in tools.bash when a list adds and removes commands.
+        - id: github_dir_broadens
+          type: dimensions
+          match: broadens_only
+          direction: more_permissive
+          broadens: from_keys
+          reason: At least one key broadens and none narrows.
+        - id: github_dir_narrows
+          type: dimensions
+          match: narrows_only
+          direction: more_restrictive
+          reason: At least one key narrows and none broadens.
+      rest:
+        id: github_dir_other
+        type: rest
+        direction: no_direction
+        reason: Modified value where no key has a direction.
+
+  tools.edit:
+    default_by_engine:
+      copilot: allowed
+      claude: allowed
+      codex: undetermined
+    engine_source: results/12_rq1_lock_evidence/lock_evidence.csv
+    source:
+      file: results/13_rq1_lock_evidence_summary/tool_lock_by_engine.csv
+      note: >
+        Neither the schema nor the documentation states the default. In the
+        lock files of the workflows that do not declare tools.edit, edit is
+        allowed in 331 of 343 Copilot workflows and in 171 of 173 Claude
+        workflows. The Codex command has no flag for file editing.
+    granularity: Child of tools, measured as its own unit (guide section 5, no evidence of dependency).
+    enabling_forms:
+      values: [null, {}]
+      reason: Forms that enable the tool ("edit:" with no value, or an empty mapping). Any other value is recorded as no_rule.
+    declared:
+      engine_allowed: explicit_equal_default
+      engine_undetermined: default_undetermined
+    direction:
+      applies_to: modified
+      categories: []
+      rest:
+        id: edit_dir_other
+        type: rest
+        direction: no_direction
+        reason: No modified value is expected, since the only observed forms enable the tool.
+
+  tools.web-fetch:
+    default_by_engine:
+      copilot: undetermined
+      claude: not_allowed
+      codex: not_allowed
+    engine_source: results/12_rq1_lock_evidence/lock_evidence.csv
+    source:
+      file: results/13_rq1_lock_evidence_summary/tool_lock_by_engine.csv
+      note: >
+        Neither the schema nor the documentation states the default. In the
+        lock files of the workflows that do not declare tools.web-fetch, it
+        is not allowed in 163 of 163 Claude workflows and in 4 of 4 Codex
+        workflows (-c fetch="disabled"). In Copilot it is allowed in 240 of
+        311, only through --allow-all-tools, so the default cannot be
+        determined.
+    granularity: Child of tools, measured as its own unit (guide section 5, no evidence of dependency).
+    enabling_forms:
+      values: [null, {}]
+      reason: Forms that enable the tool ("web-fetch:" with no value, or an empty mapping). Any other value is recorded as no_rule.
+    declared:
+      engine_not_allowed: modified
+      engine_undetermined: default_undetermined
+    direction:
+      applies_to: modified
+      categories:
+        - id: webfetch_dir_enabled
+          type: rest
+          direction: more_permissive
+          broadens: tools
+          reason: Declaring the tool allows it where the engine does not allow it by default.
+          source: results/13_rq1_lock_evidence_summary/tool_lock_by_engine.csv
 
   network:
     default: defaults

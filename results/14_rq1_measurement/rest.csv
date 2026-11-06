@@ -137,3 +137,139 @@ permissions,"{""actions"": ""read"", ""contents"": ""read"", ""copilot-requests"
 permissions,"{""contents"": ""read"", ""issues"": ""read"", ""metadata"": ""read"", ""pull-requests"": ""read""}",1
 permissions,"{""actions"": ""read"", ""contents"": ""read"", ""id-token"": ""write"", ""issues"": ""read""}",1
 strict,false,18
+tools.github,"{""min-integrity"": ""none"", ""toolsets"": [""all""]}",24
+tools.github,"{""toolsets"": [""all""]}",24
+tools.github,"{""min-integrity"": ""none"", ""toolsets"": [""default""]}",17
+tools.github,"{""lockdown"": false}",15
+tools.github,"{""toolsets"": [""repos"", ""issues""]}",15
+tools.github,"{""toolsets"": [""default"", ""actions""]}",12
+tools.github,"{""toolsets"": [""repos"", ""issues"", ""pull_requests""]}",10
+tools.github,"{""mode"": ""gh-proxy"", ""toolsets"": [""default""]}",9
+tools.github,"{""lockdown"": false, ""toolsets"": [""issues""]}",8
+tools.github,"{""min-integrity"": ""none""}",6
+tools.github,"{""toolsets"": [""context"", ""repos"", ""pull_requests""]}",6
+tools.github,"{""min-integrity"": ""none"", ""toolsets"": [""issues"", ""labels""]}",5
+tools.github,"{""lockdown"": false, ""min-integrity"": ""none""}",5
+tools.github,"{""toolsets"": [""pull_requests"", ""repos""]}",5
+tools.github,"{""toolsets"": [""issues"", ""pull_requests""]}",5
+tools.github,"{""toolsets"": [""issues"", ""labels""]}",5
+tools.github,"{""min-integrity"": ""approved"", ""toolsets"": [""pull_requests"", ""repos"", ""issues"", ""search""]}",4
+tools.github,"{""toolsets"": [""context"", ""repos"", ""pull_requests"", ""actions""]}",4
+tools.github,"{""mode"": ""remote"", ""toolsets"": [""default""]}",4
+tools.github,"{""min-integrity"": ""unapproved"", ""toolsets"": [""context"", ""repos"", ""pull_requests"", ""actions""]}",4
+tools.github,"{""toolsets"": [""issues""]}",4
+tools.github,"{""toolsets"": [""repos"", ""pull_requests""]}",4
+tools.github,"{""approval-labels"": [""state/ai-pipeline-ready""], ""min-integrity"": ""approved"", ""toolsets"": [""default""]}",4
+tools.github,"{""toolsets"": [""repos""]}",4
+tools.github,"{""toolsets"": [""context"", ""pull_requests"", ""repos""]}",3
+tools.github,"{""toolsets"": [""repos"", ""issues"", ""pull_requests"", ""actions""]}",3
+tools.github,"{""mode"": ""gh-proxy"", ""toolsets"": [""issues"", ""pull_requests"", ""repos""]}",3
+tools.github,"{""toolsets"": [""pull_requests""]}",3
+tools.github,"{""github-token"": ""${{ secrets.GITHUB_TOKEN }}"", ""min-integrity"": ""none"", ""toolsets"": [""pull_requests"", ""repos""]}",3
+tools.github,"{""toolsets"": [""context"", ""repos""]}",3
+tools.github,"{""min-integrity"": ""approved"", ""mode"": ""gh-proxy"", ""toolsets"": [""default""]}",3
+tools.github,"{""toolsets"": [""context"", ""issues""]}",2
+tools.github,"{""toolsets"": [""repos"", ""issues"", ""search""]}",2
+tools.github,"{""toolsets"": [""repos"", ""code_security""]}",2
+tools.github,"{""mode"": ""gh-proxy"", ""toolsets"": [""repos"", ""issues"", ""pull_requests""]}",2
+tools.github,"{""min-integrity"": ""none"", ""toolsets"": [""issues""]}",2
+tools.github,"{""min-integrity"": ""none"", ""toolsets"": [""issues"", ""repos""]}",2
+tools.github,"{""allowed-repos"": ""all"", ""min-integrity"": ""none"", ""toolsets"": [""all""]}",2
+tools.github,"{""mode"": ""gh-proxy"", ""toolsets"": [""repos"", ""pull_requests""]}",2
+tools.github,"{""mode"": ""gh-proxy"", ""toolsets"": [""default"", ""issues""]}",2
+tools.github,"{""lockdown"": false, ""toolsets"": [""pull_requests"", ""repos""]}",2
+tools.github,"{""toolsets"": [""pull_requests"", ""issues""]}",2
+tools.github,"{""lockdown"": false, ""toolsets"": [""default""]}",2
+tools.github,"{""lockdown"": false, ""min-integrity"": ""none"", ""toolsets"": [""default""]}",2
+tools.github,"{""min-integrity"": ""none"", ""toolsets"": [""pull_requests"", ""repos""]}",2
+tools.github,"{""allowed-repos"": [""microsoft/aspire""], ""github-app"": {""app-id"": ""${{ secrets.ASPIRE_BOT_APP_ID }}"", ""owner"": ""microsoft"", ""private-key"": ""${{ secrets.ASPIRE_BOT_PRIVATE_KEY }}"", ""repositories"": [""aspire""]}, ""min-integrity"": ""none"", ""toolsets"": [""repos"", ""pull_requests"", ""search""]}",2
+tools.github,"{""min-integrity"": ""none"", ""toolsets"": [""default"", ""issues"", ""pull_requests"", ""repos"", ""actions""]}",2
+tools.github,"{""mode"": ""gh-proxy"", ""toolsets"": [""pull_requests"", ""repos"", ""search"", ""issues""]}",2
+tools.github,"{""github-token"": ""${{ secrets.GITHUB_TOKEN }}"", ""min-integrity"": ""approved"", ""toolsets"": [""pull_requests"", ""repos""]}",2
+tools.github,"{""toolsets"": [""actions"", ""issues""]}",2
+tools.github,"{""toolsets"": [""issues"", ""repos""]}",2
+tools.github,"{""github-token"": ""${{ secrets.VAADIN_BOT_TOKEN }}"", ""mode"": ""gh-proxy"", ""toolsets"": [""repos"", ""pull_requests"", ""search""]}",1
+tools.github,"{""allowed-repos"": [""mono/skia"", ""mono/skiasharp""], ""min-integrity"": ""none"", ""toolsets"": [""repos"", ""pull_requests""]}",1
+tools.github,"{""allowed-repos"": [""mono/skiasharp"", ""mono/skia"", ""google/skia""], ""min-integrity"": ""none"", ""toolsets"": [""issues""]}",1
+tools.github,"{""min-integrity"": ""none"", ""toolsets"": [""default"", ""labels""]}",1
+tools.github,"{""min-integrity"": ""approved"", ""toolsets"": [""repos"", ""pull_requests"", ""issues"", ""search"", ""actions""]}",1
+tools.github,"{""toolsets"": [""repos"", ""pull_requests"", ""issues"", ""search""]}",1
+tools.github,"{""lockdown"": true, ""min-integrity"": ""none"", ""toolsets"": [""repos"", ""pull_requests"", ""issues""]}",1
+tools.github,"{""lockdown"": true, ""min-integrity"": ""none"", ""toolsets"": [""issues"", ""repos"", ""pull_requests""]}",1
+tools.github,"{""lockdown"": true, ""min-integrity"": ""none"", ""toolsets"": [""pull_requests"", ""repos""]}",1
+tools.github,"{""lockdown"": true, ""min-integrity"": ""none"", ""toolsets"": [""pull_requests"", ""repos"", ""issues""]}",1
+tools.github,"{""lockdown"": false, ""mode"": ""remote"", ""toolsets"": [""default"", ""repos"", ""issues"", ""pull_requests""]}",1
+tools.github,"{""toolsets"": [""issues"", ""labels"", ""pull_requests"", ""repos"", ""search""]}",1
+tools.github,"{""min-integrity"": ""approved"", ""toolsets"": [""pull_requests"", ""repos"", ""issues"", ""search"", ""actions""]}",1
+tools.github,"{""mode"": ""remote"", ""toolsets"": [""default"", ""search""]}",1
+tools.github,"{""allowed"": [""pull_request_read"", ""get_commit"", ""list_commits"", ""search_code""], ""read-only"": true}",1
+tools.github,"{""allowed"": [""search_code"", ""issue_read"", ""list_issues"", ""search_issues"", ""get_file_contents"", ""search_pull_requests""], ""read-only"": true, ""toolsets"": [""default""]}",1
+tools.github,"{""allowed"": [""pull_request_read"", ""get_commit"", ""list_commits"", ""search_code"", ""semantic_code_search""], ""read-only"": true}",1
+tools.github,"{""min-integrity"": ""none"", ""toolsets"": [""issues"", ""labels"", ""search""]}",1
+tools.github,"{""min-integrity"": ""unapproved"", ""toolsets"": [""context"", ""repos"", ""pull_requests"", ""actions"", ""dependabot""]}",1
+tools.github,"{""min-integrity"": ""unapproved"", ""toolsets"": [""context"", ""repos"", ""pull_requests"", ""actions"", ""code_security""]}",1
+tools.github,"{""lockdown"": true, ""toolsets"": [""pull_requests"", ""repos""]}",1
+tools.github,"{""toolsets"": [""default"", ""labels""]}",1
+tools.github,"{""min-integrity"": ""none"", ""toolsets"": [""default"", ""search""]}",1
+tools.github,"{""toolsets"": [""default"", ""actions"", ""search""]}",1
+tools.github,"{""toolsets"": [""default"", ""search""]}",1
+tools.github,"{""min-integrity"": ""unapproved"", ""toolsets"": [""default""]}",1
+tools.github,"{""allowed-repos"": ""all"", ""min-integrity"": ""unapproved"", ""toolsets"": [""all""]}",1
+tools.github,"{""read-only"": true, ""toolsets"": [""repos"", ""issues"", ""pull_requests""]}",1
+tools.github,"{""allowed-repos"": [""elastic/elasticsearch"", ""elastic/elasticsearch-specification""], ""min-integrity"": ""approved"", ""mode"": ""gh-proxy"", ""toolsets"": [""repos"", ""issues"", ""pull_requests""]}",1
+tools.github,"{""mode"": ""local"", ""toolsets"": [""repos"", ""issues""]}",1
+tools.github,"{""toolsets"": [""issues"", ""pull_requests"", ""labels""]}",1
+tools.github,"{""min-integrity"": ""unapproved"", ""mode"": ""gh-proxy"", ""toolsets"": [""issues""]}",1
+tools.github,"{""mode"": ""gh-proxy""}",1
+tools.github,"{""mode"": ""gh-proxy"", ""toolsets"": [""issues"", ""repos""]}",1
+tools.github,"{""allowed-repos"": [""azure/azure-sdk-for-rust""], ""lockdown"": false, ""min-integrity"": ""none"", ""toolsets"": [""issues"", ""pull_requests""]}",1
+tools.github,"{""lockdown"": false, ""toolsets"": [""default"", ""code_security""]}",1
+tools.github,"{""toolsets"": [""default"", ""discussions""]}",1
+tools.github,"{""lockdown"": false, ""toolsets"": [""issues"", ""actions""]}",1
+tools.github,"{""mode"": ""gh-proxy"", ""toolsets"": [""default"", ""pull_requests""]}",1
+tools.github,"{""toolsets"": [""pull_requests"", ""issues"", ""repos""]}",1
+tools.github,"{""lockdown"": false, ""min-integrity"": ""none"", ""toolsets"": [""issues"", ""labels"", ""search"", ""repos""]}",1
+tools.github,"{""toolsets"": [""issues"", ""labels"", ""search""]}",1
+tools.github,"{""lockdown"": false, ""toolsets"": [""issues"", ""repos""]}",1
+tools.github,"{""min-integrity"": ""unapproved"", ""toolsets"": [""repos"", ""pull_requests""]}",1
+tools.github,"{""lockdown"": false, ""toolsets"": [""repos"", ""issues"", ""pull_requests"", ""discussions"", ""search""]}",1
+tools.github,"{""min-integrity"": ""unapproved"", ""toolsets"": [""repos"", ""issues"", ""pull_requests"", ""search""]}",1
+tools.github,"{""allowed-repos"": [""microsoft/*""], ""github-app"": {""app-id"": ""${{ secrets.ASPIRE_BOT_APP_ID }}"", ""owner"": ""microsoft"", ""private-key"": ""${{ secrets.ASPIRE_BOT_PRIVATE_KEY }}"", ""repositories"": [""aspire.dev"", ""aspire""]}, ""min-integrity"": ""approved"", ""toolsets"": [""repos"", ""issues"", ""pull_requests""]}",1
+tools.github,"{""allowed-repos"": [""microsoft/*""], ""github-app"": {""app-id"": ""${{ secrets.ASPIRE_BOT_APP_ID }}"", ""owner"": ""microsoft"", ""private-key"": ""${{ secrets.ASPIRE_BOT_PRIVATE_KEY }}"", ""repositories"": [""aspire.dev"", ""aspire""]}, ""min-integrity"": ""approved"", ""toolsets"": [""repos"", ""pull_requests""]}",1
+tools.github,"{""lockdown"": false, ""min-integrity"": ""none"", ""toolsets"": [""repos""]}",1
+tools.github,"{""lockdown"": false, ""min-integrity"": ""unapproved"", ""toolsets"": [""issues"", ""pull_requests""]}",1
+tools.github,"{""lockdown"": false, ""min-integrity"": ""none"", ""toolsets"": [""issues""]}",1
+tools.github,"{""min-integrity"": ""none"", ""toolsets"": [""issues"", ""search"", ""projects""]}",1
+tools.github,"{""min-integrity"": ""none"", ""toolsets"": [""repos""]}",1
+tools.github,"{""min-integrity"": ""none"", ""toolsets"": [""pull_requests"", ""issues""]}",1
+tools.github,"{""allowed-repos"": [""mongodb-js/devtools-shared""], ""min-integrity"": ""unapproved""}",1
+tools.github,"{""github-token"": ""${{ secrets.GITHUB_TOKEN }}"", ""min-integrity"": ""none"", ""toolsets"": [""repos"", ""issues""]}",1
+tools.github,"{""lockdown"": false, ""read-only"": true, ""toolsets"": [""default"", ""pull_requests""]}",1
+tools.github,"{""lockdown"": false, ""read-only"": true, ""toolsets"": [""repos"", ""issues"", ""pull_requests"", ""actions""]}",1
+tools.github,"{""lockdown"": false, ""read-only"": true, ""toolsets"": [""issues""]}",1
+tools.github,"{""lockdown"": false, ""read-only"": true, ""toolsets"": [""pull_requests""]}",1
+tools.github,"{""min-integrity"": ""none"", ""toolsets"": [""repos"", ""issues"", ""pull_requests"", ""labels""]}",1
+tools.github,"{""github-token"": ""${{ secrets.GITHUB_TOKEN }}"", ""min-integrity"": ""none"", ""toolsets"": [""issues"", ""repos""]}",1
+tools.github,"{""min-integrity"": ""none"", ""read-only"": true, ""toolsets"": [""issues""]}",1
+tools.github,"{""toolset"": [""all""]}",1
+tools.github,"{""allowed"": [""search_pull_requests"", ""pull_request_read"", ""get_file_contents"", ""list_commits""]}",1
+tools.github,"{""toolsets"": [""actions"", ""pull_requests"", ""issues""]}",1
+tools.github,"{""toolsets"": [""issues"", ""actions""]}",1
+tools.github,"{""allowed"": [""issue_read"", ""pull_request_read"", ""get_file_contents"", ""search_code""]}",1
+tools.github,"{""allowed-repos"": [""yousefhadder/markdown-plus*""], ""min-integrity"": ""none"", ""toolsets"": [""default""]}",1
+tools.github,"{""allowed-repos"": [""microsoft/apm""], ""min-integrity"": ""none"", ""toolsets"": [""default""]}",1
+tools.github,"{""github-token"": ""${{ secrets.RUNTIME_TRIAGE_TOKEN }}"", ""toolsets"": [""default""]}",1
+tools.github,"{""toolsets"": [""context"", ""repos"", ""issues""]}",1
+tools.github,"{""toolsets"": [""issues"", ""pull_requests"", ""repos""]}",1
+tools.github,"{""toolsets"": [""actions"", ""issues"", ""labels""]}",1
+tools.github,"{""github-token"": ""${{ secrets.MAUI_BOT_TOKEN }}"", ""toolsets"": [""repos"", ""issues"", ""pull_requests""]}",1
+tools.github,"{""toolsets"": [""repos"", ""issues"", ""actions""]}",1
+tools.github,"{""allowed-repos"": ""public"", ""min-integrity"": ""none"", ""toolsets"": [""repos"", ""issues"", ""actions""]}",1
+tools.github,"{""allowed-repos"": ""public"", ""min-integrity"": ""none"", ""toolsets"": [""repos"", ""issues""]}",1
+tools.github,"{""allowed-repos"": ""public"", ""min-integrity"": ""none"", ""toolsets"": [""repos"", ""pull_requests""]}",1
+tools.github,"{""min-integrity"": ""approved"", ""toolsets"": [""repos"", ""pull_requests""]}",1
+tools.github,"{""lockdown"": true, ""toolsets"": [""issues"", ""pull_requests""]}",1
+tools.github,"{""toolsets"": [""default"", ""actions"", ""labels"", ""search""]}",1
+tools.github,"{""toolsets"": [""repos"", ""issues"", ""pull_requests"", ""search"", ""context""]}",1
+tools.github,"{""lockdown"": false, ""min-integrity"": ""unapproved"", ""toolsets"": [""default""]}",1
+tools.github,"{""toolsets"": [""context"", ""repos"", ""pull_requests"", ""search""]}",1

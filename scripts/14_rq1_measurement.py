@@ -16,6 +16,23 @@ For modified values, the field's direction section is applied as a second
 layer: the first category that matches gives direction and broadens; if none
 matches, the direction rest rule does.
 
+Rules of type dimensions (tools.github) classify each key of a mapping with
+the field's dimensions section and then look at the effects together (see
+key_effects). A dimensions rule with broadens: from_keys takes broadens from
+the keys that broaden, joined with " | ".
+
+Fields with default_by_engine (tools.edit, tools.web-fetch) have a default
+that depends on the engine. The engine of each workflow is read from
+ENGINES (the engine column of script 12's lock evidence, or its
+engine_status when the lock has no readable agent job). The per-engine
+defaults in the codebook are justified by script 13's
+tool_lock_by_engine.csv. A declared value
+must be one of the field's enabling_forms, otherwise it is no_rule. Its
+state is then taken from the field's declared section by the engine's
+default: engine_allowed, engine_not_allowed or engine_undetermined (an
+engine not listed in default_by_engine counts as undetermined). Only
+modified values get a direction.
+
 Workflows whose frontmatter cannot be read as a dict are excluded and
 listed in excluded.csv.
 """
@@ -35,6 +52,7 @@ DATA_DIR = Path("data/raw/data")
 OUTPUT_DIR = Path("results/14_rq1_measurement")
 TABLES = ["source_markdown_file_snapshot", "source_markdown_file_version", "repository"]
 EQUAL_STATE = "explicit_equal_default"
+ENGINES = Path("results/12_rq1_lock_evidence/lock_evidence.csv")
 ADDED_COMMANDS_RULE = "bash_dir_adds_and_removes"  # direction rule whose added commands are listed
 
 
@@ -76,9 +94,72 @@ def matches(rule, value):
         raise ValueError(f"unknown relation: {relation}")
     if kind == "dict_conditions":
         return isinstance(value, dict) and all(condition_holds(c, value) for c in rule["conditions"])
+    if kind == "dimensions":
+        if not isinstance(value, dict):
+            return False
+        effects = {effect for effect, _ in key_effects(value, rule["_dimensions"]).values()}
+        broadens = bool(effects & {"broadens", "broadens_and_narrows"})
+        narrows = bool(effects & {"narrows", "broadens_and_narrows"})
+        match = rule["match"]
+        if match == "all_equal":
+            return effects <= {"equal"}
+        if match == "broadens_and_narrows":
+            return broadens and narrows
+        if match == "broadens_only":
+            return broadens and not narrows
+        if match == "narrows_only":
+            return narrows and not broadens
+        raise ValueError(f"unknown dimensions match: {match}")
     if kind == "rest":
         return True
     raise ValueError(f"unknown rule type: {kind}")
+
+
+def expanded(items, shorthands):
+    """Set of a list after expanding shorthands; "*" stands for every value."""
+    result = set()
+    for item in items if isinstance(items, list) else [items]:
+        replacement = shorthands.get(item, [item]) if isinstance(item, str) else [item]
+        result |= {"*"} if replacement == "*" else as_set(replacement)
+    return result
+
+
+def key_test(test, key, value, dimensions):
+    (name, arg), = test.items()
+    if name == "present":
+        return True
+    if name == "value_in":
+        return canonical(value) in as_set(arg)
+    if name == "set_vs_default":
+        shorthands = dimensions["shorthands"]
+        if key != shorthands["key"]:
+            return False
+        items = expanded(value, shorthands["values"])
+        reference = as_set(shorthands["values"]["default"])
+        if arg == "broader":
+            return "*" in items or items > reference
+        if "*" in items:
+            return False
+        if arg == "equal":
+            return items == reference
+        if arg == "narrower":
+            return items < reference
+        if arg == "adds_and_removes":
+            return bool(items - reference) and bool(reference - items)
+    raise ValueError(f"unknown key test: {test}")
+
+
+def key_effects(value, dimensions):
+    """{key: (effect, broadens)} for each key of a mapping; the first matching key rule decides."""
+    effects = {}
+    for key, item in value.items():
+        effects[key] = (dimensions["unlisted_keys"], "")
+        for rule in dimensions["keys"]:
+            names = rule["key"] if isinstance(rule["key"], list) else [rule["key"]]
+            if key in names and key_test(rule["test"], key, item, dimensions):
+                effects[key] = (rule["effect"], rule.get("broadens", ""))
+                break
+    return effects
 
 
 def condition_holds(condition, value):
@@ -112,6 +193,14 @@ def load_codebook():
     known = set(codebook["rule_types"])
     fields = {}
     for name, spec in codebook["fields"].items():
+        if "default_by_engine" in spec:
+            direction = spec.get("direction", {})
+            categories, direction_rest = direction.get("categories", []), direction.get("rest")
+            for rule in categories + ([direction_rest] if direction_rest else []):
+                if rule["type"] not in known:
+                    raise ValueError(f"{name}: rule {rule['id']} has a type not in rule_types")
+            fields[name] = ("by_engine", spec, categories, direction_rest)
+            continue
         rules = [(r, EQUAL_STATE) for r in spec["equal_to_default"]["values"]]
         rules += [(r, r["decision"]) for r in spec.get("forms", [])]
         rest = spec.get("rest")
@@ -123,6 +212,8 @@ def load_codebook():
         for rule in checked:
             if rule["type"] not in known:
                 raise ValueError(f"{name}: rule {rule['id']} has a type not in rule_types")
+            if rule["type"] == "dimensions":
+                rule["_dimensions"] = spec["dimensions"]
         fields[name] = (rules, rest, categories, direction_rest)
     return fields
 
@@ -144,7 +235,12 @@ def direction_of(value, categories, direction_rest):
     other_ids = [rule["id"] for rule in others]
     if any(rule["direction"] != first["direction"] for rule in others):
         return "conflict", "", first["id"], other_ids
-    return first["direction"], first.get("broadens", ""), first["id"], other_ids
+    broadens = first.get("broadens", "")
+    if broadens == "from_keys":
+        labels = {b for effect, b in key_effects(value, first["_dimensions"]).values()
+                  if effect in ("broadens", "broadens_and_narrows") and b}
+        broadens = " | ".join(sorted(labels))
+    return first["direction"], broadens, first["id"], other_ids
 
 
 def classify(value, rules, rest):
@@ -159,6 +255,24 @@ def classify(value, rules, rest):
     if any(d != decision for _, d in others):
         return "conflict", first["id"], other_ids
     return decision, first["id"], other_ids
+
+
+def classify_by_engine(value, spec, engine):
+    """(state, rule_id, other_rule_ids) for a declared field whose default depends on the engine."""
+    if canonical(value) not in as_set(spec["enabling_forms"]["values"]):
+        return "no_rule", "", []
+    default = spec["default_by_engine"].get(engine, "undetermined")
+    key = f"engine_{default}"
+    if key not in spec["declared"]:
+        raise ValueError(f"no declared state for {key}")
+    return spec["declared"][key], f"default_{engine}_{default}", []
+
+
+def lock_engines():
+    """{history_id: engine} from script 12."""
+    with open(ENGINES) as f:
+        return {int(row["history_id"]): row["engine"] or row["engine_status"]
+                for row in csv.DictReader(f)}
 
 
 def field_value(doc, name):
@@ -214,6 +328,7 @@ def write_csv(path, header, rows):
 def main():
     fields = load_codebook()
     loader = frontmatter_loader()
+    engines = lock_engines()
 
     measurement, excluded = [], []
     for _, row in latest_snapshots().iterrows():
@@ -225,7 +340,11 @@ def main():
             continue
         for name, (rules, rest, categories, direction_rest) in fields.items():
             declared, value = field_value(doc, name)
-            if declared:
+            if declared and rules == "by_engine":
+                engine = engines[int(row["source_markdown_file_history_id"])]
+                state, rule_id, others = classify_by_engine(value, rest, engine)
+                written = canonical(value)
+            elif declared:
                 state, rule_id, others = classify(value, rules, rest)
                 written = canonical(value)
             else:
@@ -254,7 +373,8 @@ def main():
         if state_or_rule == "no_rule":
             selected = [m for m in measurement if m[7] == "no_rule"]
         else:
-            rest_ids = {rest["id"] for _, rest, _, _ in fields.values() if rest}
+            rest_ids = {rest["id"] for rules, rest, _, _ in fields.values()
+                        if rest and rules != "by_engine"}
             selected = [m for m in measurement if m[8] in rest_ids]
         counts = Counter((m[4], m[6]) for m in selected)
         write_csv(OUTPUT_DIR / filename, ["field", "value", "workflows"],
@@ -294,6 +414,8 @@ def main():
         "dataset_repo_id": dataset["repo_id"],
         "dataset_revision": dataset["revision"],
         "input_sha256": {t: sha256_of(DATA_DIR / f"{t}.parquet") for t in TABLES},
+        "engines": str(ENGINES),
+        "engines_sha256": sha256_of(ENGINES),
         "workflows_measured": len({m[0] for m in measurement}),
         "workflows_excluded": len(excluded),
         "outputs_sha256": {p.name: sha256_of(p) for p in sorted(OUTPUT_DIR.glob("*.csv"))},

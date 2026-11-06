@@ -11,3 +11,12 @@ strict,modified,18
 tools.bash,explicit_equal_default,6
 tools.bash,implicit,386
 tools.bash,modified,211
+tools.edit,default_undetermined,3
+tools.edit,explicit_equal_default,75
+tools.edit,implicit,525
+tools.github,explicit_equal_default,77
+tools.github,implicit,177
+tools.github,modified,349
+tools.web-fetch,default_undetermined,105
+tools.web-fetch,implicit,486
+tools.web-fetch,modified,12
