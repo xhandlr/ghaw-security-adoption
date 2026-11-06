@@ -1,0 +1,17 @@
+{
+  "coder1_sheet": "coding/rq1_security_coding_coder1.csv",
+  "coder1_sheet_sha256": "bb54d985e9d8dacf6694f16988cda9d4e0766a39950094f4b8f0bb26f3346071",
+  "coder2_sheet": "coding/rq1_security_coding_coder2.csv",
+  "coder2_sheet_sha256": "5834bfbe80e29899e927c9be0912ac6d5cc82d6e0f1034dc87886db909413813",
+  "guide": "coding/rq1_security_coding_guide.md",
+  "guide_sha256": "2314c27f106652814686f8e68954e42ac928707128605fa3c934701dbce2081b",
+  "rows": [
+    271,
+    386
+  ],
+  "outputs_sha256": {
+    "agreement.csv": "ebb90f28279906973a8b4a2e5df83c0bb6c861a9a81457c6466fdeefeb79d02d",
+    "confusion_is_security_field.csv": "7e22e737064db52e0db9181223fad81329d31ee03cbbcfe39128ac8c6a869371",
+    "disagreements.csv": "128e905a34d1c970bf2949741cde9d88b0befa0009caeeb175ae39cb7639f94d"
+  }
+}

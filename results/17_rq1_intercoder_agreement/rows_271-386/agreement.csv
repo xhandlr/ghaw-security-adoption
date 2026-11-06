@@ -1,0 +1,2 @@
+measure,rows_compared,agreements,percent_agreement,cohen_kappa,positive_agreement,negative_agreement,note
+is_security_field,116,110,0.9482758620689655,0.885676741130092,0.9605263157894737,0.925,

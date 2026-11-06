@@ -16,8 +16,12 @@ Checks, each of which stops the script:
 Writes coding/rq1_security_coding_consensus.csv with a row column and a
 fuente column: "coder1" when the row is unchanged, "consenso" when at least
 one decision changed it. A decision whose value equals the first coder's
-value is recorded but changes nothing. Never overwrites the consensus sheet
-if it already exists.
+value is recorded but changes nothing. When a decision changes
+is_security_field, the first coder's rationale no longer supports the code,
+so rationale takes the decision's reason and notes is marked as replaced by
+the consensus (the first coder's note is kept after the mark). The coders'
+sheets keep their original codes. Never overwrites the consensus sheet if it
+already exists.
 """
 
 import csv
@@ -30,6 +34,7 @@ CODER2 = Path("coding/rq1_security_coding_coder2.csv")
 DECISIONS = Path("coding/rq1_consensus_decisions.csv")
 OUTPUT = Path("coding/rq1_security_coding_consensus.csv")
 VALUES = {"true", "false"}
+REPLACED = "Justificación del primer codificador reemplazada por consenso."
 
 
 def load(path):
@@ -69,6 +74,10 @@ def main():
         if consensus.loc[r, column] != d["valor"]:
             consensus.loc[r, column] = d["valor"]
             consensus.loc[r, "fuente"] = "consenso"
+            if column == "is_security_field":
+                consensus.loc[r, "rationale"] = d["motivo"]
+                original = coder1.loc[r, "notes"].strip()
+                consensus.loc[r, "notes"] = f"{REPLACED} Nota original: {original}" if original else REPLACED
 
     decided = set(decisions.loc[decisions["campo"] == "is_security_field", "row"])
     unresolved = [r for r in both
