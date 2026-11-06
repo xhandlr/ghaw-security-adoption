@@ -69,3 +69,45 @@ aparte.
 - Padres e hijos se codifican por separado, cada uno por su propia
 descripción. Un padre no es de seguridad solo porque tenga hijos que lo son,
 y un hijo no lo es solo porque su padre lo sea.
+
+### 5. Granularidad de medición
+Estas reglas no cambian la codificación de la sección 2. Definen en qué
+ruta se cuenta y se mide cada declaración, para que un mismo valor no se
+cuente dos veces. La documentación de GH-AW citada corresponde al commit
+fijado en config/settings.yaml (5ecd40a).
+- Bloque dependiente: si según la documentación oficial declarar un hijo
+cambia el valor efectivo de otros hijos no declarados, o reemplaza el
+default del bloque completo, el bloque se mide como un todo y sus hijos no
+se cuentan por separado.
+  - `permissions`: "If you specify the access for any of these permissions,
+  all of those that are not specified are set to `none`." (documentación de
+  GitHub, Workflow syntax for GitHub Actions, sección `permissions`).
+  - `network`: "If no `network:` permission is specified, it defaults to
+  `network: defaults`" y "**Selective** (`network: { allowed: [...] }`)
+  allows only listed domains or ecosystems." (docs/src/content/docs/reference/network.md,
+  líneas 10 y 21). Declarar `allowed` reemplaza el default del bloque.
+- Dependencia puntual: si declarar otros hijos solo cambia el default de un
+hijo específico, el bloque se mide por hijo y ese hijo tiene un default
+condicional.
+  - `safe-outputs.create-issue`: "`create-issue` is auto-injected only when
+  no non-system safe outputs are configured." (docs/src/content/docs/reference/safe-outputs.md,
+  línea 25). Las salidas de sistema (`noop`, `missing-tool`, `missing-data`)
+  no desactivan `create-issue`: "Auto-injected when no `safe-outputs:`
+  section is present or when only system types (`noop`, `missing-tool`,
+  `missing-data`) are configured" (misma página, línea 152). El padre
+  `safe-outputs` no se cuenta como declaración propia.
+- Sin evidencia de dependencia: si la documentación no indica que declarar
+un hijo cambie el valor de otro, se asume que los hijos son independientes.
+El bloque se mide por hijo y el padre no se cuenta como declaración propia
+cuando solo contiene hijos. Este supuesto se reporta como amenaza a la
+validez.
+  - `tools`: la documentación indica que "Some tools are available by
+  default." (docs/src/content/docs/reference/tools.md, línea 16), pero no
+  que declarar una herramienta cambie otra. El rechazo de `cli-proxy: true`
+  cuando `bash` está desactivado (línea 219) es una validación al compilar,
+  no un cambio del valor efectivo.
+  - Se aplica también a los demás bloques sin evidencia de dependencia.
+- Mismo ajuste: si un padre y un hijo, o dos hijos, configuran lo mismo, se
+cuentan una sola vez por workflow.
+  - `sandbox.type` y `sandbox.agent`: el schema describe `sandbox.type` como
+  "Legacy sandbox type field (use agent instead)".
