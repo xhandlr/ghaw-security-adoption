@@ -13,3 +13,5 @@ firewall_status,ok,589
 bash_status,no_agent_job,1
 bash_status,ok,593
 bash_status,unrecognized_format,10
+engine_status,no_agent_job,1
+engine_status,ok,603

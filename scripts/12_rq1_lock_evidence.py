@@ -13,6 +13,23 @@ declared domains (GH_AW_INFO_ALLOWED_DOMAINS), which is searched anywhere
 in the lock and in practice appears in the activation job, not in
 jobs.agent.
 
+The engine and whether the agent may edit files or fetch web pages are
+also read from the run scripts of jobs.agent, because neither the schema
+nor the GH-AW documentation states the default of tools.edit or
+tools.web-fetch. Rules per engine:
+- copilot (the command line calls copilot, by name or by path, followed by
+  its flags): the tool is allowed when the command has --allow-all-tools,
+  or --allow-tool 'write' for edit and --allow-tool 'web_fetch' or
+  'web-fetch' for web-fetch. Otherwise it is not allowed.
+- claude (the command line has --allowed-tools): the tool is allowed when
+  the list has Edit for edit and WebFetch for web-fetch, alone or limited
+  to paths or domains (Edit(...), WebFetch(...)). Otherwise it is not
+  allowed.
+- codex (the command line calls "codex exec"): web-fetch is not allowed
+  when the command has -c fetch="disabled", and allowed otherwise. The
+  command has no flag for file editing, so edit is undetermined.
+- any other engine (engine = other): undetermined.
+
 When a value cannot be extracted, its cell is left empty and a *_status
 column says why. No row is dropped.
 """
@@ -40,6 +57,9 @@ AWF_FLAG = re.compile(r"--allow-domains[ =]+['\"]?([^\s'\"]+)")
 COPILOT_ALL = re.compile(r"--allow-all-tools\b")
 COPILOT_TOOL = re.compile(r"--allow-tool\b")
 CLAUDE_TOOLS = re.compile(r"--allowed-tools\b")
+LOCK_TOOLS = {"edit": {"copilot": ["write"], "claude": "Edit"},
+              "web_fetch": {"copilot": ["web_fetch", "web-fetch"], "claude": "WebFetch"}}
+ALLOWED, NOT_ALLOWED, UNDETERMINED = "allowed", "not_allowed", "undetermined"
 
 
 def load_settings():
@@ -190,6 +210,41 @@ def extract_bash(run_text):
     return {"bash_mode": mode, "bash_commands": json.dumps(commands), "bash_status": "ok"}
 
 
+def engine_of(run_text):
+    if re.search(r"(^|[\s/])copilot\s+--", run_text):
+        return "copilot"
+    if "--allowed-tools" in run_text:
+        return "claude"
+    if "codex exec" in run_text:
+        return "codex"
+    return "other"
+
+
+def tool_lock(engine, tool, run_text):
+    """allowed / not_allowed / undetermined for edit or web_fetch."""
+    if engine == "copilot":
+        if "--allow-all-tools" in run_text:
+            return ALLOWED
+        names = "|".join(re.escape(n) for n in LOCK_TOOLS[tool]["copilot"])
+        pattern = rf"--allow-tool\s+[\\']*(?:{names})(?=['\s(\\]|$)"
+        return ALLOWED if re.search(pattern, run_text) else NOT_ALLOWED
+    if engine == "claude":
+        match = re.search(r"--allowed-tools\s+[\\'\"]*([^'\"\\]+)", run_text)
+        listed = set(match.group(1).split(",")) if match else set()
+        name = LOCK_TOOLS[tool]["claude"]
+        return ALLOWED if any(t == name or t.startswith(name + "(") for t in listed) else NOT_ALLOWED
+    if engine == "codex" and tool == "web_fetch":
+        return NOT_ALLOWED if re.search(r"-c\s+fetch=\"?disabled", run_text) else ALLOWED
+    return UNDETERMINED
+
+
+def extract_engine(run_text):
+    engine = engine_of(run_text)
+    out = {"engine": engine, "engine_status": "ok"}
+    out.update({f"{tool}_lock": tool_lock(engine, tool, run_text) for tool in LOCK_TOOLS})
+    return out
+
+
 def extract(row):
     out = {
         "history_id": row["source_markdown_file_history_id"],
@@ -217,7 +272,7 @@ def extract(row):
     if status != "ok":
         for column in ["metadata_status", "declared_domains_status"]:
             out.setdefault(column, status)
-        for column in ["agent_permissions_status", "firewall_status", "bash_status"]:
+        for column in ["agent_permissions_status", "firewall_status", "bash_status", "engine_status"]:
             out[column] = status
         return out
 
@@ -231,6 +286,7 @@ def extract(row):
     run_text = agent_run_text(lock_doc)
     out.update(extract_firewall(run_text))
     out.update(extract_bash(run_text))
+    out.update(extract_engine(run_text))
     return out
 
 
@@ -242,6 +298,7 @@ COLUMNS = [
     "declared_domains", "declared_domains_status",
     "firewall_domains", "firewall_domains_n", "firewall_format", "firewall_status",
     "bash_mode", "bash_commands", "bash_status",
+    "engine", "edit_lock", "web_fetch_lock", "engine_status",
 ]
 STATUS_COLUMNS = [c for c in COLUMNS if c.endswith("_status")]
 

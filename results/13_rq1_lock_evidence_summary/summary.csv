@@ -7,3 +7,5 @@ network_default_forms,outlier_rows,16
 bash_true,rows,116
 network_firewall_only,rows,2
 bash_undeclared,rows,386
+tool_lock_edit,rows,603
+tool_lock_web-fetch,rows,603

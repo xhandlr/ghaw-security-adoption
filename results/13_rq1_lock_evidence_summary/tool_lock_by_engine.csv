@@ -1,0 +1,17 @@
+tool,engine,declared,workflows,allowed,not_allowed,undetermined
+edit,claude,False,173,171,2,0
+edit,codex,False,3,0,0,3
+edit,copilot,False,343,331,12,0
+edit,no_agent_job,False,1,0,0,1
+edit,other,False,5,0,0,5
+edit,claude,True,2,2,0,0
+edit,codex,True,1,0,0,1
+edit,copilot,True,73,73,0,0
+edit,other,True,2,0,0,2
+web-fetch,claude,False,163,0,163,0
+web-fetch,codex,False,4,0,4,0
+web-fetch,copilot,False,311,240,71,0
+web-fetch,no_agent_job,False,1,0,0,1
+web-fetch,other,False,7,0,0,7
+web-fetch,claude,True,12,12,0,0
+web-fetch,copilot,True,105,105,0,0

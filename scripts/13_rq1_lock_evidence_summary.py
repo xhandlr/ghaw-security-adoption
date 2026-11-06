@@ -10,6 +10,15 @@ own group, labelled no_metadata. The reference firewall set of a group is
 the most frequent firewall_domains among the workflows of that group that
 do NOT declare network. On a tie the group is marked "tie" and no set is
 chosen; with no such workflows it is marked "no_reference".
+
+tool_lock_by_engine.csv justifies the per-engine defaults of tools.edit and
+tools.web-fetch in the codebook: for each tool, engine and whether the
+frontmatter declares the tool (its key is present under tools), the number
+of workflows whose lock allows it, does not allow it, or leaves it
+undetermined (script 12's edit_lock and web_fetch_lock). A workflow whose
+lock has no readable agent job is grouped under its engine_status and
+counted as undetermined. Only workflows whose frontmatter is read as a
+dict are counted.
 """
 
 import csv
@@ -27,7 +36,11 @@ OUTPUT_DIR = Path("results/13_rq1_lock_evidence_summary")
 SNAPSHOT_TABLE = Path("data/raw/data/source_markdown_file_snapshot.parquet")
 NO_METADATA = "no_metadata"
 FIELDS = {"strict": ("strict",), "tools.bash": ("tools", "bash"),
-          "network": ("network",), "permissions": ("permissions",)}
+          "network": ("network",), "permissions": ("permissions",),
+          "tools.edit": ("tools", "edit"), "tools.web-fetch": ("tools", "web-fetch")}
+LOCK_TOOLS = {"edit": ("tools.edit_declared", "edit_lock"),
+              "web-fetch": ("tools.web-fetch_declared", "web_fetch_lock")}
+LOCK_RESULTS = ["allowed", "not_allowed", "undetermined"]
 
 
 def load_frontmatter_loader():
@@ -213,6 +226,19 @@ def main():
         ["group_agent_id", "group_compiler_version", "bash_mode_or_status"]).size()
     counts.reset_index(name="rows").to_csv(OUTPUT_DIR / "bash_undeclared.csv", index=False)
     summary.append(["bash_undeclared", "rows", len(rows)])
+
+    # 6. tools.edit and tools.web-fetch allowed in the lock, by engine and declared
+    engine = valid["engine"].where(valid["engine"] != "", valid["engine_status"])
+    by_engine = []
+    for tool, (declared_column, lock_column) in LOCK_TOOLS.items():
+        result = valid[lock_column].where(valid[lock_column] != "", "undetermined")
+        counts = Counter(zip(engine, valid[declared_column], result))
+        for e, d in sorted({(e, d) for e, d, _ in counts}, key=lambda g: (g[1], g[0])):
+            n = [counts[(e, d, r)] for r in LOCK_RESULTS]
+            by_engine.append([tool, e, d, sum(n), *n])
+        summary.append([f"tool_lock_{tool}", "rows", len(valid)])
+    write_csv(OUTPUT_DIR / "tool_lock_by_engine.csv",
+              ["tool", "engine", "declared", "workflows", *LOCK_RESULTS], by_engine)
 
     write_csv(OUTPUT_DIR / "summary.csv", ["output", "measure", "value"], summary)
 
