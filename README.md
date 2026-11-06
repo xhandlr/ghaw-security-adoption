@@ -44,7 +44,7 @@
 .
 ├── scripts/            # Scripts numerados por bloque
 │   ├── 01–04           # Comunes (descarga y preparación)
-│   ├── 10–15           # RQ1
+│   ├── 10–19, 28       # RQ1
 │   └── 20–27           # RQ2
 ├── results/            # Una carpeta por script, cada una con provenance.json
 ├── coding/             # Libros de códigos, planillas de codificadores, consenso y piloto
@@ -55,6 +55,17 @@
 ├── AI_USAGE.md
 └── LICENSE
 ```
+
+Los scripts se numeran en el orden en que se crearon, por lo que el script 28 pertenece a RQ1 aunque viene después de los de RQ2. Esta tabla los agrupa por pregunta:
+
+| Grupo | Scripts | Qué hacen |
+|---|---|---|
+| Comunes | 01, 02, 03, 04 | Descarga del dataset, claves del frontmatter, campos del schema y descripción del dataset |
+| RQ1 | 10, 11, 12, 13, 14, 15 | Raíces del schema, campos de la arquitectura de seguridad, evidencia de los lock files y medición de los campos de la demostración |
+| RQ1 | 16, 17, 18 | Codificación de campos de seguridad: rutas a codificar, acuerdo entre codificadores y planilla de consenso |
+| RQ1 | 19, 28 | Uso de los campos de seguridad y Pareto con las reglas de granularidad |
+| RQ2 | 20, 21, 22, 23 | Muestra piloto, planilla de codificación, resumen del piloto y familias de workflows |
+| RQ2 | 24, 25, 26, 27 | Materiales del segundo codificador, acuerdo entre codificadores, planilla de consenso y tamaño de muestra |
 
 ---
 
@@ -115,6 +126,13 @@ python scripts/12_rq1_lock_evidence.py
 python scripts/13_rq1_lock_evidence_summary.py
 python scripts/14_rq1_measurement.py
 python scripts/15_rq1_candidate_fields.py
+python scripts/16_rq1_security_field_candidates.py
+python scripts/17_rq1_intercoder_agreement.py 1 190
+python scripts/17_rq1_intercoder_agreement.py 191 270
+python scripts/17_rq1_intercoder_agreement.py 271 386
+python scripts/17_rq1_intercoder_agreement.py 191 386
+python scripts/19_rq1_security_field_usage.py  # usa un clon de gh-aw en data/raw/gh-aw (lo crea si falta)
+python scripts/28_rq1_security_field_pareto.py # requiere las salidas del script 19
 
 # RQ2
 python scripts/20_rq2_pilot_sample.py          # regenera coding/pilot_sample/ (idéntico, semilla fija)
@@ -124,6 +142,9 @@ python scripts/27_rq2_sample_size.py
 ```
 
 El valor de los parámetros fijados (commits/semillas) se encuentra en `config/settings.yaml`.
+
+> [!NOTE]
+> El script 18 no se ejecuta en la reproducción: generó la planilla de consenso de RQ1 (`coding/rq1_security_coding_consensus.csv`) y se detiene si ya existe. Para regenerarla, hay que borrar la planilla y ejecutarlo antes del script 19.
 
 > [!NOTE] 
 > No es necesario volver a ejecutar los scripts 21, 24, 25 y 26 para reproducir los resultados: 21 y 24 prepararon las planillas de codificación, 25 calculó el acuerdo entre codificadores una sola vez, antes de discutir los desacuerdos, y 26 generó la planilla de consenso. Sus salidas ya están en `coding/` y `results/25_rq2_intercoder_agreement/`.
