@@ -1,0 +1,10 @@
+measure,value
+workflows_analysed,603
+workflows_excluded_unreadable_frontmatter,1
+security_fields,148
+measured_units,119
+measured_units_used,65
+declarations,3566
+pareto_threshold,0.8
+pareto_units,13
+pareto_cumulative_share,0.8073471676948962

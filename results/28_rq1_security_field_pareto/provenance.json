@@ -1,0 +1,14 @@
+{
+  "script_sha256": "534fd643418113cd52a6e99577e9e0ded13bb1167b49f10fc3c60312ce44870b",
+  "sheet": "coding/rq1_security_coding_consensus.csv",
+  "sheet_sha256": "624314f9d351c3de3adbfc9b6c9bc101adc2e1c1fa92b161444f503aaebff721",
+  "guide_sha256": "af09a9b3208aecff04468c5566ebf6d553ecf2831f138a3e15ce75e202623aef",
+  "presence_19_sha256": "6e890d6965f8922163107d64d63b606f70b2fad29bfafffecef8b803f1032af5",
+  "snapshots_sha256": "b8049b2f05bdbce449f24dfef3ca70e1b135b339a17347ad9d88a98f4e8d94b9",
+  "versions_sha256": "88576175db0645f52f399279d6e263f35fc2c152fbc18f734f2eb28c05cc1b2f",
+  "outputs_sha256": {
+    "excluded_paths.csv": "fa3377facd4b57542e3bec7f481737354b1d05b4e3bee4a7456be9108c32784a",
+    "summary.csv": "e12101a6a0ce391d581ea5f31e0791536f2584dd47e2647b5d86e923a5abd457",
+    "units.csv": "b8844b1e7e09ec92df14e52077667f41ac2b2d6c93dae78aa85cfd1cab3c4ff0"
+  }
+}
