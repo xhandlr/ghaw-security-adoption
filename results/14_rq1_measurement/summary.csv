@@ -5,6 +5,12 @@ network,modified,241
 permissions,explicit_equal_default,8
 permissions,implicit,3
 permissions,modified,592
+safe-outputs.add-comment,implicit,369
+safe-outputs.add-comment,modified,234
+safe-outputs.add-labels,implicit,482
+safe-outputs.add-labels,modified,121
+safe-outputs.create-pull-request,implicit,439
+safe-outputs.create-pull-request,modified,164
 strict,explicit_equal_default,146
 strict,implicit,439
 strict,modified,18

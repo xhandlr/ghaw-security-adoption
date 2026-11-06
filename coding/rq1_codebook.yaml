@@ -563,6 +563,125 @@ fields:
           reason: Declaring the tool allows it where the engine does not allow it by default.
           source: results/13_rq1_lock_evidence_summary/tool_lock_by_engine.csv
 
+  safe-outputs.add-comment:
+    default: disabled
+    source:
+      - file: docs/src/content/docs/reference/safe-outputs.md
+        line: 12
+        quote: "To opt out, add an explicit `safe-outputs:` section with the outputs you want."
+      - file: pkg/parser/schemas/main_workflow_schema.json
+        line: 7977
+        quote: "Enable issue comment creation with default configuration"
+    assumption:
+      note: >
+        No source states that add-comment is disabled when it is not
+        declared. It is assumed from the two quotes above: only the safe
+        outputs written in safe-outputs are enabled, and declaring
+        add-comment (even as null) enables it.
+    granularity: Child of safe-outputs, measured as its own unit (guide section 5, no evidence of dependency).
+    equal_to_default:
+      rule: >
+        None. The schema accepts only an object or null (oneOf at line 7806,
+        no boolean form), so no declared value can disable add-comment.
+      values: []
+    rest:
+      id: addcomment_rest
+      type: rest
+      decision: modified
+      reason: Any declared value (null or an object with any keys) enables commenting, which is disabled by default.
+    direction:
+      applies_to: modified
+      categories:
+        - id: addcomment_dir_enabled
+          type: rest
+          direction: more_permissive
+          broadens: commenting
+          reason: >
+            Declaring add-comment enables commenting, which is disabled by
+            default. Its inner keys do not change the direction. Keys not in
+            the schema (such as discussion) are not checked.
+          source: pkg/parser/schemas/main_workflow_schema.json
+
+  safe-outputs.create-pull-request:
+    default: disabled
+    source:
+      - file: docs/src/content/docs/reference/safe-outputs.md
+        line: 12
+        quote: "To opt out, add an explicit `safe-outputs:` section with the outputs you want."
+      - file: pkg/parser/schemas/main_workflow_schema.json
+        line: 8424
+        quote: "Enable pull request creation with default configuration"
+    assumption:
+      note: >
+        No source states that create-pull-request is disabled when it is
+        not declared. It is assumed from the two quotes above: only the
+        safe outputs written in safe-outputs are enabled, and declaring
+        create-pull-request (even as null) enables it.
+    granularity: Child of safe-outputs, measured as its own unit (guide section 5, no evidence of dependency).
+    equal_to_default:
+      rule: >
+        None. The schema accepts only an object or null (oneOf at line 7982,
+        no boolean form), so no declared value can disable create-pull-request.
+      values: []
+    rest:
+      id: createpr_rest
+      type: rest
+      decision: modified
+      reason: Any declared value (null or an object with any keys) enables pull request creation, which is disabled by default.
+    direction:
+      applies_to: modified
+      categories:
+        - id: createpr_dir_enabled
+          type: rest
+          direction: more_permissive
+          broadens: pull request creation
+          reason: >
+            Declaring create-pull-request enables pull request creation,
+            which is disabled by default. Its inner keys do not change the
+            direction.
+          source: pkg/parser/schemas/main_workflow_schema.json
+
+  safe-outputs.add-labels:
+    default: disabled
+    source:
+      - file: docs/src/content/docs/reference/safe-outputs.md
+        line: 12
+        quote: "To opt out, add an explicit `safe-outputs:` section with the outputs you want."
+      - file: pkg/parser/schemas/main_workflow_schema.json
+        line: 9146
+        quote: "Null configuration allows any labels. Labels must already exist in the repository unless 'create-if-missing' is enabled."
+      - file: pkg/parser/schemas/main_workflow_schema.json
+        line: 9261
+        quote: "Enable AI agents to add labels to GitHub issues or pull requests based on workflow analysis or classification."
+    assumption:
+      note: >
+        No source states that add-labels is disabled when it is not
+        declared. It is assumed from the quotes above: only the safe
+        outputs written in safe-outputs are enabled, and declaring
+        add-labels (even as null) enables it.
+    granularity: Child of safe-outputs, measured as its own unit (guide section 5, no evidence of dependency).
+    equal_to_default:
+      rule: >
+        None. The schema accepts only null or an object (oneOf at line 9142,
+        no boolean form), so no declared value can disable add-labels.
+      values: []
+    rest:
+      id: addlabels_rest
+      type: rest
+      decision: modified
+      reason: Any declared value (null or an object with any keys) enables adding labels, which is disabled by default.
+    direction:
+      applies_to: modified
+      categories:
+        - id: addlabels_dir_enabled
+          type: rest
+          direction: more_permissive
+          broadens: adding labels
+          reason: >
+            Declaring add-labels enables adding labels, which is disabled by
+            default. Its inner keys do not change the direction.
+          source: pkg/parser/schemas/main_workflow_schema.json
+
   network:
     default: defaults
     source:

@@ -6,6 +6,9 @@ permissions,more_permissive,authentication,155
 permissions,more_permissive,read,416
 permissions,more_permissive,write,2
 permissions,no_direction,,19
+safe-outputs.add-comment,more_permissive,commenting,234
+safe-outputs.add-labels,more_permissive,adding labels,121
+safe-outputs.create-pull-request,more_permissive,pull request creation,164
 strict,more_permissive,strict mode restrictions,18
 tools.bash,more_permissive,commands,140
 tools.bash,more_restrictive,,1

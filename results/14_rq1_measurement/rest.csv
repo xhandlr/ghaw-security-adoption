@@ -136,6 +136,245 @@ permissions,"{""contents"": ""read"", ""issues"": ""read"", ""models"": ""read""
 permissions,"{""actions"": ""read"", ""contents"": ""read"", ""copilot-requests"": ""write"", ""issues"": ""read""}",1
 permissions,"{""contents"": ""read"", ""issues"": ""read"", ""metadata"": ""read"", ""pull-requests"": ""read""}",1
 permissions,"{""actions"": ""read"", ""contents"": ""read"", ""id-token"": ""write"", ""issues"": ""read""}",1
+safe-outputs.add-comment,null,42
+safe-outputs.add-comment,"{""hide-older-comments"": true, ""max"": 10, ""target"": ""*""}",37
+safe-outputs.add-comment,"{""max"": 1}",26
+safe-outputs.add-comment,"{""max"": 1, ""target"": ""*""}",12
+safe-outputs.add-comment,"{""max"": 1, ""target"": ""triggering""}",8
+safe-outputs.add-comment,"{""max"": 10, ""target"": ""*""}",7
+safe-outputs.add-comment,"{""hide-older-comments"": true}",7
+safe-outputs.add-comment,"{""target"": ""*""}",6
+safe-outputs.add-comment,"{""max"": 2}",6
+safe-outputs.add-comment,"{""discussions"": false, ""max"": 3}",6
+safe-outputs.add-comment,{},5
+safe-outputs.add-comment,"{""hide-older-comments"": true, ""max"": 1}",5
+safe-outputs.add-comment,"{""hide-older-comments"": true, ""max"": 5, ""target"": ""*""}",4
+safe-outputs.add-comment,"{""max"": 2, ""target"": ""*""}",4
+safe-outputs.add-comment,"{""max"": 5}",4
+safe-outputs.add-comment,"{""max"": 1, ""target"": ""${{ inputs.issue_number }}""}",4
+safe-outputs.add-comment,"{""max"": 3, ""target"": ""*""}",3
+safe-outputs.add-comment,"{""max"": 3}",3
+safe-outputs.add-comment,"{""max"": 10}",3
+safe-outputs.add-comment,"{""max"": 5, ""target"": ""*""}",3
+safe-outputs.add-comment,"{""hide-older-comments"": true, ""max"": 5}",2
+safe-outputs.add-comment,"{""max"": 30}",2
+safe-outputs.add-comment,"{""hide-older-comments"": true, ""max"": 1, ""target"": ""${{ github.event.issue.number || github.event.inputs.issue_number }}""}",2
+safe-outputs.add-comment,"{""discussions"": false, ""max"": 1, ""target"": ""${{ env.PR_NUMBER }}""}",2
+safe-outputs.add-comment,"{""discussion"": true, ""target"": ""*""}",2
+safe-outputs.add-comment,"{""hide-older-comments"": true, ""max"": 1, ""target"": ""*""}",1
+safe-outputs.add-comment,"{""discussions"": false, ""footer"": false, ""hide-older-comments"": true, ""max"": 1, ""target"": ""*""}",1
+safe-outputs.add-comment,"{""hide-older-comments"": true, ""max"": 3, ""target"": ""*""}",1
+safe-outputs.add-comment,"{""max"": 12, ""target"": ""*""}",1
+safe-outputs.add-comment,"{""discussions"": false, ""hide-older-comments"": true, ""issues"": false, ""max"": 1, ""target"": ""triggering""}",1
+safe-outputs.add-comment,"{""footer"": false, ""hide-older-comments"": true, ""max"": 1, ""target"": ""38930""}",1
+safe-outputs.add-comment,"{""footer"": false, ""hide-older-comments"": true, ""max"": 1, ""target"": ""${{ needs.pre_activation.outputs.pr_number }}""}",1
+safe-outputs.add-comment,"{""discussions"": false, ""max"": 2, ""target"": ""${{ github.event.issue.number || github.event.inputs.pr_number }}""}",1
+safe-outputs.add-comment,"{""discussions"": false, ""footer"": false, ""max"": 5, ""target"": ""${{ env.PR_NUMBER }}""}",1
+safe-outputs.add-comment,"{""allowed-repos"": [""elastic/elasticsearch-specification"", ""elastic/elastic-client-generator-js""], ""max"": 15, ""target"": ""*"", ""target-repo"": ""*""}",1
+safe-outputs.add-comment,"{""discussions"": false, ""footer"": false, ""hide-older-comments"": true, ""issues"": false, ""max"": 1, ""target"": ""${{ github.event.pull_request.number }}""}",1
+safe-outputs.add-comment,"{""footer"": false, ""hide-older-comments"": true, ""max"": 5, ""target"": ""*""}",1
+safe-outputs.add-comment,"{""max"": 20, ""target"": ""*""}",1
+safe-outputs.add-comment,"{""max"": 4}",1
+safe-outputs.add-comment,"{""max"": 1, ""target"": ""${{ needs.prepare.outputs.pr_number }}""}",1
+safe-outputs.add-comment,"{""target"": ""triggering""}",1
+safe-outputs.add-comment,"{""discussions"": false, ""hide-older-comments"": true, ""max"": 100, ""target"": ""*""}",1
+safe-outputs.add-comment,"{""max"": 80, ""target"": ""*""}",1
+safe-outputs.add-comment,"{""hide-older-comments"": true, ""max"": 25, ""target"": ""*""}",1
+safe-outputs.add-comment,"{""hide-older-comments"": true, ""target"": ""triggering""}",1
+safe-outputs.add-comment,"{""max"": 20}",1
+safe-outputs.add-comment,"{""max"": 12}",1
+safe-outputs.add-comment,"{""discussions"": false, ""hide-older-comments"": true, ""max"": 1, ""pull-requests"": false, ""target"": ""*""}",1
+safe-outputs.add-comment,"{""allowed-reasons"": [""outdated""], ""hide-older-comments"": true, ""max"": 1}",1
+safe-outputs.add-comment,"{""discussions"": false, ""max"": 1, ""target"": ""*""}",1
+safe-outputs.add-comment,"{""max"": 50, ""target"": ""*""}",1
+safe-outputs.add-comment,"{""issues"": true}",1
+safe-outputs.add-comment,"{""max"": 2, ""target"": ""${{ env.PR_NUMBER }}""}",1
+safe-outputs.add-comment,"{""hide-older-comments"": false, ""max"": 7, ""target"": ""*""}",1
+safe-outputs.add-labels,"{""allowed"": [""bug"", ""enhancement"", ""help wanted"", ""good first issue"", ""spam"", ""off topic"", ""documentation"", ""question"", ""duplicate"", ""wontfix"", ""needs triage"", ""needs investigation"", ""breaking change"", ""performance"", ""security"", ""refactor""], ""max"": 30, ""target"": ""*""}",24
+safe-outputs.add-labels,"{""max"": 5}",16
+safe-outputs.add-labels,"{""max"": 2}",5
+safe-outputs.add-labels,"{""max"": 7, ""target"": ""*""}",4
+safe-outputs.add-labels,"{""max"": 3, ""target"": ""${{ inputs.issue_number }}""}",4
+safe-outputs.add-labels,"{""max"": 10, ""target"": ""*""}",3
+safe-outputs.add-labels,"{""allowed"": [""security:low"", ""security:medium"", ""security:high""]}",3
+safe-outputs.add-labels,"{""max"": 10}",2
+safe-outputs.add-labels,"{""max"": 3}",2
+safe-outputs.add-labels,"{""allowed"": [""ai-slop:high"", ""ai-slop:med""], ""max"": 1}",2
+safe-outputs.add-labels,null,2
+safe-outputs.add-labels,"{""allowed"": [""bug"", ""feature"", ""enhancement"", ""documentation"", ""question"", ""help-wanted"", ""good-first-issue""]}",2
+safe-outputs.add-labels,"{""allowed"": [""bug"", ""enhancement"", ""question"", ""documentation"", ""perf"", ""test"", ""Build"", ""untriaged"", ""needs-further-triage"", ""need info""]}",1
+safe-outputs.add-labels,"{""max"": 15}",1
+safe-outputs.add-labels,"{""allowed"": [""Auto-Triage: Waiting for Author""], ""max"": 1}",1
+safe-outputs.add-labels,"{""allowed"": [""bug"", ""documentation"", ""enhancement"", ""help wanted"", ""good first issue"", ""question"", ""duplicate"", ""wontfix"", ""invalid"", ""dependencies"", ""operators"", ""schedulers"", ""subjects"", ""asyncio"", ""typing"", ""examples"", ""tests"", ""ci""], ""max"": 30, ""target"": ""*""}",1
+safe-outputs.add-labels,"{""max"": 8}",1
+safe-outputs.add-labels,"{""max"": 4, ""target"": ""*""}",1
+safe-outputs.add-labels,"{""allowed"": [""Needs: Triage"", ""Area-Debugging"", ""Area-IntelliSense"", ""Area-PSReadLine"", ""Area-Pester"", ""Area-Script Analysis"", ""Area-Startup"", ""Area-Configuration"", ""Area-Code Formatting"", ""OS-Windows"", ""OS-macOS"", ""OS-Linux"", ""Bug: PowerShell Core"", ""Bug: PowerShell 5.1"", ""Bug: VS Code"", ""Resolution-Duplicate""], ""max"": 5}",1
+safe-outputs.add-labels,"{""allowed"": [""Issue-*"", ""Area-*"", ""OS-*"", ""Bug: *"", ""Feature: *"", ""Needs: Triage"", ""Needs: Author Feedback"", ""Resolution-Duplicate"", ""Pending: External""], ""max"": 5}",1
+safe-outputs.add-labels,"{""allowed"": [""Resolution-Duplicate"", ""Pending: External""], ""max"": 10, ""target"": ""*""}",1
+safe-outputs.add-labels,"{""max"": 1, ""target"": ""${{ github.event.pull_request.number || github.event.issue.number }}""}",1
+safe-outputs.add-labels,"{""max"": 100, ""target"": ""*""}",1
+safe-outputs.add-labels,"{""allowed"": [""failure:ai-fixable"", ""failure:test-design"", ""failure:test-environment"", ""failure:application"", ""failure:ci-environment"", ""failure:inconclusive""], ""max"": 2, ""target"": ""${{ github.event.issue.number || github.event.inputs.issue_number }}""}",1
+safe-outputs.add-labels,"{""allowed"": [""bug"", ""enhancement"", ""documentation"", ""question"", ""device"", ""tariff"", ""vehicle"", ""heating""]}",1
+safe-outputs.add-labels,"{""allowed"": [""triaged"", ""needs-research"", ""needs-reproduction"", ""needs-spec"", ""needs-human""], ""blocked"": [""~*"", ""*[bot]""], ""max"": 5, ""target"": ""*""}",1
+safe-outputs.add-labels,"{""allowed"": [""bug"", ""enhancement"", ""help wanted"", ""good first issue"", ""documentation"", ""question"", ""duplicate"", ""wontfix"", ""needs triage"", ""needs investigation"", ""performance"", ""security"", ""maintenance"", ""waiting for feedback""], ""max"": 30, ""target"": ""*""}",1
+safe-outputs.add-labels,"{""allowed"": [""ci-failure"", ""flaky-test"", ""build-failure"", ""dependency-issue"", ""needs-maintainer""]}",1
+safe-outputs.add-labels,"{""allowed"": [""security-breach"", ""supply-chain"", ""toolchain-alert"", ""critical"", ""high"", ""medium""]}",1
+safe-outputs.add-labels,"{""allowed"": [""type:bug"", ""type:feature"", ""type:docs"", ""type:question"", ""type:security"", ""type:maintenance"", ""status:triage"", ""status:waiting-on-author"", ""status:repro-needed"", ""status:team-review"", ""area:action"", ""area:msdo-cli"", ""area:ci"", ""area:container-mapping""]}",1
+safe-outputs.add-labels,"{""allowed"": [""area/extensions"", ""ext-*""], ""max"": 10}",1
+safe-outputs.add-labels,"{""allowed"": [""bug"", ""feature"", ""enhancement"", ""documentation"", ""question"", ""duplicate"", ""invalid""]}",1
+safe-outputs.add-labels,"{""allowed"": [""team needs to reproduce""], ""max"": 1}",1
+safe-outputs.add-labels,"{""allowed"": [""bug"", ""enhancement"", ""question"", ""other""], ""max"": 2, ""target"": ""triggering""}",1
+safe-outputs.add-labels,"{""allowed"": [""VSCode"", ""Data Mapper"", ""Connections"", ""Templates"", ""MCP"", ""a11y"", ""Monitoring"", ""Code View"", ""Custom Code"", ""Custom Connectors"", ""Agentic"", ""Serialization"", ""Integration Account"", ""Performance"", ""Consumption"", ""priority:high"", ""priority:medium"", ""priority:low"", ""bug"", ""enhancement"", ""regression"", ""Needs More Info"", ""duplicate"", ""Cosmetic"", ""error messaging"", ""Good First Issue"", ""Portal""]}",1
+safe-outputs.add-labels,"{""allowed"": [""bot/ready-for-triage"", ""needs-info""], ""max"": 100, ""target"": ""*""}",1
+safe-outputs.add-labels,"{""allowed"": [""bot/stale-issue-manager/stale"", ""bot/stale-issue-manager/closed""], ""max"": 80}",1
+safe-outputs.add-labels,"{""allowed"": [""AI-needs-CI-fix-input""], ""max"": 3, ""target"": ""*""}",1
+safe-outputs.add-labels,"{""allowed"": [""AI-Tooling-Check-Scanned-Clean"", ""AI-Tooling-Check-Bypassed"", ""\u26a0\ufe0f Affects-Build-Infra"", ""\u26a0\ufe0f Affects-Compiler-Output"", ""\u26a0\ufe0f Affects-Bootstrap"", ""\u26a0\ufe0f Affects-Restore"", ""\u26a0\ufe0f Affects-Design-Time"", ""\u26a0\ufe0f Affects-Test-Tooling"", ""\u26a0\ufe0f Affects-Agent-Config"", ""\u26a0\ufe0f Suspicious-Prompting"", ""\u26a0\ufe0f Scope-Review-Needed""], ""max"": 50, ""target"": ""*""}",1
+safe-outputs.add-labels,"{""allowed"": [""AI-thinks-issue-fixed"", ""AI-thinks-windows-only""], ""max"": 30, ""target"": ""*""}",1
+safe-outputs.add-labels,"{""allowed"": [""bug"", ""enhancement"", ""help wanted"", ""up-for-grabs"", ""question"", ""duplicate"", ""wontfix"", ""discussion"", ""Reproduction needed"", ""waiting-feedback"", ""javascript"", ""python"", ""TypeScript"", ""optimization"", ""replacements"", ""dependencies"", ""backlog"", ""priority"", ""invalid""], ""max"": 30, ""target"": ""*""}",1
+safe-outputs.add-labels,"{""allowed"": [""bug (soundness)"", ""bug (stylistic)"", ""enhancement"", ""help wanted"", ""good first issue"", ""documentation"", ""question"", ""duplicate"", ""wontfix"", ""discussion"", ""needs investigation"", ""needs-community-interest"", ""waiting-on-author"", ""tooling"", ""style-guide-clarification-needed"", ""clitool""], ""max"": 30, ""target"": ""*""}",1
+safe-outputs.add-labels,"{""allowed"": [""bug"", ""documentation"", ""enhancement"", ""help wanted"", ""good first issue"", ""question"", ""duplicate"", ""wontfix"", ""invalid"", ""dependencies"", ""python"", ""fable compiler"", ""stdlib"", ""flask"", ""fastapi"", ""django"", ""pydantic"", ""bindings"", ""examples"", ""tests"", ""ci""], ""max"": 30, ""target"": ""*""}",1
+safe-outputs.add-labels,"{""allowed"": [""coverage"", ""tests"", ""cpp"", ""python""], ""max"": 4, ""target"": ""*""}",1
+safe-outputs.add-labels,"{""allowed"": [""bug"", ""needs-info"", ""triaged""], ""target"": ""triggering""}",1
+safe-outputs.add-labels,"{""allowed"": [""contribution-ready""], ""max"": 1}",1
+safe-outputs.add-labels,"{""allowed"": [""bug"", ""feature"", ""pending triage"", ""apps/stage-pocket"", ""apps/stage-tamagotchi"", ""apps/stage-web"", ""env/os-all"", ""env/os-linux"", ""env/os-macos"", ""env/os-windows"", ""priority/general"", ""priority/nice-to-have"", ""priority/urgent"", ""scope/agent"", ""scope/audio-input"", ""scope/audio-output"", ""scope/avatar"", ""scope/avatar/live2d"", ""scope/avatar/vrm"", ""scope/documentation"", ""scope/engineering"", ""scope/extension"", ""scope/game-playing-ai"", ""scope/i18n"", ""scope/providers"", ""scope/server-api"", ""scope/ui""], ""max"": 12, ""target"": ""${{ github.event.pull_request.number || github.event.inputs.pull_request_number }}""}",1
+safe-outputs.add-labels,"{""allowed"": [""bug"", ""enhancement"", ""question"", ""documentation"", ""duplicate"", ""invalid"", ""wontfix"", ""help wanted"", ""good first issue"", ""priority/critical"", ""priority/high"", ""priority/medium"", ""priority/low""], ""max"": 3}",1
+safe-outputs.add-labels,"{""allowed"": [""broken-links""]}",1
+safe-outputs.add-labels,"{""allowed"": [""typos""]}",1
+safe-outputs.add-labels,"{""allowed"": [""broken-link""]}",1
+safe-outputs.add-labels,"{""allowed"": [""theme/governance"", ""theme/portability"", ""theme/security"", ""area/audit-policy"", ""area/ci-cd"", ""area/cli"", ""area/content-security"", ""area/distribution"", ""area/docs-site"", ""area/enterprise"", ""area/lockfile"", ""area/marketplace"", ""area/mcp-config"", ""area/mcp-trust"", ""area/multi-target"", ""area/package-authoring"", ""area/testing"", ""type/architecture"", ""type/automation"", ""type/bug"", ""type/docs"", ""type/feature"", ""type/performance"", ""type/refactor"", ""type/release"", ""priority/high"", ""priority/low"", ""status/accepted"", ""status/blocked"", ""status/in-flight"", ""status/needs-design"", ""status/triaged"", ""good first issue"", ""help wanted"", ""test/triage-validation""], ""max"": 70, ""target"": ""*""}",1
+safe-outputs.add-labels,"{""allowed"": [""confirmed""], ""max"": 10}",1
+safe-outputs.add-labels,"{""allowed"": [""bug"", ""feature"", ""enhancement"", ""documentation"", ""question"", ""help-wanted"", ""good-first-issue""], ""max"": 10}",1
+safe-outputs.add-labels,"{""allowed"": [""runtime"", ""sdk-fix-only"", ""needs-investigation""], ""max"": 3, ""target"": ""triggering""}",1
+safe-outputs.add-labels,"{""allowed"": [""bug"", ""enhancement"", ""question"", ""documentation""], ""max"": 1, ""target"": ""*""}",1
+safe-outputs.add-labels,"{""allowed"": [""documentation""], ""max"": 1, ""target"": ""*""}",1
+safe-outputs.add-labels,"{""allowed"": [""enhancement""], ""max"": 1, ""target"": ""*""}",1
+safe-outputs.add-labels,"{""allowed"": [""question""], ""max"": 1, ""target"": ""*""}",1
+safe-outputs.add-labels,"{""allowed"": [""bug"", ""enhancement"", ""question"", ""documentation"", ""sdk/dotnet"", ""sdk/go"", ""sdk/java"", ""sdk/nodejs"", ""sdk/python"", ""priority/high"", ""priority/low"", ""testing"", ""security"", ""needs-info"", ""duplicate""], ""max"": 10, ""target"": ""triggering""}",1
+safe-outputs.add-labels,"{""allowed"": [""wontfix""], ""max"": 5, ""target"": ""*""}",1
+safe-outputs.add-labels,"{""allowed"": [""effort: small"", ""effort: medium"", ""effort: large""], ""max"": 50, ""target"": ""*""}",1
+safe-outputs.add-labels,"{""allowed"": [""bug"", ""needs-info"", ""enhancement"", ""question""]}",1
+safe-outputs.add-labels,"{""max"": 2, ""target"": ""*""}",1
+safe-outputs.create-pull-request,"{""draft"": true, ""labels"": [""automation"", ""repo-assist""], ""max"": 4, ""protected-files"": ""fallback-to-issue"", ""title-prefix"": ""[repo-assist] ""}",14
+safe-outputs.create-pull-request,"{""draft"": true, ""labels"": [""automation"", ""repo-assist""], ""max"": 4, ""protected-files"": ""fallback-to-issue"", ""title-prefix"": ""[Repo Assist] ""}",8
+safe-outputs.create-pull-request,"{""draft"": true}",7
+safe-outputs.create-pull-request,"{""expires"": ""1d"", ""labels"": [""refactoring"", ""code-quality"", ""automation""], ""reviewers"": [""copilot""], ""title-prefix"": ""[code-simplifier] ""}",5
+safe-outputs.create-pull-request,"{""max"": 1}",5
+safe-outputs.create-pull-request,null,3
+safe-outputs.create-pull-request,"{""draft"": false, ""if-no-changes"": ""warn"", ""labels"": [""Area: Documentation"", ""agentic-workflows""], ""protected-files"": ""fallback-to-issue"", ""title-prefix"": ""[link-checker] ""}",2
+safe-outputs.create-pull-request,"{""draft"": true, ""labels"": [""automation"", ""efficiency"", ""green-software""], ""max"": 3, ""title-prefix"": ""[efficiency-improver] ""}",2
+safe-outputs.create-pull-request,"{""labels"": [""documentation"", ""automated""], ""title-prefix"": ""[docs] ""}",2
+safe-outputs.create-pull-request,"{""base-branch"": ""vnext"", ""draft"": false, ""if-no-changes"": ""ignore"", ""labels"": [""translation"", ""japanese"", ""automation""], ""title-prefix"": ""[jp-sync] ""}",2
+safe-outputs.create-pull-request,"{""draft"": true, ""labels"": [""automation"", ""repo-assist""], ""max"": 4, ""title-prefix"": ""[Repo Assist] ""}",2
+safe-outputs.create-pull-request,"{""draft"": true, ""labels"": [""automation"", ""documentation""]}",2
+safe-outputs.create-pull-request,"{""draft"": true, ""labels"": [""automation"", ""qa""]}",2
+safe-outputs.create-pull-request,"{""base-branch"": ""main"", ""draft"": true, ""expires"": 14, ""fallback-as-issue"": true, ""github-token"": ""${{ secrets.VAADIN_BOT_TOKEN }}"", ""labels"": [""documentation"", ""automated""], ""target-repo"": ""vaadin/docs"", ""title-prefix"": ""[docs] ""}",1
+safe-outputs.create-pull-request,"{""base-branch"": ""develop"", ""draft"": true, ""github-token"": ""${{ secrets.GT_DAXMOBILE }}"", ""labels"": [""agentic-maintenance""], ""title-prefix"": ""[Android Maintenance] ""}",1
+safe-outputs.create-pull-request,"{""base-branch"": ""develop"", ""draft"": true, ""github-token"": ""${{ secrets.GT_DAXMOBILE }}"", ""labels"": [""drift-audit""], ""title-prefix"": ""[Drift Audit] ""}",1
+safe-outputs.create-pull-request,"{""draft"": true, ""labels"": [""automation"", ""improvement""], ""max"": 1, ""title-prefix"": ""[auto-fix] ""}",1
+safe-outputs.create-pull-request,"{""allowed-base-branches"": [""main""], ""draft"": false, ""labels"": [""documentation""], ""preserve-branch-name"": true, ""recreate-ref"": true, ""title-prefix"": ""[docs] ""}",1
+safe-outputs.create-pull-request,"{""allowed-base-branches"": [""net11.0""], ""allowed-branches"": [""ci-fix/**""], ""allowed-files"": [""src/Core/**"", ""src/Controls/**"", ""src/Essentials/**"", ""src/BlazorWebView/**"", ""src/TestUtils/**"", ""src/Templates/**"", ""**/PublicAPI.Unshipped.txt""], ""allowed-labels"": [""agentic-workflows""], ""base-branch"": ""net11.0"", ""draft"": true, ""labels"": [""agentic-workflows""], ""max"": 3, ""title-prefix"": ""[ci-fix] ""}",1
+safe-outputs.create-pull-request,"{""allowed-base-branches"": [""main""], ""allowed-branches"": [""ci-fix/**""], ""allowed-files"": [""src/Core/**"", ""src/Controls/**"", ""src/Essentials/**"", ""src/BlazorWebView/**"", ""src/TestUtils/**"", ""src/Templates/**"", ""**/PublicAPI.Unshipped.txt""], ""allowed-labels"": [""agentic-workflows""], ""base-branch"": ""main"", ""draft"": true, ""labels"": [""agentic-workflows""], ""max"": 3, ""title-prefix"": ""[ci-fix] ""}",1
+safe-outputs.create-pull-request,"{""allowed-files"": ["".github/workflows/ci-scan.agent.md"", "".github/workflows/shared/ci-scan.instructions.md""], ""draft"": true, ""max"": 1, ""protected-files"": {""exclude"": ["".github/""], ""policy"": ""blocked""}, ""title-prefix"": ""[ci-scan-feedback] ""}",1
+safe-outputs.create-pull-request,"{""draft"": false, ""expires"": ""1w"", ""labels"": [""ef-sync""], ""reviewers"": [""roji""], ""title-prefix"": ""[EF Sync] ""}",1
+safe-outputs.create-pull-request,"{""expires"": ""1d"", ""labels"": [""agentic-workflows""], ""protected-files"": ""fallback-to-issue"", ""title-prefix"": ""[code-simplifier] ""}",1
+safe-outputs.create-pull-request,"{""draft"": true, ""labels"": [""automation""], ""protected-files"": ""fallback-to-issue""}",1
+safe-outputs.create-pull-request,"{""draft"": true, ""labels"": [""Area: Performance"", ""agentic-workflows""], ""max"": 3, ""title-prefix"": ""[efficiency-improver] ""}",1
+safe-outputs.create-pull-request,"{""allowed-base-branches"": [""main"", ""rel/*""], ""draft"": false, ""github-token"": ""${{ secrets.GH_AW_GITHUB_TOKEN }}"", ""max"": 3, ""protected-files"": ""fallback-to-issue"", ""title-prefix"": ""[fix] ""}",1
+safe-outputs.create-pull-request,"{""allowed-files"": [""src/**/*.cs""], ""base-branch"": ""main"", ""draft"": false, ""excluded-files"": ["".github/**""], ""labels"": [""flaky-test""], ""max"": 1, ""title-prefix"": ""[Flaky Test] ""}",1
+safe-outputs.create-pull-request,"{""auto-close-issue"": false, ""base-branch"": ""main"", ""draft"": false, ""excluded-files"": ["".github/**""], ""labels"": [""flaky-test""], ""max"": 3, ""title-prefix"": ""[Flaky Test Fix] ""}",1
+safe-outputs.create-pull-request,"{""base-branch"": ""develop"", ""draft"": false, ""if-no-changes"": ""ignore"", ""labels"": [""automated""], ""title-prefix"": ""[changelog-sync] ""}",1
+safe-outputs.create-pull-request,"{""base-branch"": ""develop"", ""draft"": false, ""if-no-changes"": ""ignore"", ""labels"": [""documentation"", ""automated""], ""title-prefix"": ""[doc-sync] ""}",1
+safe-outputs.create-pull-request,"{""allowed-files"": [""src/libraries/**"", ""src/coreclr/**"", ""src/mono/**"", ""src/tests/**"", ""src/native/**"", ""eng/testing/**""], ""allowed-labels"": [""agentic-workflows""], ""draft"": true, ""labels"": [""agentic-workflows""], ""max"": 5, ""protected-files"": ""blocked"", ""title-prefix"": ""[ci-fix] ""}",1
+safe-outputs.create-pull-request,"{""allowed-files"": ["".github/workflows/ci-failure-scan.md"", "".github/workflows/ci-failure-fix.md"", "".github/workflows/shared/create-kbe.instructions.md""], ""allowed-labels"": [""agentic-workflows""], ""draft"": true, ""labels"": [""agentic-workflows""], ""max"": 1, ""protected-files"": {""exclude"": ["".github/""], ""policy"": ""blocked""}, ""title-prefix"": ""[ci-scan-feedback] ""}",1
+safe-outputs.create-pull-request,"{""labels"": [""agentic-workflows"", ""automated"", ""dependencies""], ""protected-files"": ""fallback-to-issue"", ""title-prefix"": ""[agentic-workflows] ""}",1
+safe-outputs.create-pull-request,"{""base-branch"": ""main"", ""draft"": true, ""max"": 1, ""preserve-branch-name"": true}",1
+safe-outputs.create-pull-request,"{""allowed-base-branches"": [""8.19"", ""9.*""], ""auto-close-issue"": false, ""draft"": false, ""fallback-as-issue"": false, ""labels"": [""backport""], ""max"": 8, ""protected-files"": ""allowed""}",1
+safe-outputs.create-pull-request,"{""allowed-base-branches"": [""main"", ""9.*"", ""8.*"", ""7.*""], ""base-branch"": ""main"", ""draft"": true, ""if-no-changes"": ""ignore"", ""labels"": [""flaky-test-fixer""], ""max"": 1, ""patch-format"": ""am"", ""protected-files"": ""fallback-to-issue""}",1
+safe-outputs.create-pull-request,"{""draft"": true, ""labels"": [""automation"", ""e2e""], ""title-prefix"": ""e2e-healer: ""}",1
+safe-outputs.create-pull-request,"{""draft"": false, ""expires"": 30, ""labels"": [""pylib-sync""], ""title-prefix"": ""Update ""}",1
+safe-outputs.create-pull-request,"{""draft"": true, ""labels"": [""automation"", ""clippy""], ""max"": 4, ""protected-files"": ""fallback-to-issue"", ""title-prefix"": ""[Clippy] ""}",1
+safe-outputs.create-pull-request,"{""auto-close-issue"": false, ""draft"": false, ""labels"": [""change-factory"", ""no-changelog""], ""max"": 1, ""patch-format"": ""am""}",1
+safe-outputs.create-pull-request,"{""draft"": false, ""labels"": [""deadcode-cleanup"", ""automated-cleanup"", ""no-changelog""], ""max"": 1, ""patch-format"": ""am""}",1
+safe-outputs.create-pull-request,"{""labels"": [""code-factory""], ""max"": 1, ""patch-format"": ""am""}",1
+safe-outputs.create-pull-request,"{""auto-close-issue"": false, ""draft"": false, ""labels"": [""reproducer-factory""], ""max"": 1}",1
+safe-outputs.create-pull-request,"{""labels"": [""automated-analysis"", ""documentation""], ""max"": 1, ""patch-format"": ""am""}",1
+safe-outputs.create-pull-request,"{""max"": 1, ""preserve-branch-name"": true, ""recreate-ref"": true}",1
+safe-outputs.create-pull-request,"{""max"": 1, ""preserve-branch-name"": true}",1
+safe-outputs.create-pull-request,"{""draft"": true, ""labels"": [""automation"", ""keybot""], ""max"": 4, ""protected-files"": ""fallback-to-issue"", ""title-prefix"": ""[KeyBot] ""}",1
+safe-outputs.create-pull-request,"{""allowed-files"": ["".github/agentic-wiki/**""], ""labels"": [""documentation"", ""automated""], ""protected-files"": ""allowed"", ""title-prefix"": ""[agentic-wiki]""}",1
+safe-outputs.create-pull-request,"{""expires"": ""1d"", ""labels"": [""refactoring"", ""code-quality"", ""automation""], ""protected-files"": ""fallback-to-issue"", ""title-prefix"": ""[code-simplifier] ""}",1
+safe-outputs.create-pull-request,"{""draft"": true, ""labels"": [""automation"", ""performance""], ""max"": 4, ""protected-files"": ""fallback-to-issue"", ""title-prefix"": ""[perf-improver] ""}",1
+safe-outputs.create-pull-request,"{""draft"": true, ""labels"": [""automation"", ""testing""], ""max"": 4, ""protected-files"": ""fallback-to-issue"", ""title-prefix"": ""[test-improver] ""}",1
+safe-outputs.create-pull-request,"{""draft"": true, ""expires"": ""2d"", ""labels"": [""documentation"", ""automation""], ""protected-files"": ""fallback-to-issue"", ""title-prefix"": ""[docs] ""}",1
+safe-outputs.create-pull-request,"{""allowed-files"": ["".github/copilot-instructions.md"", "".github/instructions/**"", "".github/prompts/**"", "".github/agents/**"", ""AGENTS.md""], ""assignees"": [""copilot""], ""draft"": false, ""fallback-as-issue"": true, ""if-no-changes"": ""ignore"", ""labels"": [""automation"", ""copilot-instructions""], ""preserve-branch-name"": true, ""protected-files"": ""allowed"", ""recreate-ref"": true, ""title-prefix"": ""[auto] ""}",1
+safe-outputs.create-pull-request,"{""base-branch"": ""develop"", ""protected-files"": ""allowed""}",1
+safe-outputs.create-pull-request,"{""draft"": true, ""labels"": [""automation"", ""testing""], ""max"": 4, ""protected-files"": ""fallback-to-issue"", ""title-prefix"": ""[Test Improver] ""}",1
+safe-outputs.create-pull-request,"{""allowed-files"": [""global.json"", ""templates/**/global.json"", ""templates/**/Directory.Packages.props"", ""templates/**/.config/dotnet-tools.json"", ""templates/Aspire/ReactApp/ReactApp.Web/package.json"", ""templates/Aspire/ReactApp/ReactApp.Web/pnpm-lock.yaml"", ""templates/**/.github/workflows/*.yml"", ""templates/**/.github/workflows/*.yaml"", ""templates/Aspire/ReactApp/Infra/providers.tf""], ""auto-merge"": true, ""draft"": false, ""if-no-changes"": ""ignore"", ""labels"": [""dependencies"", ""automated""], ""preserve-branch-name"": true, ""protected-files"": ""allowed"", ""title-prefix"": ""[bot] ""}",1
+safe-outputs.create-pull-request,"{""labels"": [""dependencies""], ""title-prefix"": ""chore: ""}",1
+safe-outputs.create-pull-request,"{""labels"": [""automation""], ""max"": 1, ""title-prefix"": ""[Automated] ""}",1
+safe-outputs.create-pull-request,"{""allowed-base-branches"": [""main"", ""release/*""], ""base-branch"": ""main"", ""draft"": true, ""fallback-as-issue"": true, ""labels"": [""docs-from-code""], ""protected-files"": ""blocked"", ""target-repo"": ""microsoft/aspire.dev"", ""title-prefix"": ""[docs] ""}",1
+safe-outputs.create-pull-request,"{""allowed-base-branches"": [""main""], ""base-branch"": ""main"", ""draft"": true, ""fallback-as-issue"": false, ""labels"": [""docs-from-code""], ""protected-files"": ""blocked"", ""reviewers"": ""IEvangelist"", ""target-repo"": ""microsoft/aspire.dev"", ""title-prefix"": ""[support] ""}",1
+safe-outputs.create-pull-request,"{""allowed-files"": ["".github/docs/**""], ""draft"": false, ""max"": 1, ""protected-files"": ""allowed"", ""title-prefix"": ""[Agentic State Machine] ""}",1
+safe-outputs.create-pull-request,"{""draft"": false, ""labels"": [""automation"", ""Flaky"", ""NO_RELEASE_NOTES""], ""max"": 1, ""protected-files"": ""fallback-to-issue"", ""title-prefix"": ""[LabelOps Flake] ""}",1
+safe-outputs.create-pull-request,"{""draft"": true, ""labels"": [""automation"", ""Area-ProjectsAndBuild""], ""max"": 1, ""protected-files"": ""fallback-to-issue"", ""title-prefix"": ""[msbuild-quality] ""}",1
+safe-outputs.create-pull-request,"{""allowed-files"": [""tests/**"", ""vsintegration/tests/**""], ""auto-merge"": true, ""draft"": false, ""labels"": [""NO_RELEASE_NOTES"", ""AI-Issue-Regression-PR""], ""max"": 10, ""reviewers"": [""abonie"", ""T-Gro""], ""title-prefix"": ""Add regression test: ""}",1
+safe-outputs.create-pull-request,"{""draft"": true, ""github-token-for-extra-empty-commit"": ""app"", ""labels"": [""automation"", ""repo-assist""], ""max"": 4, ""protected-files"": ""fallback-to-issue""}",1
+safe-outputs.create-pull-request,"{""draft"": true, ""labels"": [""automation"", ""repo-assist""], ""max"": 1, ""protected-files"": ""fallback-to-issue"", ""title-prefix"": ""[repo-assist] ""}",1
+safe-outputs.create-pull-request,"{""draft"": false, ""if-no-changes"": ""ignore"", ""labels"": [""automation"", ""workflow-optimization""], ""title-prefix"": ""[q] ""}",1
+safe-outputs.create-pull-request,"{""base-branch"": ""master"", ""draft"": true, ""labels"": [""automation"", ""repo-assist""], ""max"": 4, ""protected-files"": ""fallback-to-issue"", ""title-prefix"": ""[repo-assist] ""}",1
+safe-outputs.create-pull-request,"{""allowed-base-branches"": [""stable""], ""base-branch"": ""stable"", ""draft"": true, ""max"": 1}",1
+safe-outputs.create-pull-request,"{""auto-close-issue"": false, ""draft"": true, ""labels"": [""security""], ""max"": 1, ""protected-files"": ""allowed"", ""title-prefix"": ""[agent] ""}",1
+safe-outputs.create-pull-request,"{""base-branch"": ""main"", ""draft"": false, ""if-no-changes"": ""ignore"", ""labels"": [""documentation"", ""automated-pr""], ""preserve-branch-name"": true, ""title-prefix"": ""[changelog] ""}",1
+safe-outputs.create-pull-request,"{""draft"": true, ""if-no-changes"": ""ignore"", ""labels"": [""automated-pr""], ""preserve-branch-name"": true, ""title-prefix"": ""[coverage-autofix] ""}",1
+safe-outputs.create-pull-request,"{""draft"": true, ""if-no-changes"": ""ignore"", ""labels"": [""documentation"", ""automated-pr""], ""preserve-branch-name"": true, ""title-prefix"": ""[docs-improvement] ""}",1
+safe-outputs.create-pull-request,"{""draft"": true, ""if-no-changes"": ""ignore"", ""labels"": [""automated-pr""], ""preserve-branch-name"": true, ""title-prefix"": ""[python-version]""}",1
+safe-outputs.create-pull-request,"{""draft"": false, ""if-no-changes"": ""ignore"", ""labels"": [""dependencies"", ""docker"", ""automated-pr""], ""preserve-branch-name"": true, ""title-prefix"": ""[docker-netsnmp-update] ""}",1
+safe-outputs.create-pull-request,"{""draft"": false, ""if-no-changes"": ""ignore"", ""labels"": [""dependencies"", ""docker"", ""automated-pr""], ""preserve-branch-name"": true, ""title-prefix"": ""[docker-python-update] ""}",1
+safe-outputs.create-pull-request,"{""labels"": [""docs"", ""lib:${{ github.event.inputs.config }}""], ""max"": 1, ""title-prefix"": ""[Automated][${{ github.event.inputs.config }}] ""}",1
+safe-outputs.create-pull-request,"{""base-branch"": ""main"", ""max"": 1}",1
+safe-outputs.create-pull-request,"{""allowed-files"": [""*.md"", ""**/*.md"", "".agents/**/*.md""], ""auto-merge"": false, ""draft"": false, ""expires"": ""1d"", ""labels"": [""documentation"", ""automation""], ""protected-files"": {""exclude"": ["".agents/""], ""policy"": ""allowed""}, ""title-prefix"": ""[docs] ""}",1
+safe-outputs.create-pull-request,"{""allowed-base-branches"": [""net*.0"", ""xcode*"", ""xcode*.*""], ""draft"": false, ""max"": 10, ""signed-commits"": false}",1
+safe-outputs.create-pull-request,"{""draft"": true, ""labels"": [""documentation""]}",1
+safe-outputs.create-pull-request,"{""base-branch"": ""main"", ""labels"": [""documentation""]}",1
+safe-outputs.create-pull-request,"{""base-branch"": ""main"", ""labels"": [""automated-update"", ""learning-hub"", ""cli-for-beginners""], ""title-prefix"": ""[bot] ""}",1
+safe-outputs.create-pull-request,"{""base-branch"": ""main"", ""draft"": false, ""title-prefix"": ""[codeowner] ""}",1
+safe-outputs.create-pull-request,"{""base-branch"": ""main"", ""labels"": [""automated-update"", ""copilot-updates""], ""title-prefix"": ""[bot] ""}",1
+safe-outputs.create-pull-request,"{""draft"": false, ""labels"": [""automation"", ""changelog""], ""title-prefix"": ""[auto] ""}",1
+safe-outputs.create-pull-request,"{""draft"": true, ""labels"": [""automation"", ""hygiene"", ""factory""], ""protected-files"": ""fallback-to-issue""}",1
+safe-outputs.create-pull-request,"{""draft"": false, ""if-no-changes"": ""warn"", ""labels"": [""automation""], ""protected-files"": ""fallback-to-issue"", ""title-prefix"": ""[auto-update] ""}",1
+safe-outputs.create-pull-request,"{""draft"": true, ""labels"": [""automation"", ""import""], ""protected-files"": ""fallback-to-issue""}",1
+safe-outputs.create-pull-request,"{""if-no-changes"": ""warn"", ""labels"": [""documentation"", ""automated""], ""protected-files"": ""fallback-to-issue"", ""title-prefix"": ""[link-checker] ""}",1
+safe-outputs.create-pull-request,"{""if-no-changes"": ""warn"", ""labels"": [""agentic-workflow-maintainer"", ""automated""], ""protected-files"": ""fallback-to-issue"", ""title-prefix"": ""[agentic-workflow-maintainer] ""}",1
+safe-outputs.create-pull-request,"{""auto-merge"": true, ""draft"": false, ""expires"": ""1d"", ""labels"": [""documentation"", ""automation""], ""protected-files"": ""fallback-to-issue"", ""reviewers"": [""copilot""], ""title-prefix"": ""[docs] ""}",1
+safe-outputs.create-pull-request,"{""expires"": ""1d"", ""labels"": [""refactoring"", ""code-quality"", ""automation""], ""reviewers"": [""copilot"", ""YousefHadder""], ""title-prefix"": ""[code-simplifier] ""}",1
+safe-outputs.create-pull-request,"{""auto-merge"": false, ""draft"": true, ""expires"": ""7d"", ""labels"": [""documentation"", ""automation"", ""contributors""], ""reviewers"": [""YousefHadder""], ""title-prefix"": ""docs(contributors): ""}",1
+safe-outputs.create-pull-request,"{""auto-merge"": false, ""draft"": true, ""expires"": ""1d"", ""labels"": [""documentation"", ""automation""], ""protected-files"": ""fallback-to-issue"", ""reviewers"": [""copilot""], ""title-prefix"": ""[docs] ""}",1
+safe-outputs.create-pull-request,"{""auto-merge"": false, ""draft"": true, ""expires"": ""7d"", ""labels"": [""documentation"", ""automation""], ""protected-files"": ""fallback-to-issue"", ""reviewers"": [""copilot""], ""title-prefix"": ""[wiki] ""}",1
+safe-outputs.create-pull-request,"{""allowed-files"": [""docs/**"", ""blog/**"", ""README.md""], ""draft"": false, ""labels"": [""fixed-link""], ""max"": 10}",1
+safe-outputs.create-pull-request,"{""auto-merge"": true, ""draft"": false, ""expires"": ""2d"", ""labels"": [""documentation"", ""automation""], ""reviewers"": [""copilot""], ""title-prefix"": ""[docs] ""}",1
+safe-outputs.create-pull-request,"{""allowed-files"": [""docs/news/articles/**""], ""draft"": true, ""labels"": [""news"", ""automated""], ""reviewers"": [""navikt/copilot""], ""title-prefix"": ""[news] ""}",1
+safe-outputs.create-pull-request,"{""draft"": false, ""labels"": [""automation"", ""changelog""], ""title-prefix"": ""[changelog] ""}",1
+safe-outputs.create-pull-request,"{""labels"": [""automated"", ""documentation""], ""title-prefix"": ""[docs-update] ""}",1
+safe-outputs.create-pull-request,"{""draft"": true, ""labels"": [""accessibility"", ""automation""], ""title-prefix"": ""[a11y] ""}",1
+safe-outputs.create-pull-request,"{""labels"": [""performance"", ""automation""], ""title-prefix"": ""[perf] ""}",1
+safe-outputs.create-pull-request,"{""draft"": true, ""labels"": [""automation"", ""testing""]}",1
+safe-outputs.create-pull-request,"{""auto-merge"": true, ""draft"": false, ""preserve-branch-name"": true, ""protected-files"": ""fallback-to-issue""}",1
+safe-outputs.create-pull-request,"{""auto-merge"": true, ""expires"": 1, ""preserve-branch-name"": true, ""protected-files"": ""fallback-to-issue""}",1
+safe-outputs.create-pull-request,"{""draft"": true, ""expires"": 14, ""labels"": [""instruction-drift"", ""automation""], ""protected-files"": ""allowed"", ""title-prefix"": ""[drift] ""}",1
+safe-outputs.create-pull-request,"{""draft"": false, ""expires"": ""3d"", ""labels"": [""refactoring"", ""code-quality"", ""automation""], ""reviewers"": [""copilot""], ""title-prefix"": ""[code-simplifier] ""}",1
+safe-outputs.create-pull-request,"{""auto-merge"": true, ""draft"": false, ""expires"": ""3d"", ""labels"": [""documentation"", ""automation""], ""reviewers"": [""copilot""], ""title-prefix"": ""[docs] ""}",1
+safe-outputs.create-pull-request,"{""draft"": true, ""expires"": ""14d"", ""labels"": [""dependencies"", ""automated""], ""reviewers"": [""copilot""], ""title-prefix"": ""[deps] ""}",1
+safe-outputs.create-pull-request,"{""draft"": false, ""if-no-changes"": ""ignore"", ""labels"": [""version-update"", ""automated""]}",1
+safe-outputs.create-pull-request,"{""labels"": [""automated"", ""skill-freshness""], ""title-prefix"": ""[skill-freshness] ""}",1
+safe-outputs.create-pull-request,"{""draft"": true, ""excluded-files"": ["".github/**"", ""src/**"", ""graph/**"", ""scripts/**"", ""tests/flow/common.py"", ""tests/flow/base.py"", ""tests/flow/conftest.py"", ""tests/flow/graph_utils.py"", ""tests/flow/execution_plan_util.py"", ""tests/flow/index_utils.py"", ""tests/flow/constraint_utils.py"", ""tests/flow/query_info.py"", ""tests/flow/random_graph.py"", ""tests/conftest.py"", ""tests/common.py"", ""**/Makefile"", ""**/*.sh"", ""**/*.toml"", ""**/*.yml"", ""**/*.yaml"", ""**/*.lock"", ""**/Cargo.*"", ""**/Dockerfile*"", ""flow.sh"", ""graphblas.sh"", ""redisearch.sh""], ""github-token-for-extra-empty-commit"": ""${{ secrets.RUST_PORT_DISPATCH_TOKEN }}"", ""if-no-changes"": ""ignore"", ""labels"": [""flow-tests-migration"", ""automation""], ""max"": 5, ""title-prefix"": ""[flow-migration] ""}",1
+safe-outputs.create-pull-request,"{""draft"": false, ""expires"": 7, ""labels"": [""documentation""], ""title-prefix"": ""[docs-sync] ""}",1
+safe-outputs.create-pull-request,"{""base-branch"": ""dev"", ""labels"": [""code-review"", ""ai""], ""max"": 5, ""reviewers"": [""okaris""], ""title-prefix"": ""[code-review] ""}",1
+safe-outputs.create-pull-request,"{""draft"": true, ""fallback-as-issue"": true, ""labels"": [""documentation"", ""automation""], ""title-prefix"": ""[Maintenance] Fix broken links""}",1
+safe-outputs.create-pull-request,"{""draft"": true, ""fallback-as-issue"": false, ""if-no-changes"": ""warn"", ""title-prefix"": ""[skill-update] ""}",1
+safe-outputs.create-pull-request,"{""draft"": true, ""labels"": [""ai-docs-audit""], ""title-prefix"": ""[ai-docs] ""}",1
+safe-outputs.create-pull-request,"{""draft"": false, ""labels"": [""automation"", ""ci-fix""], ""max"": 3, ""title-prefix"": ""[CI Fix] ""}",1
+safe-outputs.create-pull-request,"{""draft"": true, ""labels"": [""automation"", ""autoloop""], ""max"": 2, ""protected-files"": ""fallback-to-issue""}",1
+safe-outputs.create-pull-request,"{""auto-close-issue"": false, ""draft"": true, ""excluded-files"": [""**/*.pdf"", ""**/*.pptx"", ""**/*.html"", ""**/*.pptx-html""], ""if-no-changes"": ""ignore"", ""labels"": [""workshop-sync"", ""workshop""], ""max"": 1, ""max-patch-files"": 200, ""max-patch-size"": 2048, ""title-prefix"": ""[workshop-update] ""}",1
 strict,false,18
 tools.github,"{""min-integrity"": ""none"", ""toolsets"": [""all""]}",24
 tools.github,"{""toolsets"": [""all""]}",24

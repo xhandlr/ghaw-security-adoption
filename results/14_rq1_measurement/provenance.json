@@ -1,6 +1,6 @@
 {
   "codebook": "coding/rq1_codebook.yaml",
-  "codebook_sha256": "05e876aa2bcb8513696447e92c8b22960497866b06bc8746384a28ac1036b94d",
+  "codebook_sha256": "208758627cb5a4ce282bef213816b702a6e7622297fd2e98ef966675545c52af",
   "dataset_repo_id": "pavtch/GHAW-H",
   "dataset_revision": "9ccc840bd7e96fd90db3a16548d5482c2833c47d",
   "input_sha256": {
@@ -14,13 +14,13 @@
   "workflows_excluded": 1,
   "outputs_sha256": {
     "bash_added_commands.csv": "ccf04d24eb81302546645868a297e4250b8ba90bcc92692bd4c5286edcb225d6",
-    "direction_overlaps.csv": "8620a69ec48549d077f16131ce9bedd6fff75995ce4110fd4ba47cab39a48cfd",
+    "direction_overlaps.csv": "dd22eca2d489e41a6f75d915fe90483af412bbae2302f878df25ca24ff12bb8a",
     "direction_rest.csv": "720c2688f6efef67bdb4f49dbbb54f92805143b08e34653055f8a48079f79a5c",
-    "direction_summary.csv": "585bef4288e881358b8149250f2a60318f2fda79e6d6f49640296d5c92812407",
+    "direction_summary.csv": "643e3df61bde694e4524fe8eddb9e4197b24a1ba07b99efa274c295571720338",
     "excluded.csv": "3267c3302696b6330567da6d3599d4540c23093a3387bcb61c5a79280fb4ea1b",
-    "measurement.csv": "8c60c37aa3835f06a9abadf35548703e46674cdb8f65958d775000c1809279c4",
+    "measurement.csv": "a7bd1c8225fd13def490feba5f7d27adb4b2d81c4f34e98aabcc83b50a4ffc01",
     "no_rule.csv": "8de49a6c272b0561952f76be8fda7bc50cfe5a2a24f80d0eb8e042934686cbb1",
-    "rest.csv": "3d497e0a8ab9450e2fae24899c428dfbfa61f72a4dd35ddced187698352ac81c",
-    "summary.csv": "8587e8e1c7edf2d6d9437f409b3a8c21fa16f4b85325f6a4b39022d127f9bd93"
+    "rest.csv": "6ce5ae83fc36281460843576d60a6554a0997d31ee2f7792c296f138c19c5e2c",
+    "summary.csv": "22c495eaa704a23378f064c8e84964ebd4ce830335bddec2be97c22bdb23410c"
   }
 }
