@@ -2,6 +2,9 @@ field,state,workflows
 network,explicit_equal_default,113
 network,implicit,249
 network,modified,241
+on.roles,explicit_equal_default,33
+on.roles,implicit,528
+on.roles,modified,42
 permissions,explicit_equal_default,8
 permissions,implicit,3
 permissions,modified,592
@@ -9,8 +12,14 @@ safe-outputs.add-comment,implicit,369
 safe-outputs.add-comment,modified,234
 safe-outputs.add-labels,implicit,482
 safe-outputs.add-labels,modified,121
+safe-outputs.create-issue,default_undetermined,1
+safe-outputs.create-issue,implicit,424
+safe-outputs.create-issue,modified,178
 safe-outputs.create-pull-request,implicit,439
 safe-outputs.create-pull-request,modified,164
+safe-outputs.noop,explicit_equal_default,50
+safe-outputs.noop,implicit,453
+safe-outputs.noop,modified,100
 strict,explicit_equal_default,146
 strict,implicit,439
 strict,modified,18

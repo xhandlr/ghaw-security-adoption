@@ -2,13 +2,20 @@ field,direction,broadens,workflows
 network,more_permissive,domains,205
 network,more_restrictive,,12
 network,no_direction,,24
+on.roles,more_permissive,who can trigger the agent,39
+on.roles,more_restrictive,,3
 permissions,more_permissive,authentication,155
 permissions,more_permissive,read,416
 permissions,more_permissive,write,2
 permissions,no_direction,,19
 safe-outputs.add-comment,more_permissive,commenting,234
 safe-outputs.add-labels,more_permissive,adding labels,121
+safe-outputs.create-issue,more_permissive,issue creation,100
+safe-outputs.create-issue,more_permissive,issues created,22
+safe-outputs.create-issue,no_direction,,56
 safe-outputs.create-pull-request,more_permissive,pull request creation,164
+safe-outputs.noop,more_restrictive,,98
+safe-outputs.noop,no_direction,,2
 strict,more_permissive,strict mode restrictions,18
 tools.bash,more_permissive,commands,140
 tools.bash,more_restrictive,,1

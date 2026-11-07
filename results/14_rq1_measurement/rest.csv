@@ -93,6 +93,9 @@ network,"{""allowed"": [""defaults"", ""rust""]}",1
 network,"{""allowed"": [""defaults"", ""node"", ""python"", ""rust"", ""java"", ""dotnet""]}",1
 network,"{""allowed"": [""defaults"", ""python"", ""node"", ""azure""]}",1
 network,"{""allowed"": [""hacker-news.firebaseio.com""]}",1
+on.roles,"""all""",39
+on.roles,"[""write""]",2
+on.roles,"[""admin"", ""maintainer""]",1
 permissions,"{""contents"": ""read"", ""issues"": ""read"", ""pull-requests"": ""read""}",151
 permissions,"{""contents"": ""read"", ""id-token"": ""write"", ""pull-requests"": ""read""}",104
 permissions,"{""contents"": ""read"", ""pull-requests"": ""read""}",49
@@ -254,6 +257,66 @@ safe-outputs.add-labels,"{""allowed"": [""wontfix""], ""max"": 5, ""target"": ""
 safe-outputs.add-labels,"{""allowed"": [""effort: small"", ""effort: medium"", ""effort: large""], ""max"": 50, ""target"": ""*""}",1
 safe-outputs.add-labels,"{""allowed"": [""bug"", ""needs-info"", ""enhancement"", ""question""]}",1
 safe-outputs.add-labels,"{""max"": 2, ""target"": ""*""}",1
+safe-outputs.create-issue,"{""labels"": [""report"", ""daily-status""], ""title-prefix"": ""[repo-status] ""}",8
+safe-outputs.create-issue,"{""close-older-issues"": true, ""labels"": [""report"", ""daily-status""], ""title-prefix"": ""[repo-status] ""}",5
+safe-outputs.create-issue,"{""max"": 10}",5
+safe-outputs.create-issue,"{""assignees"": ""copilot"", ""expires"": ""2d"", ""group"": true, ""labels"": [""code-quality"", ""automated-analysis"", ""cookie""], ""max"": 3, ""title-prefix"": ""[duplicate-code] ""}",2
+safe-outputs.create-issue,"{""close-older-issues"": true, ""max"": 1}",2
+safe-outputs.create-issue,"{""labels"": [""report"", ""weekly-status""], ""title-prefix"": ""[repo-status] ""}",2
+safe-outputs.create-issue,"{""close-older-issues"": true, ""expires"": 14, ""labels"": [""report"", ""improvements""], ""max"": 1, ""title-prefix"": ""Weekly Improvements:""}",1
+safe-outputs.create-issue,"{""allowed-labels"": [""ci-scan""], ""close-older-issues"": false, ""labels"": [""ci-scan""], ""max"": 5, ""title-prefix"": ""[ci-scan] ""}",1
+safe-outputs.create-issue,"{""allowed-labels"": [""ci-scan-net11""], ""close-older-issues"": false, ""labels"": [""ci-scan-net11""], ""max"": 5, ""title-prefix"": ""[ci-scan-net11] ""}",1
+safe-outputs.create-issue,"{""close-older-issues"": true, ""labels"": [""report"", ""daily-status"", ""s/triaged""], ""title-prefix"": ""[repo-status] ""}",1
+safe-outputs.create-issue,"{""expires"": ""2d"", ""labels"": [""agentic-workflows""], ""max"": 1, ""title-prefix"": ""[file-diet] ""}",1
+safe-outputs.create-issue,"{""expires"": ""2d"", ""labels"": [""agentic-workflows"", ""Area: Documentation""], ""title-prefix"": ""[linter] ""}",1
+safe-outputs.create-issue,"{""expires"": ""2d"", ""labels"": [""agentic-workflows""], ""max"": 1}",1
+safe-outputs.create-issue,"{""allowed-labels"": [""Known Build Error"", ""blocking-clean-ci"", ""blocking-clean-ci-optional""], ""labels"": [""agentic-workflows""], ""max"": 5}",1
+safe-outputs.create-issue,"{""assignees"": ""copilot"", ""expires"": ""2d"", ""group"": true, ""labels"": [""code-quality"", ""automated-analysis""], ""max"": 3, ""title-prefix"": ""[duplicate-code] ""}",1
+safe-outputs.create-issue,"{""close-older-issues"": true, ""labels"": [""report""], ""title-prefix"": ""Relevance Summary:""}",1
+safe-outputs.create-issue,"{""labels"": [""duplicate-code"", ""code-quality"", ""automated-analysis"", ""triaged""], ""max"": 3, ""title-prefix"": ""[duplicate-code] ""}",1
+safe-outputs.create-issue,"{""labels"": [""flaky-test"", ""triaged""], ""max"": 3, ""title-prefix"": ""[flaky-test] ""}",1
+safe-outputs.create-issue,"{""labels"": [""kibana"", ""generated-clients"", ""terraform-provider""], ""max"": 5, ""title-prefix"": ""[kibana-spec-impact] ""}",1
+safe-outputs.create-issue,"{""labels"": [""testing"", ""acceptance-tests"", ""schema-coverage"", ""triaged""], ""max"": 3, ""title-prefix"": ""[schema-coverage] ""}",1
+safe-outputs.create-issue,"{""labels"": [""semantic-refactor"", ""refactoring"", ""code-quality"", ""automated-analysis"", ""triaged""], ""max"": 3, ""title-prefix"": ""[semantic-refactor] ""}",1
+safe-outputs.create-issue,"{""assignees"": [""guitarrapc"", ""copilot""], ""close-older-issues"": true, ""expires"": 7, ""labels"": [""report""], ""title-prefix"": ""[oss status] ""}",1
+safe-outputs.create-issue,"{""expires"": ""1d"", ""group"": true, ""labels"": [""automated-analysis""], ""max"": 5, ""title-prefix"": ""[task-miner] ""}",1
+safe-outputs.create-issue,"{""assignees"": ""copilot"", ""expires"": ""2d"", ""labels"": [""refactoring"", ""code-health"", ""automated-analysis""], ""max"": 1, ""title-prefix"": ""[large-file-simplifier] ""}",1
+safe-outputs.create-issue,"{""expires"": ""2d"", ""labels"": [""quality"", ""automated-analysis""], ""max"": 1}",1
+safe-outputs.create-issue,"{""expires"": ""2d"", ""labels"": [""quality"", ""automated-analysis"", ""cookie""], ""max"": 1}",1
+safe-outputs.create-issue,"{""close-older-issues"": true, ""expires"": 30, ""labels"": [""weekly-report"", ""report""], ""title-prefix"": ""Weekly Report: ""}",1
+safe-outputs.create-issue,"{""close-older-issues"": true, ""labels"": [""report"", ""burndown""], ""title-prefix"": ""[13.3-burndown] ""}",1
+safe-outputs.create-issue,"{""expires"": ""2d"", ""group"": true, ""labels"": [""bot/duplicate-code-detector"", ""bot/skip-grooming""], ""max"": 3, ""title-prefix"": ""[duplicate-code] ""}",1
+safe-outputs.create-issue,"{""labels"": [""testing"", ""e2e testing"", ""ai generated""], ""max"": 1, ""title-prefix"": ""[e2e audit] ""}",1
+safe-outputs.create-issue,"{""close-older-issues"": true, ""labels"": [""automation"", ""status-report""], ""max"": 1, ""title-prefix"": ""\ud83d\udcca Daily Repo Status""}",1
+safe-outputs.create-issue,"{""close-older-issues"": false, ""close-older-key"": ""[bug-hunter]"", ""expires"": ""7d"", ""max"": 1, ""title-prefix"": ""[bug-hunter] ""}",1
+safe-outputs.create-issue,"{""close-older-issues"": false, ""close-older-key"": ""[docs-drift]"", ""expires"": ""7d"", ""max"": 1, ""title-prefix"": ""[docs-drift] ""}",1
+safe-outputs.create-issue,"{""close-older-issues"": false, ""close-older-key"": ""[provider-mapping-sweep]"", ""expires"": ""7d"", ""max"": 1, ""title-prefix"": ""[provider-mapping-sweep] ""}",1
+safe-outputs.create-issue,"{""close-older-issues"": false, ""close-older-key"": ""[provider-parity-explore]"", ""expires"": ""7d"", ""max"": 1, ""title-prefix"": ""[provider-parity-explore] ""}",1
+safe-outputs.create-issue,"{""close-older-issues"": false, ""close-older-key"": ""[regression-detector]"", ""expires"": ""7d"", ""max"": 1, ""title-prefix"": ""[regression-detector] ""}",1
+safe-outputs.create-issue,"{""close-older-issues"": false, ""close-older-key"": ""[roundtrip-sweep]"", ""expires"": ""7d"", ""max"": 1, ""title-prefix"": ""[roundtrip-sweep] ""}",1
+safe-outputs.create-issue,"{""close-older-issues"": false, ""close-older-key"": ""[stale-finder]"", ""expires"": ""7d"", ""max"": 1, ""title-prefix"": ""[stale-finder] ""}",1
+safe-outputs.create-issue,"{""close-older-issues"": false, ""close-older-key"": ""[streaming-resilience-sweep]"", ""expires"": ""7d"", ""max"": 1, ""title-prefix"": ""[streaming-resilience-sweep] ""}",1
+safe-outputs.create-issue,"{""close-older-issues"": true, ""labels"": [""duplicate-review""], ""max"": 1}",1
+safe-outputs.create-issue,"{""labels"": [""release"", ""automated"", ""ci-failure""], ""max"": 1, ""title-prefix"": ""[release-doctor] ""}",1
+safe-outputs.create-issue,"{""labels"": [""documentation"", ""copilot""], ""max"": 1, ""title-prefix"": ""[Doc Gap]""}",1
+safe-outputs.create-issue,"{""close-older-issues"": true, ""expires"": ""7d"", ""max"": 4, ""title-prefix"": ""[dependabot-bundle]""}",1
+safe-outputs.create-issue,"{""expires"": ""7d"", ""max"": 3, ""title-prefix"": ""[docs-noob]""}",1
+safe-outputs.create-issue,"{""expires"": ""7d"", ""max"": 3, ""title-prefix"": ""[docs-site]""}",1
+safe-outputs.create-issue,"{""expires"": ""7d"", ""max"": 3, ""title-prefix"": ""[mcp-tool-check]""}",1
+safe-outputs.create-issue,"{""labels"": [""report"", ""agentic-workflows""]}",1
+safe-outputs.create-issue,"{""expires"": ""7d"", ""labels"": [""config"", ""consistency"", ""automation""], ""title-prefix"": ""[config-sync] ""}",1
+safe-outputs.create-issue,"{""expires"": ""2d"", ""labels"": [""refactoring"", ""code-health"", ""automated-analysis"", ""cookie""], ""max"": 1, ""title-prefix"": ""[file-diet] ""}",1
+safe-outputs.create-issue,"{""expires"": ""2d"", ""labels"": [""automation"", ""cli"", ""documentation""], ""title-prefix"": ""[cli-consistency] ""}",1
+safe-outputs.create-issue,"{""expires"": ""5d"", ""labels"": [""refactoring""], ""title-prefix"": ""[simplifier] ""}",1
+safe-outputs.create-issue,"{""expires"": ""30d"", ""labels"": [""e2e"", ""enhancement"", ""automation""], ""max"": 2, ""title-prefix"": ""[e2e-scan] ""}",1
+safe-outputs.create-issue,"{""labels"": [""maintenance"", ""ci-cd""], ""max"": 1, ""title-prefix"": ""[ci-health] ""}",1
+safe-outputs.create-issue,"{""labels"": [""bug"", ""integration-test""], ""max"": 10}",1
+safe-outputs.create-issue,"{""close-older-issues"": true, ""labels"": [""report"", ""weekly-status""], ""title-prefix"": ""[repo-status] ""}",1
+safe-outputs.create-issue,"{""assignees"": [""copilot""], ""expires"": false, ""group"": true, ""labels"": [""enhancement""], ""max"": 8, ""title-prefix"": ""[duplication] ""}",1
+safe-outputs.create-issue,"{""labels"": [""security"", ""automated-analysis""], ""max"": 1, ""title-prefix"": ""[runtime-threat-scan] ""}",1
+safe-outputs.create-issue,"{""labels"": [""docs-from-code""], ""target-repo"": ""dotnet/docs-maui"", ""title-prefix"": ""[maui-labs docs] ""}",1
+safe-outputs.create-issue,"{""expires"": ""2d"", ""labels"": [""automation"", ""code-quality""], ""max"": 1, ""title-prefix"": ""[linter] ""}",1
+safe-outputs.create-issue,"{""max"": 1, ""title-prefix"": ""[daily activity] ""}",1
 safe-outputs.create-pull-request,"{""draft"": true, ""labels"": [""automation"", ""repo-assist""], ""max"": 4, ""protected-files"": ""fallback-to-issue"", ""title-prefix"": ""[repo-assist] ""}",14
 safe-outputs.create-pull-request,"{""draft"": true, ""labels"": [""automation"", ""repo-assist""], ""max"": 4, ""protected-files"": ""fallback-to-issue"", ""title-prefix"": ""[Repo Assist] ""}",8
 safe-outputs.create-pull-request,"{""draft"": true}",7
@@ -375,6 +438,9 @@ safe-outputs.create-pull-request,"{""draft"": true, ""labels"": [""ai-docs-audit
 safe-outputs.create-pull-request,"{""draft"": false, ""labels"": [""automation"", ""ci-fix""], ""max"": 3, ""title-prefix"": ""[CI Fix] ""}",1
 safe-outputs.create-pull-request,"{""draft"": true, ""labels"": [""automation"", ""autoloop""], ""max"": 2, ""protected-files"": ""fallback-to-issue""}",1
 safe-outputs.create-pull-request,"{""auto-close-issue"": false, ""draft"": true, ""excluded-files"": [""**/*.pdf"", ""**/*.pptx"", ""**/*.html"", ""**/*.pptx-html""], ""if-no-changes"": ""ignore"", ""labels"": [""workshop-sync"", ""workshop""], ""max"": 1, ""max-patch-files"": 200, ""max-patch-size"": 2048, ""title-prefix"": ""[workshop-update] ""}",1
+safe-outputs.noop,"{""report-as-issue"": false}",80
+safe-outputs.noop,"{""max"": 1, ""report-as-issue"": false}",16
+safe-outputs.noop,"{""max"": 5, ""report-as-issue"": false}",2
 strict,false,18
 tools.github,"{""min-integrity"": ""none"", ""toolsets"": [""all""]}",24
 tools.github,"{""toolsets"": [""all""]}",24

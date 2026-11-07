@@ -7,5 +7,8 @@ tools.web-fetch,12,0,0
 safe-outputs.add-comment,234,0,0
 safe-outputs.create-pull-request,164,0,0
 safe-outputs.add-labels,121,0,0
+safe-outputs.noop,100,0,0
+safe-outputs.create-issue,178,0,0
+on.roles,42,0,0
 network,241,1,0
 permissions,592,0,0

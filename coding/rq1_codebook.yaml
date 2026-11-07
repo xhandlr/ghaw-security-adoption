@@ -23,9 +23,10 @@ states:
   explicit_equal_default: The field is declared with a value equal to the default.
   modified: The field is declared with a value different from the default.
   default_undetermined: >
-    The field is declared, but its default depends on the engine and could
-    not be determined for the workflow's engine, so it is unknown whether
-    the value equals the default. No direction is assigned.
+    The field is declared, but its default depends on the engine or on the
+    other keys of its parent and could not be determined for the workflow,
+    so it is unknown whether the value equals the default. No direction is
+    assigned.
 
 rule_types:
   exact_value: The written value is equal to value (same type and content).
@@ -51,6 +52,19 @@ rule_types:
     adds_and_removes (it has elements outside value and lacks elements of
     value). With excludes, the list must also not contain, as literal
     text, any of the elements of excludes.
+  default_by_context: >
+    Not a rule but a field-level setting: the default depends on the other
+    keys of the field's parent mapping. If the parent has a key in
+    enabled_by_others.keys, the field is disabled by default and declaring
+    it is modified with the direction of disabled. Otherwise, if it has a key
+    in undetermined_keys, the state is default_undetermined. Otherwise the
+    field is enabled by default and its usual rules apply.
+  aliases: >
+    Not a rule but a field-level setting: before any rule is applied, each
+    alias in aliases.map is replaced by its canonical name in the declared
+    value (a string, or the strings of a list). With string_as_list, a
+    string not listed in its except is first read as a one-element list.
+    The measurement keeps the value as written.
   list_contains_any: The value is a list that contains, as literal text, at least one of the elements of value.
   dimensions: >
     The value is a dictionary (an empty one counts) whose keys are
@@ -58,7 +72,9 @@ rule_types:
     key rule whose key matches and whose test holds gives its effect
     (equal, broadens, narrows, broadens_and_narrows or no_direction); a key
     no rule matches takes unlisted_keys. Tests: value_in {values},
-    present, set_vs_default {equal, broader, narrower, adds_and_removes},
+    present, number_above {value} (the value is a number, not a
+    GitHub Actions expression, greater than value), set_vs_default
+    {equal, broader, narrower, adds_and_removes},
     where the list is expanded with dimensions.shorthands and "*" means
     every value (broader). match is all_equal (every key is equal),
     broadens_and_narrows, broadens_only or narrows_only.
@@ -681,6 +697,392 @@ fields:
             Declaring add-labels enables adding labels, which is disabled by
             default. Its inner keys do not change the direction.
           source: pkg/parser/schemas/main_workflow_schema.json
+
+  safe-outputs.noop:
+    default:
+      enabled: true
+      max: 1
+      report-as-issue: true
+    source:
+      - file: docs/src/content/docs/reference/safe-outputs.md
+        line: 1262
+        quote: "Enabled by default."
+      - file: pkg/parser/schemas/main_workflow_schema.json
+        line: 11416
+        quote: "Maximum number of noop messages (default: 1)"
+      - file: pkg/parser/schemas/main_workflow_schema.json
+        line: 11421
+        quote: "\"default\": 1"
+      - file: pkg/parser/schemas/main_workflow_schema.json
+        line: 11436
+        quote: "Controls whether noop runs are reported as issue comments (default: true)."
+      - file: pkg/parser/schemas/main_workflow_schema.json
+        line: 11437
+        quote: "\"default\": true"
+    granularity: Child of safe-outputs, measured as its own unit (guide section 5, no evidence of dependency).
+    dimensions:
+      keys:
+        - key: report-as-issue
+          test: {value_in: [true]}
+          effect: equal
+          reason: Equal to the default.
+        - key: report-as-issue
+          test: {value_in: [false]}
+          effect: narrows
+          reason: The noop message is not posted as an issue comment.
+          source:
+            file: pkg/parser/schemas/main_workflow_schema.json
+            line: 11436
+            quote: "Set to false to disable posting to the no-op runs issue."
+        - key: max
+          test: {value_in: [1]}
+          effect: equal
+          reason: Equal to the default.
+        - key: max
+          test: {number_above: 1}
+          effect: broadens
+          broadens: noop messages
+          reason: More noop messages than the default. The schema minimum is 1 (line 11420), so no number narrows.
+        - key: max
+          test: {present: true}
+          effect: no_direction
+          reason: A GitHub Actions expression, whose value is not known until the workflow runs.
+      unlisted_keys: no_direction
+    equal_to_default:
+      rule: any of these forms
+      values:
+        - id: noop_null
+          type: exact_value
+          value: null
+          reason: The schema describes null as the default configuration.
+          source:
+            file: pkg/parser/schemas/main_workflow_schema.json
+            line: 11469
+            quote: "Enable noop output with default configuration (max: 1)"
+        - id: noop_all_keys_equal
+          type: dimensions
+          match: all_equal
+          reason: An empty mapping, or a mapping where every declared key equals its default. Undeclared keys keep their default.
+    forms:
+      - id: noop_false
+        type: exact_value
+        value: false
+        decision: modified
+        reason: Disables the noop output.
+        source:
+          - file: pkg/parser/schemas/main_workflow_schema.json
+            line: 11474
+            quote: "Explicitly disable noop output (false). Noop is enabled by default when safe-outputs is configured."
+          - file: docs/src/content/docs/reference/safe-outputs.md
+            line: 1267
+            quote: "noop: false       # explicitly disable"
+    rest:
+      id: noop_rest
+      type: rest
+      decision: modified
+      reason: "Applies the definition of modified: declared value different from the default."
+    direction:
+      applies_to: modified
+      order: >
+        The first category that matches applies. Each declared key of the
+        mapping is classified with dimensions.keys, as in tools.github.
+      categories:
+        - id: noop_dir_false
+          type: exact_value
+          value: false
+          direction: more_restrictive
+          reason: Disables the noop output.
+        - id: noop_dir_mixed
+          type: dimensions
+          match: broadens_and_narrows
+          direction: no_direction
+          reason: Some keys broaden and others narrow, as in tools.github.
+        - id: noop_dir_broadens
+          type: dimensions
+          match: broadens_only
+          direction: more_permissive
+          broadens: from_keys
+          reason: At least one key broadens and none narrows.
+        - id: noop_dir_narrows
+          type: dimensions
+          match: narrows_only
+          direction: more_restrictive
+          reason: At least one key narrows and none broadens.
+      rest:
+        id: noop_dir_other
+        type: rest
+        direction: no_direction
+        reason: Modified value where no key has a direction.
+
+  safe-outputs.create-issue:
+    default:
+      enabled: conditional
+      max: 1
+    source:
+      - file: docs/src/content/docs/reference/safe-outputs.md
+        line: 12
+        quote: "When no `safe-outputs:` section is present (or when only [system types](#system-types-auto-enabled) are configured), `create-issue` is automatically enabled with conservative defaults (`max: 1`, labels and title-prefix set to the workflow ID)."
+      - file: docs/src/content/docs/reference/safe-outputs.md
+        line: 25
+        quote: "`create-issue` is auto-injected only when no non-system safe outputs are configured."
+      - file: docs/src/content/docs/reference/safe-outputs.md
+        line: 152
+        quote: "Auto-injected when no `safe-outputs:` section is present or when only system types (`noop`, `missing-tool`, `missing-data`) are configured"
+    granularity: Child of safe-outputs, measured as its own unit (guide section 5, specific dependency).
+    default_by_context:
+      system_outputs: [noop, missing-tool, missing-data]
+      system_outputs_source:
+        file: docs/src/content/docs/reference/safe-outputs.md
+        lines: 145-152
+        note: Table "System Types (Auto-Enabled)".
+      enabled_by_others:
+        note: >
+          Non-system safe output types: the keys of the tables of safe output
+          types in safe-outputs.md (lines 31 to 118), without create-issue.
+          If the parent declares any of them, create-issue is not injected.
+        source:
+          file: docs/src/content/docs/reference/safe-outputs.md
+          lines: 31-118
+        keys:
+          - update-issue
+          - close-issue
+          - link-sub-issue
+          - create-discussion
+          - update-discussion
+          - close-discussion
+          - create-pull-request
+          - update-pull-request
+          - close-pull-request
+          - approve-workflow-run
+          - merge-pull-request
+          - create-pull-request-review-comment
+          - reply-to-pull-request-review-comment
+          - resolve-pull-request-review-thread
+          - add-reviewer
+          - push-to-pull-request-branch
+          - add-comment
+          - hide-comment
+          - add-labels
+          - remove-labels
+          - assign-milestone
+          - assign-to-agent
+          - assign-to-user
+          - unassign-from-user
+          - set-issue-type
+          - set-issue-field
+          - jira-create-issue
+          - jira-update-issue
+          - jira-add-comment
+          - jira-add-label
+          - create-project
+          - update-project
+          - create-project-status-update
+          - update-release
+          - upload-artifact
+          - upload-asset
+          - ado-create-work-item
+          - ado-update-work-item
+          - ado-comment-on-work-item
+          - ado-assign-work-item
+          - ado-link-work-items
+          - ado-upload-workitem-attachment
+          - dispatch-workflow
+          - call-workflow
+          - dispatch-repository
+          - create-code-scanning-alert
+          - autofix-code-scanning-alert
+          - create-check-run
+          - create-agent-session
+          - linear-create-issue
+          - linear-add-comment
+          - linear-update-issue
+      undetermined_keys: [jobs]
+      undetermined_reason: >
+        safe-outputs.jobs (custom safe output jobs, safe-outputs.md line 154)
+        is not in the system types table, and no source states whether it
+        prevents create-issue from being injected.
+      disabled:
+        id: createissue_disabled_declared
+        direction: more_permissive
+        direction_id: createissue_dir_enabled
+        broadens: issue creation
+        reason: >
+          With another non-system safe output, create-issue is not injected, so
+          declaring it (null or an object with any keys) enables issue
+          creation. Its inner keys do not change the direction.
+      undetermined:
+        id: createissue_jobs_undetermined
+        reason: The parent has jobs and no other non-system safe output.
+    dimensions:
+      keys:
+        - key: max
+          test: {value_in: [1]}
+          effect: equal
+          reason: Equal to the default.
+        - key: max
+          test: {number_above: 1}
+          effect: broadens
+          broadens: issues created
+          reason: More issues than the default.
+          source:
+            file: pkg/parser/schemas/main_workflow_schema.json
+            line: 6051
+            quote: "Maximum number of issues to create (default: 1)"
+        - key: max
+          test: {present: true}
+          effect: no_direction
+          reason: A GitHub Actions expression, whose value is not known until the workflow runs.
+        - key: allowed-labels
+          test: {present: true}
+          effect: narrows
+          reason: Restricts the labels the agent can use.
+          source:
+            file: pkg/parser/schemas/main_workflow_schema.json
+            line: 6022
+            quote: "When specified, the agent can only use labels from this list."
+      unlisted_keys: no_direction
+    equal_to_default:
+      rule: >
+        Applies only when create-issue is enabled by default (no other
+        non-system safe output and no jobs). The schema accepts only an
+        object or null (oneOf at line 5995, no boolean form).
+      values:
+        - id: createissue_null
+          type: exact_value
+          value: null
+          reason: The schema describes null as the default configuration.
+          source:
+            file: pkg/parser/schemas/main_workflow_schema.json
+            line: 6194
+            quote: "Enable issue creation with default configuration"
+        - id: createissue_all_keys_equal
+          type: dimensions
+          match: all_equal
+          reason: An empty mapping, or a mapping where every declared key equals its default.
+    rest:
+      id: createissue_rest
+      type: rest
+      decision: modified
+      reason: "Applies the definition of modified: declared value different from the default."
+    direction:
+      applies_to: modified
+      order: >
+        The first category that matches applies. Each declared key of the
+        mapping is classified with dimensions.keys, as in tools.github.
+        Keys with no direction do not change the result when other keys
+        have one.
+      categories:
+        - id: createissue_dir_mixed
+          type: dimensions
+          match: broadens_and_narrows
+          direction: no_direction
+          reason: Some keys broaden and others narrow, as in tools.github.
+        - id: createissue_dir_broadens
+          type: dimensions
+          match: broadens_only
+          direction: more_permissive
+          broadens: from_keys
+          reason: At least one key broadens and none narrows.
+        - id: createissue_dir_narrows
+          type: dimensions
+          match: narrows_only
+          direction: more_restrictive
+          reason: At least one key narrows and none broadens.
+      rest:
+        id: createissue_dir_other
+        type: rest
+        direction: no_direction
+        reason: Modified value where no key has a direction.
+
+  on.roles:
+    default: [admin, maintain, write]  # [admin, maintainer, write] with maintainer normalized to maintain
+    source:
+      - file: pkg/parser/schemas/main_workflow_schema.json
+        line: 2109
+        quote: "Repository access roles required to trigger agentic workflows. Defaults to ['admin', 'maintainer', 'write'] for security. Use 'all' to allow any authenticated user (\u26a0\ufe0f security consideration)."
+      - file: docs/src/content/docs/reference/triggers.md
+        line: 469
+        quote: "Controls who can trigger agentic workflows using an **exact-match allowlist** against the actor's repository role. Defaults to `[admin, maintainer, write]`."
+      - file: docs/src/content/docs/reference/triggers.md
+        line: 475
+        quote: "roles: [admin, maintainer, write]   # Default; use `all` to allow any user (\u26a0\ufe0f caution)"
+      - file: pkg/workflow/role_checks.go
+        lines: 148-149
+        quote: "defaultRoles := []string{\"admin\", \"maintainer\", \"write\"}"
+    aliases:
+      map: {maintainer: maintain}
+      reason: The role check normalizes maintainer to maintain on both sides before an exact comparison.
+      string_as_list:
+        except: [all]
+        reason: A single role written as a string is read as a list with that role. all keeps its own rule.
+        source:
+          file: pkg/parser/schemas/main_workflow_schema.json
+          lines: 2111-2118
+          quote: "Single repository permission level that can trigger the workflow."
+      source:
+        file: actions/setup/js/check_permissions_utils.cjs
+        lines: 12-19, 299-303
+        quote: "return role === \"maintainer\" ? \"maintain\" : role;"
+    granularity: >
+      Child of on, measured as its own unit. A roles key at the top level of
+      the frontmatter is not on.roles and is not counted.
+    equal_to_default:
+      rule: same set of roles, after aliases
+      values:
+        - id: roles_same_set
+          type: list_same_set
+          value: [admin, maintain, write]
+          reason: Same roles as the default, regardless of order.
+    rest:
+      id: roles_rest
+      type: rest
+      decision: modified
+      reason: "Applies the definition of modified: declared value different from the default."
+    direction:
+      applies_to: modified
+      order: The first category that matches applies.
+      categories:
+        - id: roles_dir_all
+          type: exact_value
+          value: all
+          direction: more_permissive
+          broadens: who can trigger the agent
+          reason: Disables the role check.
+          source:
+            - file: pkg/parser/schemas/main_workflow_schema.json
+              line: 2109
+              quote: "Use 'all' to allow any authenticated user"
+            - file: docs/src/content/docs/reference/triggers.md
+              line: 352
+              quote: "Unless `on.roles: all` is set (which disables the check entirely)"
+        - id: roles_dir_subset
+          type: list_vs_set
+          relation: subset
+          value: [admin, maintain, write]
+          direction: more_restrictive
+          reason: Only part of the default roles can trigger the agent (exact-match allowlist).
+          source:
+            file: docs/src/content/docs/reference/triggers.md
+            line: 469
+            quote: "Controls who can trigger agentic workflows using an **exact-match allowlist** against the actor's repository role."
+        - id: roles_dir_superset
+          type: list_vs_set
+          relation: superset
+          value: [admin, maintain, write]
+          direction: more_permissive
+          broadens: who can trigger the agent
+          reason: All the default roles and others can trigger the agent.
+        - id: roles_dir_mixed
+          type: list_vs_set
+          relation: adds_and_removes
+          value: [admin, maintain, write]
+          direction: no_direction
+          reason: Adds roles outside the default and removes roles of the default.
+      rest:
+        id: roles_dir_other
+        type: rest
+        direction: no_direction
+        reason: Modified value that matches no earlier category (for example a single role written as a string).
 
   network:
     default: defaults

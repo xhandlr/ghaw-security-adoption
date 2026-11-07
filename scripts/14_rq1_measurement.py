@@ -33,6 +33,20 @@ default: engine_allowed, engine_not_allowed or engine_undetermined (an
 engine not listed in default_by_engine counts as undetermined). Only
 modified values get a direction.
 
+Fields with default_by_context (safe-outputs.create-issue) have a default
+that depends on the other keys of their parent mapping. For a declared
+value, the context is: disabled when the parent has a key listed in
+enabled_by_others (the field is then modified, with the direction of the
+disabled entry), undetermined when it has none of those but has a key
+listed in undetermined_keys (state default_undetermined, no direction),
+and enabled otherwise (the field's usual rules apply).
+
+Fields with aliases (on.roles) have each alias replaced by its canonical
+name in the declared value (a string, or the strings of a list) before any
+state or direction rule is applied. With string_as_list, a string not in
+its except list is first turned into a one-element list. The value column
+keeps what the workflow wrote.
+
 Workflows whose frontmatter cannot be read as a dict are excluded and
 listed in excluded.csv.
 """
@@ -130,6 +144,8 @@ def key_test(test, key, value, dimensions):
         return True
     if name == "value_in":
         return canonical(value) in as_set(arg)
+    if name == "number_above":
+        return isinstance(value, (int, float)) and not isinstance(value, bool) and value > arg
     if name == "set_vs_default":
         shorthands = dimensions["shorthands"]
         if key != shorthands["key"]:
@@ -275,6 +291,43 @@ def lock_engines():
                 for row in csv.DictReader(f)}
 
 
+def load_contexts():
+    """{field: default_by_context spec} for fields whose default depends on sibling keys."""
+    codebook = yaml.safe_load(CODEBOOK.read_text())
+    return {name: spec["default_by_context"] for name, spec in codebook["fields"].items()
+            if "default_by_context" in spec}
+
+
+def load_aliases():
+    """{field: {alias: canonical}} for fields whose values have aliases."""
+    codebook = yaml.safe_load(CODEBOOK.read_text())
+    return {name: spec["aliases"] for name, spec in codebook["fields"].items()
+            if "aliases" in spec}
+
+
+def with_aliases(value, spec):
+    aliases = spec["map"]
+    keep = spec.get("string_as_list", {}).get("except")
+    if isinstance(value, str) and keep is not None and value not in keep:
+        value = [value]
+    if isinstance(value, str):
+        return aliases.get(value, value)
+    if isinstance(value, list):
+        return [aliases.get(v, v) if isinstance(v, str) else v for v in value]
+    return value
+
+
+def context_of(doc, name, spec):
+    """disabled / undetermined / enabled from the other keys of the field's parent."""
+    parent = field_value(doc, name.rsplit(".", 1)[0])[1]
+    siblings = set(parent) if isinstance(parent, dict) else set()
+    if siblings & set(spec["enabled_by_others"]["keys"]):
+        return "disabled"
+    if siblings & set(spec["undetermined_keys"]):
+        return "undetermined"
+    return "enabled"
+
+
 def field_value(doc, name):
     current = doc
     for key in name.split("."):
@@ -329,6 +382,8 @@ def main():
     fields = load_codebook()
     loader = frontmatter_loader()
     engines = lock_engines()
+    contexts = load_contexts()
+    aliases = load_aliases()
 
     measurement, excluded = [], []
     for _, row in latest_snapshots().iterrows():
@@ -340,16 +395,26 @@ def main():
             continue
         for name, (rules, rest, categories, direction_rest) in fields.items():
             declared, value = field_value(doc, name)
+            written = canonical(value) if declared else ""
+            if name in aliases:
+                value = with_aliases(value, aliases[name])
             if declared and rules == "by_engine":
                 engine = engines[int(row["source_markdown_file_history_id"])]
                 state, rule_id, others = classify_by_engine(value, rest, engine)
-                written = canonical(value)
             elif declared:
                 state, rule_id, others = classify(value, rules, rest)
-                written = canonical(value)
             else:
-                state, rule_id, others, written = "implicit", "", [], ""
-            if state == "modified":
+                state, rule_id, others = "implicit", "", []
+            context = context_of(doc, name, contexts[name]) if declared and name in contexts else "enabled"
+            if context == "disabled":
+                entry = contexts[name]["disabled"]
+                state, rule_id, others = "modified", entry["id"], []
+                d_dir, d_broadens, d_rule, d_others = (entry["direction"], entry.get("broadens", ""),
+                                                       entry["direction_id"], "[]")
+            elif context == "undetermined":
+                state, rule_id, others = "default_undetermined", contexts[name]["undetermined"]["id"], []
+                d_dir, d_broadens, d_rule, d_others = "", "", "", ""
+            elif state == "modified":
                 d_dir, d_broadens, d_rule, d_others = direction_of(value, categories, direction_rest)
                 d_others = json.dumps(d_others)
             else:
