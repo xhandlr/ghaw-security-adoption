@@ -6,17 +6,17 @@
 
 <br>
 
-[![DOI](https://img.shields.io/badge/DOI-10.5281%2Fzenodo.23176659-2dd4bf?style=for-the-badge&labelColor=0b1020)](https://doi.org/10.5281/zenodo.23176659)
-[![Dataset](https://img.shields.io/badge/dataset-GHAW--H%20v0.1.2-2dd4bf?style=for-the-badge&labelColor=0b1020)](https://doi.org/10.5281/zenodo.22084012)
-[![Python](https://img.shields.io/badge/python-3.13-2dd4bf?style=for-the-badge&labelColor=0b1020&logo=python&logoColor=2dd4bf)](https://www.python.org/)
-[![Código](https://img.shields.io/badge/código-MIT-2dd4bf?style=for-the-badge&labelColor=0b1020)](LICENSE)
-[![Resultados](https://img.shields.io/badge/resultados-CC%20BY%204.0-2dd4bf?style=for-the-badge&labelColor=0b1020)](https://creativecommons.org/licenses/by/4.0/)
+[![DOI](https://img.shields.io/badge/DOI-10.5281%2Fzenodo.23176659-06989C?style=for-the-badge&labelColor=0b1020)](https://doi.org/10.5281/zenodo.23176659)
+[![Dataset](https://img.shields.io/badge/dataset-GHAW--H%20v0.1.2-06989C?style=for-the-badge&labelColor=0b1020)](https://doi.org/10.5281/zenodo.22084012)
+[![Python](https://img.shields.io/badge/python-3.13-06989C?style=for-the-badge&labelColor=0b1020&logo=python&logoColor=06989C)](https://www.python.org/)
+[![Código](https://img.shields.io/badge/código-MIT-06989C?style=for-the-badge&labelColor=0b1020)](LICENSE)
+[![Resultados](https://img.shields.io/badge/resultados-CC%20BY%204.0-06989C?style=for-the-badge&labelColor=0b1020)](https://creativecommons.org/licenses/by/4.0/)
 
-[![Workflows](https://img.shields.io/badge/workflows-603-8b5cf6?style=flat-square&labelColor=151b2e)](results/04_dataset_overview/)
-[![Repositorios](https://img.shields.io/badge/repositorios-262-8b5cf6?style=flat-square&labelColor=151b2e)](results/04_dataset_overview/)
-[![Campos](https://img.shields.io/badge/campos_de_seguridad-148-8b5cf6?style=flat-square&labelColor=151b2e)](results/19_rq1_security_field_usage/summary.csv)
-[![Kappa](https://img.shields.io/badge/κ_RQ1-0.702-8b5cf6?style=flat-square&labelColor=151b2e)](results/17_rq1_intercoder_agreement/rows_191-386/agreement.csv)
-[![Muestra](https://img.shields.io/badge/muestra_RQ2-240-8b5cf6?style=flat-square&labelColor=151b2e)](results/20_rq2_pilot_sample/)
+[![Workflows](https://img.shields.io/badge/workflows-603-7457c9?style=flat-square&labelColor=151b2e)](results/04_dataset_overview/)
+[![Repositorios](https://img.shields.io/badge/repositorios-262-7457c9?style=flat-square&labelColor=151b2e)](results/04_dataset_overview/)
+[![Campos](https://img.shields.io/badge/campos_de_seguridad-148-7457c9?style=flat-square&labelColor=151b2e)](results/19_rq1_security_field_usage/summary.csv)
+[![Kappa](https://img.shields.io/badge/κ_RQ1-0.702-7457c9?style=flat-square&labelColor=151b2e)](results/17_rq1_intercoder_agreement/rows_191-386/agreement.csv)
+[![Muestra](https://img.shields.io/badge/muestra_RQ2-240-7457c9?style=flat-square&labelColor=151b2e)](results/20_rq2_pilot_sample/)
 
 ### ¿Mantener o modificar los valores por defecto?
 
