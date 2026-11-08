@@ -1,40 +1,112 @@
-# Adopción de configuraciones de seguridad en GitHub Agentic Workflows
+<div align="center">
 
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23176659.svg)](https://doi.org/10.5281/zenodo.23176659)
-![Python](https://img.shields.io/badge/python-3.13-blue)
-![Licencia código](https://img.shields.io/badge/código-MIT-green)
-![Licencia resultados](https://img.shields.io/badge/resultados-CC%20BY%204.0-lightgrey)
+<img src="docs/banner.svg" alt="Configuraciones e instrucciones de seguridad en GitHub Agentic Workflows" width="100%">
 
-> Paquete de réplica parcial (Etapa 2) del estudio sobre adopción de configuraciones de seguridad en GitHub Agentic Workflows (GH-AW), construido sobre el dataset GHAW-H v0.1.2.
+**Español** · [English](README.en.md)
 
-**Autores:** Camille Elgueta, Carlos Pradenas
+<br>
 
-**Curso:** ICC760 Investigación Aplicada en Informática, Universidad de La Frontera
+[![DOI](https://img.shields.io/badge/DOI-10.5281%2Fzenodo.23176659-2dd4bf?style=for-the-badge&labelColor=0b1020)](https://doi.org/10.5281/zenodo.23176659)
+[![Dataset](https://img.shields.io/badge/dataset-GHAW--H%20v0.1.2-2dd4bf?style=for-the-badge&labelColor=0b1020)](https://doi.org/10.5281/zenodo.22084012)
+[![Python](https://img.shields.io/badge/python-3.13-2dd4bf?style=for-the-badge&labelColor=0b1020&logo=python&logoColor=2dd4bf)](https://www.python.org/)
+[![Código](https://img.shields.io/badge/código-MIT-2dd4bf?style=for-the-badge&labelColor=0b1020)](LICENSE)
+[![Resultados](https://img.shields.io/badge/resultados-CC%20BY%204.0-2dd4bf?style=for-the-badge&labelColor=0b1020)](https://creativecommons.org/licenses/by/4.0/)
 
-**Versión del repo:** `v0.2.0`
+[![Workflows](https://img.shields.io/badge/workflows-603-8b5cf6?style=flat-square&labelColor=151b2e)](results/04_dataset_overview/)
+[![Repositorios](https://img.shields.io/badge/repositorios-262-8b5cf6?style=flat-square&labelColor=151b2e)](results/04_dataset_overview/)
+[![Campos](https://img.shields.io/badge/campos_de_seguridad-148-8b5cf6?style=flat-square&labelColor=151b2e)](results/19_rq1_security_field_usage/summary.csv)
+[![Kappa](https://img.shields.io/badge/κ_RQ1-0.702-8b5cf6?style=flat-square&labelColor=151b2e)](results/17_rq1_intercoder_agreement/rows_191-386/agreement.csv)
+[![Muestra](https://img.shields.io/badge/muestra_RQ2-240-8b5cf6?style=flat-square&labelColor=151b2e)](results/20_rq2_pilot_sample/)
 
----
+### ¿Mantener o modificar los valores por defecto?
 
-## Contenido
+Paquete de réplica del estudio sobre cómo los desarrolladores configuran la seguridad<br>
+en el **frontmatter** y escriben **instrucciones defensivas** en el **body** de los workflows de GH-AW.
 
-- [Preguntas de investigación](#preguntas-de-investigación)
-- [Organización del paquete](#organización-del-paquete)
-- [Preparar el entorno](#preparar-el-entorno)
-- [Datos de entrada](#datos-de-entrada)
-- [Ejecutar el análisis](#ejecutar-el-análisis)
-- [Resultados por pregunta](#resultados-por-pregunta)
-- [Qué se puede reproducir y qué no](#qué-se-puede-reproducir-y-qué-no)
-- [Estado de la implementación](#estado-de-la-implementación)
-- [Licencias y cómo citar](#licencias-y-cómo-citar)
+**Camille Elgueta · Carlos Pradenas**<br>
+<sub>ICC760 Investigación Aplicada en Informática · Universidad de La Frontera</sub>
+
+[**Hallazgos**](#hallazgos) ·
+[**Método**](#método) ·
+[**Reproducir**](#reproducir-el-análisis) ·
+[**Citar**](#licencias-y-cómo-citar)
+
+</div>
 
 ---
 
 ## Preguntas de investigación
 
-| ID      | Pregunta                                                                                                                                                           |
-|---------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **RQ1** | ¿Qué configuraciones de seguridad del frontmatter mantienen los desarrolladores en su valor por defecto, cuáles modifican y en qué dirección?                      |
+| | Pregunta |
+|---|---|
+| **RQ1** | ¿Qué configuraciones de seguridad del frontmatter mantienen los desarrolladores en su valor por defecto, cuáles modifican y en qué dirección? |
 | **RQ2** | ¿Qué instrucciones defensivas incorporan los desarrolladores en el body de los archivos Markdown de GH-AW, fuera de las configuraciones oficiales del frontmatter? |
+
+## Hallazgos
+
+<table>
+  <tr>
+    <td width="25%" align="center"><h2>1.756 / 2.262</h2>modificaciones amplían las capacidades del agente<br><sub><a href="results/14_rq1_measurement/direction_summary.csv">direction_summary.csv</a></sub></td>
+    <td width="25%" align="center"><h2>39</h2>workflows desactivan el chequeo de roles con <code>on.roles: all</code><br><sub><a href="results/14_rq1_measurement/measurement.csv">measurement.csv</a></sub></td>
+    <td width="25%" align="center"><h2>1 de 13</h2>campos tiene su valor por defecto declarado en el JSON Schema<br><sub><a href="results/03_schema_fields/fields.csv">fields.csv</a></sub></td>
+    <td width="25%" align="center"><h2>2</h2>workflows otorgan escritura sobre el repositorio en <code>permissions</code><br><sub><a href="results/14_rq1_measurement/direction_summary.csv">direction_summary.csv</a></sub></td>
+  </tr>
+</table>
+
+- En 10 de los 13 campos analizados, la mayoría de los workflows no declara el campo y depende de su valor por defecto.
+- En `permissions`, 573 de 592 modificaciones son más permisivas, pero casi todas amplían lectura (416) o autenticación (155).
+- El schema, la documentación y los lock files no siempre coinciden. Sin declarar `tools.bash`, la documentación indica que solo se permiten comandos seguros, pero en 368 de 386 workflows el lock file no restringe los comandos.
+- **RQ2 en curso:** la codificación de la muestra de 240 workflows aún no termina. Los resultados del piloto están más abajo.
+
+### Estado y dirección de los 13 campos (RQ1)
+
+| Campo | Impl. | Igual | Modif. | Indet. | +Perm. | +Estr. | Sin dir. |
+|---|---:|---:|---:|---:|---:|---:|---:|
+| `permissions` | 3 | 8 | 592 | 0 | 573 | 0 | 19 |
+| `tools.github` | 177 | 77 | 349 | 0 | 128 | 95 | 126 |
+| `network` | 249 | 113 | 241 | 0 | 205 | 12 | 24 |
+| `safe-outputs.add-comment` | 369 | 0 | 234 | 0 | 234 | 0 | 0 |
+| `tools.bash` | 386 | 6 | 211 | 0 | 140 | 1 | 70 |
+| `safe-outputs.create-issue` | 424 | 0 | 178 | 1 | 122 | 0 | 56 |
+| `safe-outputs.create-pull-request` | 439 | 0 | 164 | 0 | 164 | 0 | 0 |
+| `strict` | 439 | 146 | 18 | 0 | 18 | 0 | 0 |
+| `safe-outputs.noop` | 453 | 50 | 100 | 0 | 0 | 98 | 2 |
+| `safe-outputs.add-labels` | 482 | 0 | 121 | 0 | 121 | 0 | 0 |
+| `tools.web-fetch` | 486 | 0 | 12 | 105 | 12 | 0 | 0 |
+| `tools.edit` | 525 | 75 | 0 | 3 | 0 | 0 | 0 |
+| `on.roles` | 528 | 33 | 42 | 0 | 39 | 3 | 0 |
+
+<sub>Impl.: no declarado. Igual: declarado con su valor por defecto. Modif.: declarado con otro valor. Indet.: declarado, sin default determinable para ese workflow. +Perm. / +Estr.: modificación más permisiva / más estricta. Sin dir.: sin fuente que respalde una dirección, o amplía unas capacidades y restringe otras. N = 603. Fuente: <a href="results/14_rq1_measurement/">results/14_rq1_measurement/</a>. Defaults, reglas y fuentes de cada campo: <a href="coding/rq1_codebook.yaml">coding/rq1_codebook.yaml</a>.</sub>
+
+### Piloto de RQ2
+
+En los primeros 30 workflows de la muestra, 7 contienen al menos una instrucción defensiva. El acuerdo entre codificadores sobre su presencia fue κ = 0,902 (29 de 30). Las instrucciones se agrupan en cuatro categorías: no tratar el contenido como órdenes, restringir acciones sobre el contenido, restringir la divulgación de información sensible y delimitar comandos de activación. Fuentes: [results/22_rq2_pilot_summary/](results/22_rq2_pilot_summary/) y [results/25_rq2_intercoder_agreement/](results/25_rq2_intercoder_agreement/).
+
+---
+
+## Método
+
+```mermaid
+flowchart LR
+    D[("GHAW-H<br/>604 workflows<br/>262 repositorios")] --> P["Snapshot más reciente<br/>de cada workflow<br/>(02, 04)"]
+    P --> F["Frontmatter"]
+    P --> B["Body"]
+
+    subgraph RQ1
+        F --> S["418 rutas del schema<br/>386 codificables<br/>(03, 16)"]
+        S --> C["Codificación doble<br/>148 campos de seguridad<br/>(17, 18)"]
+        C --> U["Uso y Pareto<br/>13 campos, 80,7 %<br/>(19, 28)"]
+        U --> M["Estado y dirección<br/>libro de códigos + lock files<br/>(12, 13, 14)"]
+    end
+
+    subgraph RQ2
+        B --> E["486 elegibles<br/>muestra de 240<br/>(20, 27)"]
+        E --> K["Card sorting<br/>doble codificación<br/>(21–26)"]
+    end
+```
+
+- **RQ1.** Dos codificadores clasificaron de forma independiente las 386 rutas de primer y segundo nivel del JSON Schema de GH-AW (κ = 0,911 en la calibración y κ = 0,702 en las 196 rutas restantes). Las declaraciones se agruparon en unidades de medición según las reglas de granularidad de la [guía de codificación](coding/rq1_security_coding_guide.md), y se seleccionaron las 13 que acumulan el 80,7 % de las 3.566 declaraciones. Para cada una, el libro de códigos fija el valor por defecto con su fuente (schema, documentación, lock files o código de GH-AW) y las reglas de estado y dirección.
+- **RQ2.** De los 486 workflows con instrucciones en el body se tomó una muestra aleatoria de 240 (semilla 42). Las instrucciones defensivas se analizaron con card sorting: abierto en un piloto de 30 workflows, y luego asignando cada instrucción a las categorías obtenidas.
 
 ---
 
@@ -42,34 +114,34 @@
 
 ```
 .
-├── scripts/            # Scripts numerados por bloque
-│   ├── 01–04           # Comunes (descarga y preparación)
-│   ├── 10–19, 28       # RQ1
-│   └── 20–27           # RQ2
+├── scripts/            # Scripts numerados por orden de creación
 ├── results/            # Una carpeta por script, cada una con provenance.json
-├── coding/             # Libros de códigos, planillas de codificadores, consenso y piloto
+├── coding/             # Libros de códigos, guía, planillas de codificadores y consenso
 ├── config/
-│   └── settings.yaml   # Versiones fijadas y criterios
-├── data/raw/           # Insumos descargados (no versionado en git)
+│   └── settings.yaml   # Versiones fijadas, semillas y criterios
+├── docs/               # Banner del README
+├── data/raw/           # Insumos descargados (no versionados en git)
 ├── requirements.txt
 ├── AI_USAGE.md
 └── LICENSE
 ```
 
-Los scripts se numeran en el orden en que se crearon, por lo que el script 28 pertenece a RQ1 aunque viene después de los de RQ2. Esta tabla los agrupa por pregunta:
-
 | Grupo | Scripts | Qué hacen |
 |---|---|---|
 | Comunes | 01, 02, 03, 04 | Descarga del dataset, claves del frontmatter, campos del schema y descripción del dataset |
-| RQ1 | 10, 11, 12, 13, 14, 15 | Raíces del schema, campos de la arquitectura de seguridad, evidencia de los lock files y medición de los campos de la demostración |
+| RQ1 | 10, 11, 12, 13, 14, 15 | Raíces del schema, campos de la arquitectura de seguridad, evidencia de los lock files (incluido el motor y el default de `tools.edit` y `tools.web-fetch`) y medición de estado y dirección |
 | RQ1 | 16, 17, 18 | Codificación de campos de seguridad: rutas a codificar, acuerdo entre codificadores y planilla de consenso |
 | RQ1 | 19, 28 | Uso de los campos de seguridad y Pareto con las reglas de granularidad |
-| RQ2 | 20, 21, 22, 23 | Muestra piloto, planilla de codificación, resumen del piloto y familias de workflows |
+| RQ2 | 20, 21, 22, 23 | Muestra, planilla de codificación, resumen del piloto y familias de workflows |
 | RQ2 | 24, 25, 26, 27 | Materiales del segundo codificador, acuerdo entre codificadores, planilla de consenso y tamaño de muestra |
+
+El script 28 pertenece a RQ1 aunque viene después de los de RQ2, porque los scripts se numeran en el orden en que se crearon.
 
 ---
 
-## Preparar el entorno
+## Reproducir el análisis
+
+### Entorno
 
 Requiere **Python 3.13**.
 
@@ -82,33 +154,37 @@ source .venv/bin/activate        # En Windows: .venv\Scripts\activate
 pip install -r requirements.txt
 ```
 
----
-
-## Datos de entrada
+### Datos de entrada
 
 | Insumo | Fuente | Versión fijada |
-|--------|--------|----------------|
+|---|---|---|
 | GHAW-H (5 Parquet) | [DOI 10.5281/zenodo.22084012](https://doi.org/10.5281/zenodo.22084012) | v0.1.2 (Hugging Face rev. `9ccc840`) |
 | Schema de gh-aw | [github/gh-aw](https://github.com/github/gh-aw) | commit `5ecd40a4` |
 | Página de arquitectura de gh-aw | [github/gh-aw](https://github.com/github/gh-aw) | commit `5ecd40a4` |
 
-Los insumos se descargan en `data/raw/`: el dataset con el script `01`, y el schema y la página de arquitectura con los scripts `03` y `11`. Esos tres scripts requieren conexión a internet. El resto del análisis se ejecuta en local.
+Los insumos se descargan en `data/raw/`: el dataset con el script `01`, el schema con el `03`, la página de arquitectura con el `11` y un clon de gh-aw con el `19`. Esos scripts requieren conexión a internet. El resto del análisis se ejecuta en local.
 
-**Verificación (SHA-256):**
+<details>
+<summary><b>Verificación de los Parquet (SHA-256)</b></summary>
+
+<br>
 
 | Archivo | Hash |
-|----|----|
+|---|---|
 | `lock_file_snapshot.parquet` | `0272d5b7b7e93d26d52116214dd167b5f3940d135f75474092e06bb434df77b3` |
 | `repository.parquet` | `75bc7e5a838281f49403e682709775936568f781031ef94b01bec343148c6ae8` |
 | `source_markdown_file_history.parquet` | `5c90e748b8e5ad59de088111ea91af6b06ec08789d70e0a7600e9273ca5a02a4` |
 | `source_markdown_file_snapshot.parquet` | `b8049b2f05bdbce449f24dfef3ca70e1b135b339a17347ad9d88a98f4e8d94b9` |
 | `source_markdown_file_version.parquet` | `88576175db0645f52f399279d6e263f35fc2c152fbc18f734f2eb28c05cc1b2f` |
 
----
+</details>
 
-## Ejecutar el análisis
+### Orden de ejecución
 
-Ejecutar en este orden desde la raíz del repo:
+<details open>
+<summary><b>Comandos, desde la raíz del repo</b></summary>
+
+<br>
 
 ```bash
 # Datos (requiere conexión; descarga GHAW-H en data/raw/)
@@ -124,7 +200,7 @@ python scripts/10_rq1_schema_roots.py
 python scripts/11_rq1_arch_doc_fields.py       # descarga la página de arquitectura (commit fijado)
 python scripts/12_rq1_lock_evidence.py
 python scripts/13_rq1_lock_evidence_summary.py
-python scripts/14_rq1_measurement.py
+python scripts/14_rq1_measurement.py           # usa las salidas de los scripts 12 y 13
 python scripts/15_rq1_candidate_fields.py
 python scripts/16_rq1_security_field_candidates.py
 python scripts/17_rq1_intercoder_agreement.py 1 190
@@ -141,110 +217,19 @@ python scripts/23_rq2_workflow_families.py
 python scripts/27_rq2_sample_size.py
 ```
 
-El valor de los parámetros fijados (commits/semillas) se encuentra en `config/settings.yaml`.
+</details>
+
+Los parámetros fijados (commits, semillas y criterios) están en `config/settings.yaml`.
 
 > [!NOTE]
-> El script 18 no se ejecuta en la reproducción: generó la planilla de consenso de RQ1 (`coding/rq1_security_coding_consensus.csv`) y se detiene si ya existe. Para regenerarla, hay que borrar la planilla y ejecutarlo antes del script 19.
+> No es necesario volver a ejecutar los scripts 18, 21, 24, 25 y 26. El 18 y el 26 generaron las planillas de consenso y se detienen si ya existen. El 21 y el 24 prepararon las planillas de codificación. El 25 calculó el acuerdo entre codificadores una sola vez, antes de discutir los desacuerdos. Sus salidas ya están en `coding/` y `results/`.
 
-> [!NOTE] 
-> No es necesario volver a ejecutar los scripts 21, 24, 25 y 26 para reproducir los resultados: 21 y 24 prepararon las planillas de codificación, 25 calculó el acuerdo entre codificadores una sola vez, antes de discutir los desacuerdos, y 26 generó la planilla de consenso. Sus salidas ya están en `coding/` y `results/25_rq2_intercoder_agreement/`.
+### Qué se puede reproducir y qué no
 
-⏱️ Sin contar la descarga del dataset (script 01), todo el procesamiento tarda menos de un minuto en un notebook. En un computador con Intel Core i7-12700H y 16 GB de RAM, se registró un tiempo de ejecución de **53 s**.
+- **Reproducible con código:** todos los resultados de `results/`, a partir de los insumos y de las planillas de `coding/`.
+- **Entregado como datos:** la codificación manual, es decir, las planillas de cada codificador, las decisiones de consenso y los libros de códigos que la guían.
 
----
-
-## Resultados por pregunta
-
-### RQ1: demostración con cuatro campos
-
-Se obtuvieron resultados preliminares para cuatro campos:
-- `strict`: default declarado en el JSON Schema de gh-aw.
-- `permissions`: sin default en el schema. La documentación indica solo lectura por defecto, y el valor exacto (`contents: read`) se obtuvo de los lock files de los workflows que no declaran el campo.
-- `network`: sin default en el schema, es documentado en la referencia oficial de gh-aw.
-- `tools.bash`: capacidad que se habilita. Su comportamiento por defecto está documentado en la descripción del propio schema.
-
-Cada uno representaba un desafío distinto para obtener sus valores por defecto, por lo que fueron utilizados 
-como una medida de estimación de esfuerzo y definición de alcance definitivo del estudio.
-
-
-**Tabla I. Estado y dirección de los cuatro campos**
-
-| Campo       | Implícito | Igual al default | Modificado | Más permisivo | Más estricto | Sin dirección |
-| ----------- | --------- | ---------------- | ---------- | ------------- | ------------ | ------------- |
-| strict      | 439       | 146              | 18         | 18            | 0            | 0             |
-| tools.bash  | 386       | 6                | 211        | 140           | 1            | 70            |
-| network     | 249       | 113              | 241        | 205           | 12           | 24            |
-| permissions | 3         | 8                | 592        | 573           | 0            | 19            |
-
-**Fuente:** [results/14_rq1_measurement/summary.csv](results/14_rq1_measurement/summary.csv) (estado) y [results/14_rq1_measurement/direction_summary.csv](results/14_rq1_measurement/direction_summary.csv) (dirección). Se midieron 603 workflows y se excluye uno con frontmatter vacío. Los defaults, las formas y sus fuentes están en `coding/rq1_codebook.yaml`.
-
----
-
-### RQ2: codificación piloto
-
-Se realizó un piloto de 30 workflows para encontrar la cantidad de workflows
-que declaran instrucciones defensivas dentro del cuerpo de los archivos Markdown.
-Se obtuvo la frecuencia de las categorías a las que pertenecen esas instrucciones defensivas.
-
-**Tabla II. Distribución de categorías de instrucciones defensivas**
-
-| **Categoría**                                     | **Workflows** |
-| ------------------------------------------------- | ------------- |
-| Restringir acciones sobre el contenido            | 3             |
-| No tratar el contenido como órdenes               | 2             |
-| Restringir la divulgación de información sensible | 1             |
-| Delimitar comandos de activación                  | 2             |
-
-Un workflow tiene dos categorías, por lo que la tabla suma 8.
-
-Ambos codificadores coincidieron en 29 de los 30 workflows (96,7%) antes de discutir los desacuerdos. 
-El kappa de Cohen fue de 0,902.
-El único desacuerdo se resolvió por consenso, y el libro de códigos registra los casos resueltos en el piloto. Con la codificación de consenso, 
-7 de los 30 workflows contienen al menos una instrucción defensiva (23,3%). 
-Con un 95% de confianza, la proporción en la población elegible (486 workflows con instrucciones escritas en el body) se encuentra entre 11,8% y 40,9% (intervalo de Wilson). Es una estimación preliminar.
-
-**Fuentes:** [results/22_rq2_pilot_summary/](results/22_rq2_pilot_summary/) (proporción, intervalo y categorías), [results/25_rq2_intercoder_agreement/](results/25_rq2_intercoder_agreement/) (acuerdo) y [results/20_rq2_pilot_sample/eligibility.csv](results/20_rq2_pilot_sample/eligibility.csv) (población elegible).
-
-
-
----
-
-## Qué se puede reproducir y qué no
-
-- ✅ **Reproducible con código:** todos los resultados de `results/`, a partir de los insumos y de las planillas de `coding/`.
-- ✋ **No reproducible con código:** la codificación manual, es decir, las planillas de cada codificador y las decisiones de consenso, junto con los libros de códigos que la guían. 
-Al ser trabajo manual de los codificadores, se entrega como datos.
-
-**Archivos que no se deben modificar**:
-
-- `coding/rq2_coding_coder1.csv`
-- `coding/rq2_coding_coder2.csv`
-
-Estos archivos representan la clasificación independiente de cada codificador
-para cada uno de los 30 workflows del piloto. El consenso de codificadores
-se registra en `coding/rq2_coding_consensus.csv`, pero los originales no se modifican. 
-Es decir, se respeta la visión inicial de cada codificador.
-
----
-
-## Estado de la implementación
-
-**Implementado**
-- [x] Descarga y descripción del dataset (scripts 01–04)
-- [x] RQ1: extracción de schema, frontmatter y arquitectura de gh-aw (4.646 rutas del schema)
-- [x] RQ1: demostración con cuatro campos: libro de códigos con defaults y fuentes, evidencia de lock files y medición de estado y dirección (scripts 10–14)
-- [x] RQ2: criterio de elegibilidad (486 workflows) y muestra aleatoria de 240 (script 20)
-- [x] RQ2: piloto de 30 workflows con dos codificadores, acuerdo (kappa de Cohen) y consenso (scripts 21–26)
-
-**Pendiente**
-- [ ] RQ1: clasificar, con dos codificadores, las 140 rutas candidatas según la definición de campo de seguridad
-- [ ] RQ1: aplicar la medición de estado y dirección a los campos seleccionados
-- [ ] RQ1: revisar si los defaults cambian entre versiones del compilador
-- [ ] RQ1: el script 14 no detecta conflictos que difieren solo en amplitud y depende de un identificador escrito en el código
-- [ ] RQ1: revisar superposiciones en el libro de códigos (por ejemplo, `bash: []` y `defaults` combinado con `firewall` sin otros dominios)
-- [ ] Codificar las filas restantes de RQ2 (210 de 240)
-- [ ] RQ2: decidir cómo tratar los bodies duplicados por plantilla
-- [ ] Relacionar RQ2 con RQ1
+Las planillas de cada codificador (`coding/rq1_security_coding_coder*.csv`, `coding/rq2_coding_coder*.csv`) no se modifican después de codificar. El consenso se registra en archivos aparte, de modo que se conserva la clasificación independiente de cada codificador.
 
 ---
 
@@ -261,7 +246,7 @@ Es decir, se respeta la visión inicial de cada codificador.
 ```bibtex
 @software{elgueta_ghaw_security_2026,
   author    = {Elgueta, Camille and Pradenas, Carlos},
-  title     = {Adopción de configuraciones de seguridad en GitHub Agentic Workflows: paquete de réplica (Etapa 2)},
+  title     = {Configuraciones e instrucciones de seguridad en GitHub Agentic Workflows: paquete de réplica},
   year      = {2026},
   publisher = {Zenodo},
   version   = {v0.2.0},
