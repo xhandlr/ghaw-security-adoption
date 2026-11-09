@@ -32,6 +32,16 @@ Casos resueltos en el piloto:
   anterior, menos estricto. Resuelto por consenso entre codificadores,
   2026-10-05]
 
+Casos resueltos después del piloto:
+- Prohibir publicar secretos o información sensible sin vincularlo a
+  contenido externo
+  [no cuenta como instrucción defensiva, es un límite del trabajo.
+  Resuelto por consenso entre codificadores, 2026-11-08, filas 41 y 60]
+- Listar los comandos aceptados sin pedir verificarlos
+  [no cuenta como instrucción defensiva: describe el disparador, no
+  controla el comentario. Resuelto por consenso entre codificadores,
+  2026-11-08, fila 160]
+
 Registro: se considera que un workflow cuenta con defensa si tiene **al menos una
 instrucción defensiva en su cuerpo**. Se hace registro de la frase textual 
 y la línea correspondiente. La columna notas registra, para cada workflow, 

@@ -6,7 +6,7 @@
 
 <br>
 
-[![DOI](https://img.shields.io/badge/DOI-10.5281%2Fzenodo.23176659-06989C?style=for-the-badge&labelColor=0b1020)](https://doi.org/10.5281/zenodo.23176659)
+[![DOI](https://img.shields.io/badge/DOI-10.5281%2Fzenodo.24069397-06989C?style=for-the-badge&labelColor=0b1020)](https://doi.org/10.5281/zenodo.24069397)
 [![Dataset](https://img.shields.io/badge/dataset-GHAW--H%20v0.1.2-06989C?style=for-the-badge&labelColor=0b1020)](https://doi.org/10.5281/zenodo.22084012)
 [![Python](https://img.shields.io/badge/python-3.13-06989C?style=for-the-badge&labelColor=0b1020&logo=python&logoColor=06989C)](https://www.python.org/)
 [![Code](https://img.shields.io/badge/code-MIT-06989C?style=for-the-badge&labelColor=0b1020)](LICENSE)
@@ -83,7 +83,7 @@ and write **defensive instructions** in the **body** of GH-AW workflows.
 
 ### Defensive instructions (RQ2)
 
-Of the 240 sampled workflows, 46 (19.2%, 95% CI 14.7–24.6%) contain at least one defensive instruction. Counting each copy group once, 46 of 224 distinct bodies (20.5%). Agreement between coders on their presence was κ = 0.862 (67 of 70 workflows coded by both). The instructions fall into four categories: restrict actions on content (29), do not treat content as commands (21), restrict disclosure of sensitive information (5) and delimit activation commands (4). A workflow may have more than one category. Sources: [results/22_rq2_summary/](results/22_rq2_summary/) and [results/25_rq2_intercoder_agreement/](results/25_rq2_intercoder_agreement/).
+Of the 240 sampled workflows, 46 (19.2%, 95% CI 14.7–24.6%) contain at least one defensive instruction. Counting each copy group once, 46 of 224 distinct bodies (20.5%). Agreement between coders on their presence was κ = 0.902 in the pilot (workflows 1 to 30) and κ = 0.828 in workflows 31 to 70. The instructions fall into four categories: restrict actions on content (29), do not treat content as commands (21), restrict disclosure of sensitive information (5) and delimit activation commands (4). A workflow may have more than one category. Sources: [results/22_rq2_summary/](results/22_rq2_summary/) and [results/25_rq2_intercoder_agreement/](results/25_rq2_intercoder_agreement/).
 
 ---
 
@@ -151,7 +151,7 @@ Requires **Python 3.13**.
 ```bash
 git clone https://github.com/xhandlr/ghaw-security-adoption.git
 cd ghaw-security-adoption
-git checkout v0.2.0
+git checkout v1.0.0
 python3.13 -m venv .venv
 source .venv/bin/activate        # On Windows: .venv\Scripts\activate
 pip install -r requirements.txt
@@ -215,8 +215,9 @@ python scripts/28_rq1_security_field_pareto.py # needs the outputs of script 19
 
 # RQ2
 python scripts/20_rq2_pilot_sample.py          # regenerates coding/pilot_sample/ (identical, fixed seed)
-python scripts/22_rq2_summary.py
 python scripts/23_rq2_workflow_families.py
+python scripts/22_rq2_summary.py               # uses an output of script 23
+python scripts/25_rq2_intercoder_agreement.py
 python scripts/27_rq2_sample_size.py
 ```
 
@@ -225,7 +226,7 @@ python scripts/27_rq2_sample_size.py
 Pinned parameters (commits, seeds and criteria) are in `config/settings.yaml`.
 
 > [!NOTE]
-> Scripts 18, 21, 24, 25 and 26 do not need to be run again. Scripts 18 and 26 generated the consensus sheets and stop if they already exist. Scripts 21 and 24 prepared the coding sheets. Script 25 computed intercoder agreement once, before disagreements were discussed. Their outputs are already in `coding/` and `results/`.
+> Scripts 18, 21, 24 and 26 do not need to be run again. Scripts 18 and 26 generated the consensus sheets and stop if they already exist. Scripts 21 and 24 prepared the coding sheets. Their outputs are already in `coding/` and `results/`.
 
 ### What is and is not reproducible
 
@@ -252,8 +253,8 @@ Each coder's sheet (`coding/rq1_security_coding_coder*.csv`, `coding/rq2_coding_
   title     = {Configuraciones e instrucciones de seguridad en GitHub Agentic Workflows: paquete de réplica},
   year      = {2026},
   publisher = {Zenodo},
-  version   = {v0.2.0},
-  doi       = {10.5281/zenodo.23176659}
+  version   = {v1.0.0},
+  doi       = {10.5281/zenodo.24069397}
 }
 ```
 

@@ -6,7 +6,7 @@
 
 <br>
 
-[![DOI](https://img.shields.io/badge/DOI-10.5281%2Fzenodo.23176659-06989C?style=for-the-badge&labelColor=0b1020)](https://doi.org/10.5281/zenodo.23176659)
+[![DOI](https://img.shields.io/badge/DOI-10.5281%2Fzenodo.24069397-06989C?style=for-the-badge&labelColor=0b1020)](https://doi.org/10.5281/zenodo.24069397)
 [![Dataset](https://img.shields.io/badge/dataset-GHAW--H%20v0.1.2-06989C?style=for-the-badge&labelColor=0b1020)](https://doi.org/10.5281/zenodo.22084012)
 [![Python](https://img.shields.io/badge/python-3.13-06989C?style=for-the-badge&labelColor=0b1020&logo=python&logoColor=06989C)](https://www.python.org/)
 [![Código](https://img.shields.io/badge/código-MIT-06989C?style=for-the-badge&labelColor=0b1020)](LICENSE)
@@ -80,7 +80,7 @@ en el **frontmatter** y escriben **instrucciones defensivas** en el **body** de 
 
 ### Instrucciones defensivas (RQ2)
 
-De los 240 workflows de la muestra, 46 (19,2 %, IC 95 % 14,7–24,6 %) contienen al menos una instrucción defensiva. Contando una sola vez cada grupo de copias, son 46 de 224 bodies distintos (20,5 %). El acuerdo entre codificadores sobre su presencia fue κ = 0,862 (67 de 70 workflows codificados por ambos). Las instrucciones se agrupan en cuatro categorías: restringir acciones sobre el contenido (29), no tratar el contenido como órdenes (21), restringir la divulgación de información sensible (5) y delimitar comandos de activación (4). Un workflow puede tener más de una categoría. Fuentes: [results/22_rq2_summary/](results/22_rq2_summary/) y [results/25_rq2_intercoder_agreement/](results/25_rq2_intercoder_agreement/).
+De los 240 workflows de la muestra, 46 (19,2 %, IC 95 % 14,7–24,6 %) contienen al menos una instrucción defensiva. Contando una sola vez cada grupo de copias, son 46 de 224 bodies distintos (20,5 %). El acuerdo entre codificadores sobre su presencia fue κ = 0,902 en el piloto (workflows 1 a 30) y κ = 0,828 en los workflows 31 a 70. Las instrucciones se agrupan en cuatro categorías: restringir acciones sobre el contenido (29), no tratar el contenido como órdenes (21), restringir la divulgación de información sensible (5) y delimitar comandos de activación (4). Un workflow puede tener más de una categoría. Fuentes: [results/22_rq2_summary/](results/22_rq2_summary/) y [results/25_rq2_intercoder_agreement/](results/25_rq2_intercoder_agreement/).
 
 ---
 
@@ -148,7 +148,7 @@ Requiere **Python 3.13**.
 ```bash
 git clone https://github.com/xhandlr/ghaw-security-adoption.git
 cd ghaw-security-adoption
-git checkout v0.2.0
+git checkout v1.0.0
 python3.13 -m venv .venv
 source .venv/bin/activate        # En Windows: .venv\Scripts\activate
 pip install -r requirements.txt
@@ -212,8 +212,9 @@ python scripts/28_rq1_security_field_pareto.py # requiere las salidas del script
 
 # RQ2
 python scripts/20_rq2_pilot_sample.py          # regenera coding/pilot_sample/ (idéntico, semilla fija)
-python scripts/22_rq2_summary.py
 python scripts/23_rq2_workflow_families.py
+python scripts/22_rq2_summary.py               # usa una salida del script 23
+python scripts/25_rq2_intercoder_agreement.py
 python scripts/27_rq2_sample_size.py
 ```
 
@@ -222,7 +223,7 @@ python scripts/27_rq2_sample_size.py
 Los parámetros fijados (commits, semillas y criterios) están en `config/settings.yaml`.
 
 > [!NOTE]
-> No es necesario volver a ejecutar los scripts 18, 21, 24, 25 y 26. El 18 y el 26 generaron las planillas de consenso y se detienen si ya existen. El 21 y el 24 prepararon las planillas de codificación. El 25 calculó el acuerdo entre codificadores una sola vez, antes de discutir los desacuerdos. Sus salidas ya están en `coding/` y `results/`.
+> No es necesario volver a ejecutar los scripts 18, 21, 24 y 26. El 18 y el 26 generaron las planillas de consenso y se detienen si ya existen. El 21 y el 24 prepararon las planillas de codificación. Sus salidas ya están en `coding/` y `results/`.
 
 ### Qué se puede reproducir y qué no
 
@@ -249,8 +250,8 @@ Las planillas de cada codificador (`coding/rq1_security_coding_coder*.csv`, `cod
   title     = {Configuraciones e instrucciones de seguridad en GitHub Agentic Workflows: paquete de réplica},
   year      = {2026},
   publisher = {Zenodo},
-  version   = {v0.2.0},
-  doi       = {10.5281/zenodo.23176659}
+  version   = {v1.0.0},
+  doi       = {10.5281/zenodo.24069397}
 }
 ```
 
