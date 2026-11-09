@@ -1,0 +1,20 @@
+{
+  "inputs_sha256": {
+    "coding/rq2_coding_consensus.csv": "390eb7996f33460a2a4708e96bc84e627c4860b3cbd7b5ef563874e88301be18",
+    "coding/rq2_coding_coder1.csv": "455c28680151d7a7234410b995ca38e53b53677ca93826543445f8cedaa37b82",
+    "coding/rq2_coding_coder2.csv": "f3b66bce4102379b511d272a0203439bb007b996bd872037b871fd0d352489a5",
+    "coding/rq2_final_decisions.csv": "395ea6a5076c0056930759bed94d71feb060d5a26877224923cb28b4c240bd9c",
+    "results/23_rq2_workflow_families/body_copies.csv": "641e23ba06732eb230e67117e9ffb882616152769b97a3a6ec1953617a6574df",
+    "coding/rq2_codebook.md": "769b1110eea0e1f5228412c62f16586846405f6a8a3272883005023937f5f0a2"
+  },
+  "outputs_sha256": {
+    "coding/rq2_coding_final.csv": "fa83c87bfe79918db6a9a36175322b34f8c8a07158d3a10c0778ad7f99019114",
+    "results/22_rq2_summary/by_owner.csv": "6fb47146d918096d8b5c84eca79a8e47b43f950b3b4f7d7f43199fc6e4ceb5f3",
+    "results/22_rq2_summary/categories.csv": "83e31f053b182151605fc23666f5c24bdd4f4d663b333b411e593e456e5f09e4",
+    "results/22_rq2_summary/categories_consolidated.csv": "09ef8503e456c1e5e2fb80dc786b891fdefd5960ed7e42f4d7c276afc6a802b8",
+    "results/22_rq2_summary/summary.csv": "2dbf166ef943868574ff0c573f14c211e6148ab1ba792a722cc772882ff0246a",
+    "results/22_rq2_summary/pilot/categories.csv": "bf3ecaaad03037a03d4ab2e11a1362432ebc6d5962a9411f0a721a05b42192b1",
+    "results/22_rq2_summary/pilot/categories_consolidated.csv": "a5575c35ad8e84911c69f2fa400545ce9a6cc398761b0303c55d73ce15f55811",
+    "results/22_rq2_summary/pilot/summary.csv": "446bfcbd5878a23af07b945640fc08b507e0b5b7a8813ece619f8efdaba38fd4"
+  }
+}

@@ -1,0 +1,3 @@
+orden,archivo,tiene_defensa_coder1,tiene_defensa_coder2,frase_textual_coder1,frase_textual_coder2,linea_coder1,linea_coder2,notas_coder1,notas_coder2
+22,github__awesome-copilot__codeowner-update.md,false,true,,"- Confirm the comment body contains `#codeowner`.
+  - If the check fails, exit with a `noop`.",,16-17,Sin menciones de seguridad: agente de actualización de repositorio.,"El filtro exige que el comentario incluya `#codeowner` y se detiene si falta, así evita cambios por comentarios arbitrarios. Que baste con que aparezca y no haga falta igualdad exacta explica por qué cuenta como defensa aunque sea menos estricto que el codebook, mientras llamar mantenedor al autor no prueba que esté autenticado."

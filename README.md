@@ -56,7 +56,7 @@ en el **frontmatter** y escriben **instrucciones defensivas** en el **body** de 
 - En 10 de los 13 campos analizados, la mayoría de los workflows no declara el campo y depende de su valor por defecto.
 - En `permissions`, 573 de 592 modificaciones son más permisivas, pero casi todas amplían lectura (416) o autenticación (155).
 - El schema, la documentación y los lock files no siempre coinciden. Sin declarar `tools.bash`, la documentación indica que solo se permiten comandos seguros, pero en 368 de 386 workflows el lock file no restringe los comandos.
-- **RQ2 en curso:** la codificación de la muestra de 240 workflows aún no termina. Los resultados del piloto están más abajo.
+- **RQ2:** 46 de los 240 workflows de la muestra (19,2 %) contienen al menos una instrucción defensiva en el body.
 
 ### Estado y dirección de los 13 campos (RQ1)
 
@@ -78,9 +78,9 @@ en el **frontmatter** y escriben **instrucciones defensivas** en el **body** de 
 
 <sub>Impl.: no declarado. Igual: declarado con su valor por defecto. Modif.: declarado con otro valor. Indet.: declarado, sin default determinable para ese workflow. +Perm. / +Estr.: modificación más permisiva / más estricta. Sin dir.: sin fuente que respalde una dirección, o amplía unas capacidades y restringe otras. N = 603. Fuente: <a href="results/14_rq1_measurement/">results/14_rq1_measurement/</a>. Defaults, reglas y fuentes de cada campo: <a href="coding/rq1_codebook.yaml">coding/rq1_codebook.yaml</a>.</sub>
 
-### Piloto de RQ2
+### Instrucciones defensivas (RQ2)
 
-En los primeros 30 workflows de la muestra, 7 contienen al menos una instrucción defensiva. El acuerdo entre codificadores sobre su presencia fue κ = 0,902 (29 de 30). Las instrucciones se agrupan en cuatro categorías: no tratar el contenido como órdenes, restringir acciones sobre el contenido, restringir la divulgación de información sensible y delimitar comandos de activación. Fuentes: [results/22_rq2_pilot_summary/](results/22_rq2_pilot_summary/) y [results/25_rq2_intercoder_agreement/](results/25_rq2_intercoder_agreement/).
+De los 240 workflows de la muestra, 46 (19,2 %, IC 95 % 14,7–24,6 %) contienen al menos una instrucción defensiva. Contando una sola vez cada grupo de copias, son 46 de 224 bodies distintos (20,5 %). El acuerdo entre codificadores sobre su presencia fue κ = 0,862 (67 de 70 workflows codificados por ambos). Las instrucciones se agrupan en cuatro categorías: restringir acciones sobre el contenido (29), no tratar el contenido como órdenes (21), restringir la divulgación de información sensible (5) y delimitar comandos de activación (4). Un workflow puede tener más de una categoría. Fuentes: [results/22_rq2_summary/](results/22_rq2_summary/) y [results/25_rq2_intercoder_agreement/](results/25_rq2_intercoder_agreement/).
 
 ---
 
@@ -132,10 +132,10 @@ flowchart LR
 | RQ1 | 10, 11, 12, 13, 14, 15 | Raíces del schema, campos de la arquitectura de seguridad, evidencia de los lock files (incluido el motor y el default de `tools.edit` y `tools.web-fetch`) y medición de estado y dirección |
 | RQ1 | 16, 17, 18 | Codificación de campos de seguridad: rutas a codificar, acuerdo entre codificadores y planilla de consenso |
 | RQ1 | 19, 28 | Uso de los campos de seguridad y Pareto con las reglas de granularidad |
-| RQ2 | 20, 21, 22, 23 | Muestra, planilla de codificación, resumen del piloto y familias de workflows |
+| RQ2 | 20, 21, 22, 23 | Muestra, planilla de codificación, resumen de la codificación y familias de workflows |
 | RQ2 | 24, 25, 26, 27 | Materiales del segundo codificador, acuerdo entre codificadores, planilla de consenso y tamaño de muestra |
 
-El script 28 pertenece a RQ1 aunque viene después de los de RQ2, porque los scripts se numeran en el orden en que se crearon.
+El script 28 pertenece a RQ1.
 
 ---
 
@@ -212,7 +212,7 @@ python scripts/28_rq1_security_field_pareto.py # requiere las salidas del script
 
 # RQ2
 python scripts/20_rq2_pilot_sample.py          # regenera coding/pilot_sample/ (idéntico, semilla fija)
-python scripts/22_rq2_pilot_summary.py
+python scripts/22_rq2_summary.py
 python scripts/23_rq2_workflow_families.py
 python scripts/27_rq2_sample_size.py
 ```

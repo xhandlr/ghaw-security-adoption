@@ -6,7 +6,8 @@ differ for the same orden. Only rows where both coders wrote "true" or
 "false" in tiene_defensa are compared; any other non-empty value stops
 the script.
 
-Writes to results/25_rq2_intercoder_agreement/:
+Writes to results/25_rq2_intercoder_agreement/ (all rows coded by both)
+and to results/25_rq2_intercoder_agreement/pilot/ (rows 1 to 30 only):
 - agreement.csv: rows compared, percent agreement and Cohen's kappa on
   tiene_defensa (kappa is left empty, with a note, when it is undefined);
 - confusion_tiene_defensa.csv: 2x2 table, coder 1 in rows, coder 2 in
@@ -32,6 +33,7 @@ CODEBOOK = Path("coding/rq2_codebook.md")
 OUTPUT_DIR = Path("results/25_rq2_intercoder_agreement")
 ID_COLUMNS = ["archivo", "repositorio", "workflow"]
 VALUES = ["true", "false"]
+PILOT_ROWS = 30
 
 
 def sha256_of(path):
@@ -69,20 +71,26 @@ def main():
             if coder1.loc[o, "tiene_defensa"] in VALUES and coder2.loc[o, "tiene_defensa"] in VALUES]
     if not both:
         raise SystemExit("No rows coded by both coders yet")
+    for output_dir, rows in [(OUTPUT_DIR, both),
+                             (OUTPUT_DIR / "pilot", [o for o in both if int(o) <= PILOT_ROWS])]:
+        write_agreement(coder1, coder2, rows, output_dir)
+
+
+def write_agreement(coder1, coder2, both, output_dir):
     a = [coder1.loc[o, "tiene_defensa"] for o in both]
     b = [coder2.loc[o, "tiene_defensa"] for o in both]
     agree = sum(x == y for x, y in zip(a, b))
     kappa, note = cohen_kappa(a, b)
 
-    OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
-    with open(OUTPUT_DIR / "agreement.csv", "w", newline="") as f:
+    output_dir.mkdir(parents=True, exist_ok=True)
+    with open(output_dir / "agreement.csv", "w", newline="") as f:
         writer = csv.writer(f)
         writer.writerow(["measure", "rows_compared", "agreements", "percent_agreement",
                          "cohen_kappa", "note"])
         writer.writerow(["tiene_defensa", len(both), agree, agree / len(both),
                          "" if kappa is None else kappa, note])
 
-    with open(OUTPUT_DIR / "confusion_tiene_defensa.csv", "w", newline="") as f:
+    with open(output_dir / "confusion_tiene_defensa.csv", "w", newline="") as f:
         writer = csv.writer(f)
         writer.writerow(["coder1 \\ coder2", *VALUES])
         for v1 in VALUES:
@@ -95,13 +103,13 @@ def main():
         return row
 
     detail = ["tiene_defensa", "frase_textual", "linea", "notas"]
-    with open(OUTPUT_DIR / "disagreements.csv", "w", newline="") as f:
+    with open(output_dir / "disagreements.csv", "w", newline="") as f:
         writer = csv.writer(f)
         writer.writerow(["orden", "archivo"] + [f"{c}_{k}" for c in detail for k in ("coder1", "coder2")])
         writer.writerows(side_by_side(o, detail) for o, x, y in zip(both, a, b) if x != y)
 
     category_columns = ["tiene_defensa", "categoria_provisional", "categoria", "frase_textual"]
-    with open(OUTPUT_DIR / "categories_side_by_side.csv", "w", newline="") as f:
+    with open(output_dir / "categories_side_by_side.csv", "w", newline="") as f:
         writer = csv.writer(f)
         writer.writerow(["orden", "archivo"]
                         + [f"{c}_{k}" for c in category_columns for k in ("coder1", "coder2")])
@@ -116,9 +124,9 @@ def main():
         "codebook": str(CODEBOOK),
         "codebook_sha256": sha256_of(CODEBOOK),
         "rows_compared": len(both),
-        "outputs_sha256": {p.name: sha256_of(p) for p in sorted(OUTPUT_DIR.glob("*.csv"))},
+        "outputs_sha256": {p.name: sha256_of(p) for p in sorted(output_dir.glob("*.csv"))},
     }
-    (OUTPUT_DIR / "provenance.json").write_text(json.dumps(provenance, indent=2) + "\n")
+    (output_dir / "provenance.json").write_text(json.dumps(provenance, indent=2) + "\n")
 
     print(f"Compared {len(both)} rows; agreement {agree}/{len(both)}; kappa "
           + ("undefined" if kappa is None else f"{kappa:.3f}"))

@@ -59,7 +59,7 @@ and write **defensive instructions** in the **body** of GH-AW workflows.
 - In 10 of the 13 fields analysed, most workflows do not declare the field and rely on its default value.
 - In `permissions`, 573 of 592 changes are more permissive, but almost all of them broaden read (416) or authentication (155) access.
 - The schema, the documentation and the lock files do not always agree. Without `tools.bash`, the documentation says only safe commands are allowed, but in 368 of 386 workflows the lock file does not restrict commands.
-- **RQ2 in progress:** coding of the 240-workflow sample is not finished yet. Pilot results are below.
+- **RQ2:** 46 of the 240 sampled workflows (19.2%) contain at least one defensive instruction in the body.
 
 ### State and direction of the 13 fields (RQ1)
 
@@ -81,9 +81,9 @@ and write **defensive instructions** in the **body** of GH-AW workflows.
 
 <sub>Impl.: not declared. Equal: declared with its default value. Mod.: declared with another value. Undet.: declared, with no determinable default for that workflow. +Perm. / +Restr.: more permissive / more restrictive change. No dir.: no source supports a direction, or the change broadens some capabilities and restricts others. N = 603. Source: <a href="results/14_rq1_measurement/">results/14_rq1_measurement/</a>. Defaults, rules and sources for each field: <a href="coding/rq1_codebook.yaml">coding/rq1_codebook.yaml</a>.</sub>
 
-### RQ2 pilot
+### Defensive instructions (RQ2)
 
-In the first 30 workflows of the sample, 7 contain at least one defensive instruction. Agreement between coders on their presence was κ = 0.902 (29 of 30). The instructions fall into four categories: do not treat content as commands, restrict actions on content, restrict disclosure of sensitive information, and delimit activation commands. Sources: [results/22_rq2_pilot_summary/](results/22_rq2_pilot_summary/) and [results/25_rq2_intercoder_agreement/](results/25_rq2_intercoder_agreement/).
+Of the 240 sampled workflows, 46 (19.2%, 95% CI 14.7–24.6%) contain at least one defensive instruction. Counting each copy group once, 46 of 224 distinct bodies (20.5%). Agreement between coders on their presence was κ = 0.862 (67 of 70 workflows coded by both). The instructions fall into four categories: restrict actions on content (29), do not treat content as commands (21), restrict disclosure of sensitive information (5) and delimit activation commands (4). A workflow may have more than one category. Sources: [results/22_rq2_summary/](results/22_rq2_summary/) and [results/25_rq2_intercoder_agreement/](results/25_rq2_intercoder_agreement/).
 
 ---
 
@@ -135,10 +135,10 @@ flowchart LR
 | RQ1 | 10, 11, 12, 13, 14, 15 | Schema roots, security architecture fields, lock file evidence (including the engine and the default of `tools.edit` and `tools.web-fetch`) and state and direction measurement |
 | RQ1 | 16, 17, 18 | Security field coding: paths to code, intercoder agreement and consensus sheet |
 | RQ1 | 19, 28 | Security field usage and Pareto with the granularity rules |
-| RQ2 | 20, 21, 22, 23 | Sample, coding sheet, pilot summary and workflow families |
+| RQ2 | 20, 21, 22, 23 | Sample, coding sheet, coding summary and workflow families |
 | RQ2 | 24, 25, 26, 27 | Second coder materials, intercoder agreement, consensus sheet and sample size |
 
-Script 28 belongs to RQ1 even though it comes after the RQ2 scripts, because scripts are numbered in the order they were created.
+Script 28 belongs to RQ1.
 
 ---
 
@@ -215,7 +215,7 @@ python scripts/28_rq1_security_field_pareto.py # needs the outputs of script 19
 
 # RQ2
 python scripts/20_rq2_pilot_sample.py          # regenerates coding/pilot_sample/ (identical, fixed seed)
-python scripts/22_rq2_pilot_summary.py
+python scripts/22_rq2_summary.py
 python scripts/23_rq2_workflow_families.py
 python scripts/27_rq2_sample_size.py
 ```

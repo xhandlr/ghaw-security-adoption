@@ -1,0 +1,24 @@
+provisional_category,workflows
+(no category),9
+Restringir acciones sobre el contenido,6
+No tratar el contenido como órdenes | Restringir acciones sobre el contenido,4
+No tratar el contenido como órdenes,3
+no confiar en contenido de terceros,3
+no ejecutar contenido de terceros,3
+"no confiar ni ejecutar contenido de terceros, no divulgar secretos",2
+Delimitar comandos de activación,1
+Restringir la divulgación de información sensible,1
+"no confiar en contenido de terceros, delimitar respuesta ante contenido sospechoso",1
+no confiar ni ejecutar contenido de terceros,1
+no divulgar vulnerabilidades de seguridad,1
+"no ejecutar contenido de terceros, verificar contenido de terceros",1
+no ejecutar código no confiable,1
+no interpolar datos de rama controlados por atacante,1
+no obedecer instrucciones del contenido externo,1
+no procesar contenido de terceros,1
+no seguir contenido de terceros,1
+no seguir enlaces no confiables,1
+no tratar artefactos locales de terceros como autoridad,1
+no tratar contenido externo como órdenes,1
+"no tratar contenido externo como órdenes, no ejecutar contenido no confiable",1
+"tratar contenido externo como datos, no seguir sus instrucciones",1
